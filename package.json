@@ -1,0 +1,28 @@
+{
+  "name": "cypherweb",
+  "version": "1.0.0",
+  "description": "Cypher Web - Siti web ad alte prestazioni con manutenzione continua",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "lint": "npx htmlhint index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielemartelli954-blip/cypherweb.git"
+  },
+  "keywords": [
+    "web-development",
+    "static-site",
+    "vercel-analytics"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielemartelli954-blip/cypherweb/issues"
+  },
+  "homepage": "https://github.com/danielemartelli954-blip/cypherweb#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
