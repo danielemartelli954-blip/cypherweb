@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cypher Web — Siti web ad alte prestazioni. Zero stress di gestione.</title>
+<meta name="description" content="Sviluppo siti web premium a Milano con manutenzione continua: sicurezza, aggiornamenti e monitoraggio 24/7. Tu pensi al tuo business, noi al resto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0F19;
+    --surface:#121826;
+    --surface-2:#161D2E;
+    --border:rgba(255,255,255,0.08);
+    --text:#FFFFFF;
+    --muted:#A1A1AA;
+    --cyan:#06B6D4;
+    --green:#22C55E;
+    --gradient: linear-gradient(135deg, var(--cyan), var(--green));
+    --radius:16px;
+    --maxw:1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:rgba(6,182,212,0.3);}
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  .container{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* background ambient glow */
+  .bg-glow{
+    position:fixed;
+    top:-200px;
+    left:50%;
+    transform:translateX(-50%);
+    width:900px;
+    height:900px;
+    background:radial-gradient(circle, rgba(6,182,212,0.12), rgba(34,197,94,0.06) 40%, transparent 70%);
+    pointer-events:none;
+    z-index:0;
+    filter:blur(40px);
+  }
+
+  /* ============ NAVBAR ============ */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    backdrop-filter:blur(16px);
+    background:rgba(11,15,25,0.7);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 24px;
+    max-width:var(--maxw);
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:17px;
+    letter-spacing:-0.01em;
+  }
+  .logo-mark{
+    width:28px;height:28px;
+    border-radius:8px;
+    background:var(--gradient);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    font-weight:700;
+    font-size:14px;
+    color:#06101a;
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    align-items:center;
+  }
+  .nav-links a{
+    font-size:14.5px;
+    color:var(--muted);
+    transition:color .2s ease;
+    position:relative;
+  }
+  .nav-links a:hover{color:var(--text);}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 20px;
+    border-radius:10px;
+    font-size:14.5px;
+    font-weight:600;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--gradient);
+    color:#06101a;
+    box-shadow:0 0 0 0 rgba(6,182,212,0.5);
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 24px -6px rgba(6,182,212,0.5);
+  }
+  .btn-ghost{
+    background:rgba(255,255,255,0.04);
+    color:var(--text);
+    border:1px solid var(--border);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,0.08);}
+
+  .nav-cta{display:none;}
+  @media(min-width:880px){ .nav-cta{display:inline-flex;} }
+
+  .burger{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    z-index:120;
+  }
+  .burger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.2s;}
+  @media(min-width:880px){ .burger{display:none;} }
+  .nav-links{display:none;}
+  @media(min-width:880px){ .nav-links{display:flex;} }
+
+  .mobile-menu{
+    position:fixed;
+    top:0;right:-100%;
+    width:78%;
+    max-width:320px;
+    height:100vh;
+    background:var(--surface);
+    border-left:1px solid var(--border);
+    z-index:110;
+    padding:90px 28px 28px;
+    transition:right .3s ease;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+  .mobile-menu.open{right:0;}
+  .mobile-menu a{font-size:17px;font-weight:500;color:var(--text);}
+  .overlay{
+    position:fixed;inset:0;
+    background:rgba(0,0,0,0.5);
+    z-index:105;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .3s ease;
+  }
+  .overlay.open{opacity:1;pointer-events:auto;}
+
+  /* ============ SECTION GENERIC ============ */
+  section{
+    position:relative;
+    z-index:1;
+    padding:120px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:var(--cyan);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
+  }
+  h1,h2,h3{
+    letter-spacing:-0.02em;
+    font-weight:700;
+  }
+  .section-title{
+    font-size:clamp(28px, 4vw, 44px);
+    line-height:1.15;
+    max-width:680px;
+    margin-bottom:18px;
+  }
+  .section-sub{
+    color:var(--muted);
+    font-size:17px;
+    max-width:560px;
+  }
+  .section-head{margin-bottom:60px;}
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:200px 0 140px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+  }
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 16px;
+    border-radius:100px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:32px;
+  }
+  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);}
+  .hero h1{
+    font-size:clamp(34px, 6vw, 68px);
+    line-height:1.08;
+    max-width:920px;
+    margin:0 auto 24px;
+  }
+  .hero h1 .grad{
+    background:var(--gradient);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p{
+    color:var(--muted);
+    font-size:clamp(16px,2vw,19px);
+    max-width:560px;
+    margin:0 auto 16px;
+  }
+  .hero .closer{
+    color:var(--text);
+    font-weight:600;
+    margin-bottom:40px;
+  }
+  .hero-ctas{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:64px;
+  }
+  .btn-lg{padding:16px 30px;font-size:16px;border-radius:12px;}
+
+  .hero-mock{
+    max-width:920px;
+    margin:0 auto;
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    background:linear-gradient(180deg, var(--surface), var(--surface-2));
+    padding:6px;
+    box-shadow:0 40px 100px -40px rgba(6,182,212,0.25), 0 0 0 1px rgba(255,255,255,0.03);
+  }
+  .hero-mock-inner{
+    border-radius:12px;
+    background:#0d1320;
+    overflow:hidden;
+  }
+  .mock-topbar{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    padding:14px 18px;
+    border-bottom:1px solid var(--border);
+  }
+  .mock-topbar span{width:10px;height:10px;border-radius:50%;background:#2a3343;}
+  .mock-topbar .url{
+    margin-left:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .mock-body{
+    padding:36px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    text-align:left;
+  }
+  @media(max-width:700px){ .mock-body{grid-template-columns:1fr;} }
+  .mock-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:18px;
+  }
+  .mock-card .label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:8px;}
+  .mock-card .value{font-size:24px;font-weight:700;margin-bottom:4px;}
+  .mock-card .delta{font-size:12px;color:var(--green);}
+  .mock-card .bar{margin-top:14px;height:6px;border-radius:4px;background:#1b2435;overflow:hidden;}
+  .mock-card .bar i{display:block;height:100%;background:var(--gradient);}
+
+  /* ============ PROBLEMA ============ */
+  .problem-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  @media(max-width:860px){ .problem-grid{grid-template-columns:1fr;} }
+  .problem-list{display:flex;flex-direction:column;gap:14px;}
+  .problem-item{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:16px 18px;
+    border-radius:12px;
+    background:var(--surface);
+    border:1px solid var(--border);
+  }
+  .problem-item .icon{
+    flex-shrink:0;
+    width:32px;height:32px;
+    border-radius:8px;
+    background:rgba(239,68,68,0.1);
+    color:#f87171;
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;
+  }
+  .problem-item p{color:var(--muted);font-size:15px;}
+
+  .compare{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .compare-card{
+    padding:24px;
+    border-radius:14px;
+    border:1px solid var(--border);
+  }
+  .compare-card.bad{background:rgba(239,68,68,0.04);}
+  .compare-card.good{
+    background:linear-gradient(135deg, rgba(6,182,212,0.08), rgba(34,197,94,0.06));
+    border:1px solid rgba(6,182,212,0.3);
+  }
+  .compare-card h4{font-size:15px;margin-bottom:8px;}
+  .compare-card.bad h4{color:#f87171;}
+  .compare-card.good h4{color:var(--green);}
+  .compare-card p{color:var(--muted);font-size:14.5px;}
+
+  /* ============ METODO ============ */
+  .method-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  @media(max-width:860px){ .method-grid{grid-template-columns:1fr;} }
+  .method-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .method-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;height:2px;
+    background:var(--gradient);
+    opacity:0;
+    transition:opacity .3s ease;
+  }
+  .method-card:hover::before{opacity:1;}
+  .method-num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--cyan);
+    font-size:13px;
+    margin-bottom:18px;
+  }
+  .method-card h3{font-size:19px;margin-bottom:10px;}
+  .method-card p{color:var(--muted);font-size:14.5px;}
+  .method-quote{
+    margin-top:56px;
+    text-align:center;
+    font-size:clamp(18px,2.6vw,24px);
+    font-weight:600;
+    max-width:680px;
+    margin-left:auto;
+    margin-right:auto;
+    color:var(--text);
+  }
+  .method-quote span{color:var(--cyan);}
+
+  /* ============ SERVIZI ============ */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  @media(max-width:860px){ .services-grid{grid-template-columns:1fr;} }
+  .service-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .service-card:hover{border-color:rgba(6,182,212,0.4);transform:translateY(-4px);}
+  .service-card .ico{
+    width:44px;height:44px;
+    border-radius:10px;
+    background:rgba(6,182,212,0.1);
+    color:var(--cyan);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:20px;
+    font-size:19px;
+  }
+  .service-card h3{font-size:18px;margin-bottom:12px;}
+  .service-card ul{display:flex;flex-direction:column;gap:8px;}
+  .service-card li{color:var(--muted);font-size:14.5px;display:flex;gap:8px;}
+  .service-card li::before{content:'→';color:var(--green);flex-shrink:0;}
+
+  .care-plan{
+    margin-top:60px;
+    background:linear-gradient(135deg, var(--surface), var(--surface-2));
+    border:1px solid rgba(6,182,212,0.25);
+    border-radius:20px;
+    padding:48px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .care-left{flex:1;min-width:260px;}
+  .care-left h3{font-size:24px;margin-bottom:10px;}
+  .care-left p{color:var(--muted);}
+  .care-price{
+    font-size:46px;
+    font-weight:800;
+  }
+  .care-price span{font-size:16px;color:var(--muted);font-weight:500;}
+  .care-badge{
+    display:inline-block;
+    margin-top:10px;
+    padding:6px 14px;
+    border-radius:100px;
+    background:rgba(34,197,94,0.12);
+    color:var(--green);
+    font-size:12.5px;
+    font-weight:600;
+  }
+  .care-list{
+    flex:1;
+    min-width:260px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .care-list li{
+    color:var(--muted);
+    font-size:14px;
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+  }
+  .care-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
+
+  /* ============ PREZZI ============ */
+  .pricing-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:24px;
+    align-items:stretch;
+  }
+  @media(max-width:860px){ .pricing-grid{grid-template-columns:1fr;} }
+  .price-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:40px;
+    display:flex;
+    flex-direction:column;
+  }
+  .price-card.featured{
+    border:1px solid rgba(6,182,212,0.4);
+    background:linear-gradient(160deg, rgba(6,182,212,0.06), var(--surface) 60%);
+  }
+  .price-card h3{font-size:20px;margin-bottom:6px;}
+  .price-card .price{
+    font-size:42px;
+    font-weight:800;
+    margin:14px 0 4px;
+  }
+  .price-card .price span{font-size:15px;color:var(--muted);font-weight:500;}
+  .price-card .note{color:var(--muted);font-size:14px;margin-bottom:24px;}
+  .price-card ul{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+  .price-card li{display:flex;gap:10px;font-size:14.5px;color:var(--text);}
+  .price-card li::before{content:'✓';color:var(--green);font-weight:700;}
+  .price-card .btn{margin-top:auto;justify-content:center;}
+
+  .split-payment{
+    margin-top:18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    padding-top:18px;
+    border-top:1px solid var(--border);
+  }
+  .split-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:13.5px;
+    color:var(--muted);
+  }
+  .split-row b{color:var(--text);}
+
+  /* ============ POLICY ACCORDION ============ */
+  .policy-grid{
+    display:flex;
+    flex-direction:column;
+    gap:1px;
+    background:var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .policy-item{background:var(--surface);}
+  .policy-q{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    padding:22px 28px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:15.5px;
+  }
+  .policy-q .plus{
+    font-size:20px;
+    color:var(--cyan);
+    transition:transform .25s ease;
+    flex-shrink:0;
+  }
+  .policy-item.open .plus{transform:rotate(45deg);}
+  .policy-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+    padding:0 28px;
+  }
+  .policy-item.open .policy-a{max-height:240px;}
+  .policy-a p{color:var(--muted);font-size:14.5px;padding-bottom:22px;}
+
+  /* ============ PORTFOLIO ============ */
+  .portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  @media(max-width:860px){ .portfolio-grid{grid-template-columns:1fr;} }
+  .portfolio-card{
+    border-radius:var(--radius);
+    border:1px solid var(--border);
+    overflow:hidden;
+    background:var(--surface);
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .portfolio-card:hover{transform:translateY(-6px);border-color:rgba(6,182,212,0.35);}
+  .portfolio-thumb{
+    height:180px;
+    background:linear-gradient(135deg, #0d1320, #141b2c);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-bottom:1px solid var(--border);
+  }
+  .portfolio-thumb::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(6,182,212,0.18), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(34,197,94,0.14), transparent 45%);
+  }
+  .portfolio-thumb .glyph{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--muted);
+    z-index:1;
+    border:1px solid var(--border);
+    padding:6px 12px;
+    border-radius:8px;
+    background:rgba(11,15,25,0.6);
+  }
+  .portfolio-info{padding:22px 24px;}
+  .portfolio-info h4{font-size:16.5px;margin-bottom:6px;}
+  .portfolio-info p{color:var(--muted);font-size:13.5px;margin-bottom:14px;}
+  .stack-tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .stack-tags span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--cyan);
+    background:rgba(6,182,212,0.08);
+    padding:4px 9px;
+    border-radius:6px;
+  }
+
+  /* ============ RECENSIONI ============ */
+  .reviews-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+  @media(max-width:760px){ .reviews-grid{grid-template-columns:1fr;} }
+  .review-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:30px;
+  }
+  .stars{color:var(--green);margin-bottom:14px;font-size:15px;letter-spacing:2px;}
+  .review-card p{font-size:15.5px;margin-bottom:18px;}
+  .reviewer{display:flex;align-items:center;gap:12px;}
+  .reviewer .avatar{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--gradient);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:14px;color:#06101a;
+  }
+  .reviewer .name{font-weight:600;font-size:14px;}
+  .reviewer .role{color:var(--muted);font-size:12.5px;}
+
+  /* ============ FAQ ============ */
+  .faq-grid{max-width:760px;margin:0 auto;}
+
+  /* ============ CONTATTI ============ */
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  @media(max-width:860px){ .contact-wrap{grid-template-columns:1fr;} }
+  .contact-info .item{
+    display:flex;
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .contact-info .ico{
+    width:38px;height:38px;
+    border-radius:9px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--cyan);
+    flex-shrink:0;
+  }
+  .contact-info .item h4{font-size:14px;color:var(--muted);margin-bottom:3px;}
+  .contact-info .item p, .contact-info .item a{font-size:15.5px;font-weight:500;}
+
+  .form-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:36px;
+  }
+  .field{margin-bottom:18px;}
+  .field label{
+    display:block;
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:8px;
+  }
+  .field input, .field textarea{
+    width:100%;
+    background:#0d1320;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:13px 14px;
+    color:var(--text);
+    font-family:inherit;
+    font-size:14.5px;
+    transition:border-color .2s ease;
+  }
+  .field input:focus, .field textarea:focus{
+    outline:none;
+    border-color:var(--cyan);
+  }
+  .field textarea{resize:vertical;min-height:100px;}
+  .form-card .btn{width:100%;justify-content:center;margin-top:6px;}
+
+  /* ============ CTA FINALE ============ */
+  .final-cta{
+    text-align:center;
+    border-bottom:none;
+    padding:100px 0 80px;
+  }
+  .final-cta h2{
+    font-size:clamp(28px,4.5vw,48px);
+    max-width:680px;
+    margin:0 auto 20px;
+  }
+  .final-cta p{color:var(--muted);max-width:480px;margin:0 auto 36px;}
+
+  /* ============ FOOTER ============ */
+  footer{
+    padding:60px 0 36px;
+    position:relative;
+    z-index:1;
+  }
+  .footer-top{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:40px;
+    margin-bottom:48px;
+  }
+  .footer-brand .logo{margin-bottom:14px;}
+  .footer-brand p{color:var(--muted);font-size:14px;max-width:280px;}
+  .footer-col h5{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px;}
+  .footer-col a, .footer-col p{display:block;font-size:14.5px;color:var(--muted);margin-bottom:10px;}
+  .footer-col a:hover{color:var(--text);}
+  .footer-cols{display:flex;gap:60px;flex-wrap:wrap;}
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    padding-top:28px;
+    border-top:1px solid var(--border);
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.show{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; animation:none !important;}
+  }
+
+  /* WhatsApp floating button */
+  .wa-float{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    z-index:90;
+    width:58px;height:58px;
+    border-radius:50%;
+    background:var(--gradient);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 30px -8px rgba(6,182,212,0.6);
+    color:#06101a;
+    transition:transform .2s ease;
+}
+  .wa-float:hover{transform:scale(1.08);}
+
+  h2.section-title{margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<header>
+  <nav>
+    <a href="#" class="logo">
+      <span class="logo-mark">C</span>
+      Cypher Web
+    </a>
+    <ul class="nav-links">
+      <li><a href="#metodo">Metodo</a></li>
+      <li><a href="#servizi">Servizi</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#prezzi">Prezzi</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contatti">Contatti</a></li>
+    </ul>
+    <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary nav-cta">Mandami un messaggio WhatsApp</a>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<div class="overlay" id="overlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#metodo">Metodo</a>
+  <a href="#servizi">Servizi</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#prezzi">Prezzi</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contatti">Contatti</a>
+  <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary" style="margin-top:10px;justify-content:center;">WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><span class="dot"></span> Sviluppo + manutenzione continua · Milano</div>
+    <h1>Siti web che <span class="grad">generano clienti</span>.<br>Senza pensieri.</h1>
+    <p>Sviluppiamo siti veloci, moderni e ottimizzati SEO con gestione continua di sicurezza, aggiornamenti e manutenzione.</p>
+    <p class="closer">Tu pensi al tuo business. Noi al resto.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary btn-lg">Mandami un messaggio WhatsApp</a>
+    </div>
+
+    <div class="hero-mock reveal">
+      <div class="hero-mock-inner">
+        <div class="mock-topbar">
+          <span></span><span></span><span></span>
+          <span class="url">cypherweb.dev/dashboard</span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-card">
+            <div class="label">UPTIME</div>
+            <div class="value">99.98%</div>
+            <div class="delta">▲ stabile 24/7</div>
+            <div class="bar"><i style="width:99%"></i></div>
+          </div>
+          <div class="mock-card">
+            <div class="label">PERFORMANCE</div>
+            <div class="value">98 / 100</div>
+            <div class="delta">▲ Core Web Vitals</div>
+            <div class="bar"><i style="width:98%"></i></div>
+          </div>
+          <div class="mock-card">
+            <div class="label">SICUREZZA</div>
+            <div class="value">Protetto</div>
+            <div class="delta">▲ backup automatici</div>
+            <div class="bar"><i style="width:100%"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section id="problema">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Il problema</div>
+      <h2 class="section-title">Il tuo sito web è davvero al sicuro?</h2>
+      <p class="section-sub">La maggior parte dei siti viene consegnata e poi abbandonata. È lì che iniziano i problemi.</p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-list reveal">
+        <div class="problem-item">
+          <div class="icon">⚠</div>
+          <p>Plugin non aggiornati che diventano porte d'accesso per attacchi.</p>
+        </div>
+        <div class="problem-item">
+          <div class="icon">⚠</div>
+          <p>Prestazioni che peggiorano mese dopo mese, senza che nessuno se ne accorga.</p>
+        </div>
+        <div class="problem-item">
+          <div class="icon">⚠</div>
+          <p>Vulnerabilità e attacchi hacker su siti lasciati senza monitoraggio.</p>
+        </div>
+        <div class="problem-item">
+          <div class="icon">⚠</div>
+          <p>Assenza di supporto tecnico quando qualcosa si rompe davvero.</p>
+        </div>
+        <div class="problem-item">
+          <div class="icon">⚠</div>
+          <p>Siti offline o lenti, che fanno perdere clienti ogni giorno.</p>
+        </div>
+      </div>
+
+      <div class="compare reveal">
+        <div class="compare-card bad">
+          <h4>Agenzia tradizionale</h4>
+          <p>Consegna il sito e sparisce. Da quel momento, sei solo.</p>
+        </div>
+        <div class="compare-card good">
+          <h4>Cypher Web</h4>
+          <p>Sviluppiamo, monitoriamo e aggiorniamo il tuo sito ogni giorno. Una relazione continua, non un progetto chiuso.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODO -->
+<section id="metodo">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Il metodo</div>
+      <h2 class="section-title">Sviluppo + Manutenzione Continua</h2>
+      <p class="section-sub">Un processo pensato per durare, non solo per essere consegnato.</p>
+    </div>
+
+    <div class="method-grid">
+      <div class="method-card reveal">
+        <div class="method-num">01 — Progettiamo</div>
+        <h3>Analisi e strategia</h3>
+        <p>Studiamo il tuo business e definiamo la strategia digitale più adatta a generare contatti reali.</p>
+      </div>
+      <div class="method-card reveal">
+        <div class="method-num">02 — Realizziamo</div>
+        <h3>Sviluppo su misura</h3>
+        <p>Siti veloci, ottimizzati SEO e mobile-first, costruiti con stack moderni e performanti.</p>
+      </div>
+      <div class="method-card reveal">
+        <div class="method-num">03 — Manteniamo</div>
+        <h3>Cura continua</h3>
+        <p>Aggiornamenti, sicurezza e monitoraggio costante, così il sito resta veloce e protetto nel tempo.</p>
+      </div>
+    </div>
+
+    <p class="method-quote reveal">"È come avere un <span>web developer nel team</span>, al costo di un caffè al giorno."</p>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section id="servizi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Servizi</div>
+      <h2 class="section-title">Sviluppo Web Sartoriale</h2>
+      <p class="section-sub">Ogni progetto costruito sulle esigenze reali del tuo business.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="ico">◆</div>
+        <h3>Siti vetrina</h3>
+        <ul>
+          <li>Design su misura</li>
+          <li>Performance ottimizzata</li>
+          <li>SEO tecnica integrata</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="ico">▲</div>
+        <h3>Landing page</h3>
+        <ul>
+          <li>Conversione alta</li>
+          <li>Copy orientato all'azione</li>
+          <li>Test e ottimizzazione</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="ico">●</div>
+        <h3>E-commerce leggeri</h3>
+        <ul>
+          <li>Catalogo prodotti</li>
+          <li>Checkout semplice</li>
+          <li>Velocità di carico</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="care-plan reveal">
+      <div class="care-left">
+        <h3>Piano Scacciapensieri</h3>
+        <p>Manutenzione completa, sicurezza e supporto prioritario.</p>
+        <div class="care-price">30€<span>/mese</span></div>
+        <span class="care-badge">Meno di 1€ al giorno</span>
+      </div>
+      <ul class="care-list">
+        <li>Hosting premium</li>
+        <li>Backup automatici</li>
+        <li>Aggiornamenti continui</li>
+        <li>Uptime monitoring 24/7</li>
+        <li>Protezione malware</li>
+        <li>Supporto prioritario</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PREZZI -->
+<section id="prezzi">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Prezzi</div>
+      <h2 class="section-title">Trasparenza totale</h2>
+      <p class="section-sub">Nessuna sorpresa: sai esattamente cosa paghi e cosa ottieni.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card featured reveal">
+        <h3>Sviluppo Web</h3>
+        <div class="price">700€<span>una tantum</span></div>
+        <p class="note">Progetto completo, dal design al deployment.</p>
+        <ul>
+          <li>Design personalizzato</li>
+          <li>Responsive su tutti i dispositivi</li>
+          <li>SEO tecnica</li>
+          <li>Performance optimization</li>
+          <li>Deployment incluso</li>
+          <li>2 round di revisioni inclusi</li>
+        </ul>
+        <div class="split-payment">
+          <div class="split-row"><span>Avvio progetto (40%)</span><b>280€</b></div>
+          <div class="split-row"><span>Approvazione design (30%)</span><b>210€</b></div>
+          <div class="split-row"><span>Delivery finale (30%)</span><b>210€</b></div>
+        </div>
+        <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary">Richiedi il preventivo</a>
+      </div>
+
+      <div class="price-card reveal">
+        <h3>Manutenzione</h3>
+        <div class="price">30€<span>/mese</span></div>
+        <p class="note">Rinnovo automatico via Stripe. Disdici quando vuoi.</p>
+        <ul>
+          <li>Hosting, backup e sicurezza</li>
+          <li>Aggiornamenti continui</li>
+          <li>30 minuti/mese di supporto incluso</li>
+          <li>Modifiche extra a 45€/ora</li>
+        </ul>
+        <a href="https://wa.me/393458409958" target="_blank" class="btn btn-ghost">Scopri di più</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLITICHE -->
+<section id="politiche">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Come lavoriamo</div>
+      <h2 class="section-title">Politiche operative chiare</h2>
+      <p class="section-sub">Regole semplici, pensate per proteggere te e il progetto.</p>
+    </div>
+
+    <div class="policy-grid reveal" id="policyAccordion">
+      <div class="policy-item open">
+        <div class="policy-q"><span>Fair use del supporto</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>30 minuti al mese inclusi per modifiche rapide (testi, immagini, contatti). Lavori strutturali extra: 45€/ora.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Fornitura materiali</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>I materiali vanno forniti entro 7 giorni lavorativi. Oltre i 14 giorni il progetto viene temporaneamente congelato.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Pagamenti</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Stripe con retry automatici. Dopo 10 giorni di mancato pagamento il servizio viene sospeso.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Offboarding</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Al termine della collaborazione ricevi file e database: la proprietà totale del sito è sempre tua. Migrazione opzionale: 150€ una tantum.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Proprietà del dominio</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Il dominio viene registrato e intestato legalmente a te fin dal primo giorno. Cypher Web si occupa solo della configurazione tecnica, DNS e collegamento hosting.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>SEO</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>È incluso solo la SEO tecnica: performance, meta tag, sitemap e indicizzazione. Non includiamo articoli, link building o campagne SEO.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>GDPR & Privacy</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Configurazione del cookie banner inclusa, con strumenti come Iubenda. Le eventuali licenze esterne sono a carico del cliente.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Portfolio</div>
+      <h2 class="section-title">Progetti recenti</h2>
+      <p class="section-sub">Una selezione di lavori realizzati con cura, performance e attenzione al dettaglio.</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card reveal">
+        <div class="portfolio-thumb"><span class="glyph">studio-legale.it</span></div>
+        <div class="portfolio-info">
+          <h4>Studio Legale Associato</h4>
+          <p>Sito vetrina con form di contatto e prenotazione consulenze.</p>
+          <div class="stack-tags"><span>Astro</span><span>SEO tecnica</span></div>
+        </div>
+      </div>
+      <div class="portfolio-card reveal">
+        <div class="portfolio-thumb"><span class="glyph">officina-moto.it</span></div>
+        <div class="portfolio-info">
+          <h4>Officina Moto Custom</h4>
+          <p>Landing page ad alta conversione per generazione contatti locali.</p>
+          <div class="stack-tags"><span>Webflow</span><span>CRO</span></div>
+        </div>
+      </div>
+      <div class="portfolio-card reveal">
+        <div class="portfolio-thumb"><span class="glyph">atelier-shop.it</span></div>
+        <div class="portfolio-info">
+          <h4>Atelier Concept Store</h4>
+          <p>E-commerce leggero con catalogo prodotti e checkout semplificato.</p>
+          <div class="stack-tags"><span>Next.js</span><span>Stripe</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section id="recensioni">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Recensioni</div>
+      <h2 class="section-title">Cosa dicono i clienti</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Finalmente qualcuno che non sparisce dopo la consegna. Il supporto continuo fa davvero la differenza."</p>
+        <div class="reviewer">
+          <div class="avatar">MR</div>
+          <div>
+            <div class="name">Marco R.</div>
+            <div class="role">Titolare attività locale</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Sito velocissimo e assistenza immediata ogni volta che ne ho avuto bisogno."</p>
+        <div class="reviewer">
+          <div class="avatar">EV</div>
+          <div>
+            <div class="name">Elena V.</div>
+            <div class="role">Professionista freelance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+      <div class="eyebrow" style="justify-content:center;">FAQ</div>
+      <h2 class="section-title" style="margin:0 auto;">Domande frequenti</h2>
+    </div>
+
+    <div class="policy-grid faq-grid reveal" id="faqAccordion">
+      <div class="policy-item open">
+        <div class="policy-q"><span>Perché il canone mensile?</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Perché un sito non finisce mai davvero: serve sicurezza, aggiornamenti e monitoraggio costante per restare veloce e protetto nel tempo.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Posso disdire?</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Sì, in qualsiasi momento. Non ci sono vincoli di durata sul piano di manutenzione.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Il sito è mio?</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Sì, al termine del rapporto ricevi tutti i file e il database: la proprietà del sito è sempre tua.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Il dominio è mio?</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Sì, sempre. Il dominio viene registrato e intestato a te fin dal primo giorno.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Tempi di sviluppo?</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>In media 2-4 settimane, in base alla complessità del progetto e ai tempi di consegna dei materiali.</p></div>
+      </div>
+      <div class="policy-item">
+        <div class="policy-q"><span>Hosting incluso?</span><span class="plus">+</span></div>
+        <div class="policy-a"><p>Sì, l'hosting premium è incluso nel piano di manutenzione mensile.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Contatti</div>
+      <h2 class="section-title">Parliamo del tuo progetto</h2>
+      <p class="section-sub">Raccontami di cosa hai bisogno: ti rispondo personalmente.</p>
+    </div>
+
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <div class="item">
+          <div class="ico">@</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:danielemartelli37@gmail.com">danielemartelli37@gmail.com</a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="ico">☏</div>
+          <div>
+            <h4>Telefono</h4>
+            <p>+39 345 840 9958</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="ico">⌖</div>
+          <div>
+            <h4>Sede</h4>
+            <p>Milano (MI)</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="ico">◎</div>
+          <div>
+            <h4>Instagram</h4>
+            <a href="https://instagram.com/cypherweb.dev" target="_blank">@cypherweb.dev</a>
+          </div>
+        </div>
+        <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary" style="margin-top:10px;">Mandami un messaggio WhatsApp</a>
+      </div>
+
+      <form class="form-card reveal" id="contactForm">
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="nome@azienda.it" required>
+        </div>
+        <div class="field">
+          <label for="azienda">Azienda</label>
+          <input type="text" id="azienda" name="azienda" placeholder="Nome attività (opzionale)">
+        </div>
+        <div class="field">
+          <label for="messaggio">Messaggio</label>
+          <textarea id="messaggio" name="messaggio" placeholder="Raccontami del tuo progetto..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Invia messaggio</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Siti web ad alte prestazioni.<br>Zero stress di gestione.</h2>
+    <p>Scrivimi su WhatsApp: parliamo del tuo progetto in 5 minuti.</p>
+    <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary btn-lg">Mandami un messaggio WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo"><span class="logo-mark">C</span>Cypher Web</a>
+        <p>Sviluppo siti web e servizi SaaS per piccole e medie imprese, professionisti e attività locali. Milano (MI).</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Sito</h5>
+          <a href="#metodo">Metodo</a>
+          <a href="#servizi">Servizi</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#prezzi">Prezzi</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contatti</h5>
+          <a href="mailto:danielemartelli37@gmail.com">danielemartelli37@gmail.com</a>
+          <p>+39 345 840 9958</p>
+          <a href="https://instagram.com/cypherweb.dev" target="_blank">@cypherweb.dev</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Cypher Web. Tutti i diritti riservati.</span>
+      <span>Milano, Italia</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/393458409958" target="_blank" class="wa-float" aria-label="Scrivi su WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.51 3.62 1.4 5.12L2 22l5.13-1.5a9.85 9.85 0 0 0 4.9 1.3h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.06h-.01a8.16 8.16 0 0 1-4.17-1.14l-.3-.18-3.1.9.92-3.03-.2-.31a8.12 8.12 0 0 1-1.27-4.39c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.16 3.66 8.16 8.16 0 4.5-3.66 8.15-8.19 8.15zm4.49-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.65.81-.79.98-.15.17-.29.18-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.5.12-.12.27-.31.4-.46.13-.16.18-.27.27-.45.08-.17.04-.31-.04-.43-.08-.12-.55-1.32-.75-1.81-.2-.48-.4-.42-.55-.42-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.74 2.65 4.21 3.61.59.23 1.05.36 1.41.46.59.16 1.13.14 1.55.08.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+</a>
+
+<script>
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('overlay');
+  function closeMenu(){ mobileMenu.classList.remove('open'); overlay.classList.remove('open'); }
+  burger.addEventListener('click', ()=>{
+    mobileMenu.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+  overlay.addEventListener('click', closeMenu);
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+
+  // Accordion (politiche + faq)
+  document.querySelectorAll('.policy-q').forEach(q=>{
+    q.addEventListener('click', ()=>{
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      item.parentElement.querySelectorAll('.policy-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>observer.observe(el));
+
+  // Contact form -> redirect to WhatsApp with prefilled message
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const azienda = document.getElementById('azienda').value;
+    const messaggio = document.getElementById('messaggio').value;
+    const text = encodeURIComponent(
+      `Ciao! Sono ${nome}.\nEmail: ${email}\nAzienda: ${azienda || '-'}\nMessaggio: ${messaggio}`
+    );
+    window.open(`https://wa.me/393458409958?text=${text}`, '_blank');
+  });
+
+  // Header background on scroll (slightly stronger blur)
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 20){
+      header.style.background = 'rgba(11,15,25,0.9)';
+    } else {
+      header.style.background = 'rgba(11,15,25,0.7)';
+    }
+  });
+</script>
+
+</body>
+</html>
