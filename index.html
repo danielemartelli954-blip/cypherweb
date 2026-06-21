@@ -32,8 +32,20 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    position:relative;
   }
   ::selection{background:rgba(6,182,212,0.3);}
+
+  /* grain / noise overlay */
+  .noise-overlay{
+    position:fixed;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    opacity:0.035;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 
   a{color:inherit;text-decoration:none;}
   ul{list-style:none;}
@@ -47,18 +59,51 @@
 
   .mono{font-family:'JetBrains Mono',monospace;}
 
-  /* background ambient glow */
+  /* background ambient glow - liquid animated blobs */
   .bg-glow{
     position:fixed;
-    top:-200px;
-    left:50%;
-    transform:translateX(-50%);
-    width:900px;
-    height:900px;
-    background:radial-gradient(circle, rgba(6,182,212,0.12), rgba(34,197,94,0.06) 40%, transparent 70%);
+    inset:0;
     pointer-events:none;
     z-index:0;
-    filter:blur(40px);
+    overflow:hidden;
+  }
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+    will-change:transform;
+  }
+  .blob-cyan{
+    top:-220px;
+    left:8%;
+    width:760px;
+    height:760px;
+    background:radial-gradient(circle, rgba(6,182,212,0.16), transparent 65%);
+    animation:aurora1 34s ease-in-out infinite;
+  }
+  .blob-green{
+    top:-100px;
+    left:55%;
+    width:680px;
+    height:680px;
+    background:radial-gradient(circle, rgba(34,197,94,0.13), transparent 65%);
+    animation:aurora2 41s ease-in-out infinite;
+  }
+  @keyframes aurora1{
+    0%{transform:translate(0,0) scale(1); opacity:0.85;}
+    20%{transform:translate(160px,90px) scale(1.15); opacity:1;}
+    40%{transform:translate(60px,220px) scale(0.9); opacity:0.7;}
+    50%{transform:translate(0,260px) scale(1.05); opacity:0.85;}
+    60%{transform:translate(-100px,200px) scale(0.95); opacity:0.95;}
+    80%{transform:translate(-160px,80px) scale(1.1); opacity:0.75;}
+    100%{transform:translate(0,0) scale(1); opacity:0.85;}
+  }
+  @keyframes aurora2{
+    0%{transform:translate(0,0) scale(1); opacity:0.8;}
+    25%{transform:translate(-140px,120px) scale(0.92); opacity:0.6;}
+    50%{transform:translate(0,40px) scale(1.18); opacity:1;}
+    75%{transform:translate(140px,140px) scale(0.95); opacity:0.7;}
+    100%{transform:translate(0,0) scale(1); opacity:0.8;}
   }
 
   /* ============ NAVBAR ============ */
@@ -783,12 +828,178 @@
 }
   .wa-float:hover{transform:scale(1.08);}
 
+  .section-title.reveal, .section-head.reveal{
+    transform:translateY(36px);
+  }
+  .section-head.reveal.show{transform:translateY(0);}
+
+  /* ===== Magnetic reactive dot grid (fixed, viewport-sized) ===== */
+  #magneticGridCanvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  /* ===== Particle constellation canvas (site-wide) ===== */
+  #particleCanvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.55;
+  }
+
+  /* ===== Hero 3D perspective grid ===== */
+  .hero{
+    position:relative;
+    overflow:hidden;
+  }
+  #heroGridCanvas{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:480px;
+    z-index:0;
+    pointer-events:none;
+    -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 55%, transparent 100%);
+    mask-image:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 55%, transparent 100%);
+  }
+  .hero .container{position:relative;z-index:1;}
+
   h2.section-title{margin-bottom:8px;}
+
+  /* ===== Border glow (gradient corners) ===== */
+  .glow-card{
+    position:relative;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    isolation:isolate;
+  }
+  .glow-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    padding:1px;
+    background:conic-gradient(from 180deg at 0% 0%, rgba(6,182,212,0.55), transparent 35%),
+               conic-gradient(from 0deg at 100% 100%, rgba(34,197,94,0.5), transparent 35%);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    pointer-events:none;
+    opacity:0.7;
+    z-index:0;
+  }
+  .glow-card > *{position:relative;z-index:1;}
+
+  /* ===== Mouse spotlight ===== */
+  .spotlight{
+    position:relative;
+    overflow:hidden;
+  }
+  .spotlight::after{
+    content:'';
+    position:absolute;
+    top:var(--spot-y, 50%);
+    left:var(--spot-x, 50%);
+    width:280px;
+    height:280px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(6,182,212,0.16), transparent 70%);
+    opacity:0;
+    transition:opacity .3s ease;
+    pointer-events:none;
+    z-index:0;
+  }
+  .spotlight:hover::after{opacity:1;}
+  .spotlight > *{position:relative;z-index:1;}
+
+  /* ===== 3D badge tags ===== */
+  .tag-3d{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    padding:7px 14px;
+    border-radius:100px;
+    background:rgba(34,197,94,0.1);
+    backdrop-filter:blur(20px);
+    color:var(--green);
+    box-shadow:0 4px 24px -6px rgba(34,197,94,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+    border:1px solid rgba(34,197,94,0.25);
+  }
+
+  /* ===== Logo Marquee ===== */
+  .marquee-section{
+    padding:64px 0;
+    border-bottom:1px solid var(--border);
+    overflow:hidden;
+  }
+  .marquee-label{
+    text-align:center;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:36px;
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    animation:marquee 28s linear infinite;
+    gap:64px;
+  }
+  .marquee-section:hover .marquee-track{animation-play-state:paused;}
+  .marquee-group{display:flex;gap:64px;align-items:center;}
+  .marquee-item{
+    font-family:'JetBrains Mono',monospace;
+    font-size:18px;
+    color:var(--muted);
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    opacity:0.7;
+    transition:opacity .2s ease, color .2s ease;
+  }
+  .marquee-item:hover{opacity:1;color:var(--cyan);}
+  .marquee-item .dotsep{width:5px;height:5px;border-radius:50%;background:var(--muted);}
+  @keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ===== Bento grid ===== */
+  .bento-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:minmax(220px, auto);
+    gap:24px;
+  }
+  .bento-grid .span-2{grid-column:span 2;}
+  .bento-grid .span-3{grid-column:span 3;}
+  @media(max-width:860px){
+    .bento-grid{grid-template-columns:1fr;}
+    .bento-grid .span-2, .bento-grid .span-3{grid-column:span 1;}
+  }
 </style>
 </head>
 <body>
 
-<div class="bg-glow"></div>
+<div class="noise-overlay"></div>
+<canvas id="magneticGridCanvas"></canvas>
+<canvas id="particleCanvas"></canvas>
+<div class="bg-glow">
+  <div class="blob blob-cyan"></div>
+  <div class="blob blob-green"></div>
+</div>
 
 <header>
   <nav>
@@ -822,6 +1033,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <canvas id="heroGridCanvas"></canvas>
   <div class="container">
     <div class="hero-badge"><span class="dot"></span> Sviluppo + manutenzione continua · Milano</div>
     <h1>Siti web che <span class="grad">generano clienti</span>.<br>Senza pensieri.</h1>
@@ -919,17 +1131,17 @@
     </div>
 
     <div class="method-grid">
-      <div class="method-card reveal">
+      <div class="method-card glow-card spotlight reveal">
         <div class="method-num">01 — Progettiamo</div>
         <h3>Analisi e strategia</h3>
         <p>Studiamo il tuo business e definiamo la strategia digitale più adatta a generare contatti reali.</p>
       </div>
-      <div class="method-card reveal">
+      <div class="method-card glow-card spotlight reveal">
         <div class="method-num">02 — Realizziamo</div>
         <h3>Sviluppo su misura</h3>
         <p>Siti veloci, ottimizzati SEO e mobile-first, costruiti con stack moderni e performanti.</p>
       </div>
-      <div class="method-card reveal">
+      <div class="method-card glow-card spotlight reveal">
         <div class="method-num">03 — Manteniamo</div>
         <h3>Cura continua</h3>
         <p>Aggiornamenti, sicurezza e monitoraggio costante, così il sito resta veloce e protetto nel tempo.</p>
@@ -949,8 +1161,8 @@
       <p class="section-sub">Ogni progetto costruito sulle esigenze reali del tuo business.</p>
     </div>
 
-    <div class="services-grid">
-      <div class="service-card reveal">
+    <div class="bento-grid">
+      <div class="service-card glow-card spotlight reveal">
         <div class="ico">◆</div>
         <h3>Siti vetrina</h3>
         <ul>
@@ -959,7 +1171,7 @@
           <li>SEO tecnica integrata</li>
         </ul>
       </div>
-      <div class="service-card reveal">
+      <div class="service-card glow-card spotlight reveal">
         <div class="ico">▲</div>
         <h3>Landing page</h3>
         <ul>
@@ -968,7 +1180,7 @@
           <li>Test e ottimizzazione</li>
         </ul>
       </div>
-      <div class="service-card reveal">
+      <div class="service-card glow-card spotlight reveal">
         <div class="ico">●</div>
         <h3>E-commerce leggeri</h3>
         <ul>
@@ -977,23 +1189,48 @@
           <li>Velocità di carico</li>
         </ul>
       </div>
-    </div>
 
-    <div class="care-plan reveal">
-      <div class="care-left">
-        <h3>Piano Scacciapensieri</h3>
-        <p>Manutenzione completa, sicurezza e supporto prioritario.</p>
-        <div class="care-price">30€<span>/mese</span></div>
-        <span class="care-badge">Meno di 1€ al giorno</span>
+      <div class="care-plan glow-card spotlight span-3 reveal">
+        <div class="care-left">
+          <span class="tag-3d">Meno di 1€ al giorno</span>
+          <h3 style="margin-top:14px;">Piano Scacciapensieri</h3>
+          <p>Manutenzione completa, sicurezza e supporto prioritario.</p>
+          <div class="care-price">30€<span>/mese</span></div>
+        </div>
+        <ul class="care-list">
+          <li>Hosting premium</li>
+          <li>Backup automatici</li>
+          <li>Aggiornamenti continui</li>
+          <li>Uptime monitoring 24/7</li>
+          <li>Protezione malware</li>
+          <li>Supporto prioritario</li>
+        </ul>
       </div>
-      <ul class="care-list">
-        <li>Hosting premium</li>
-        <li>Backup automatici</li>
-        <li>Aggiornamenti continui</li>
-        <li>Uptime monitoring 24/7</li>
-        <li>Protezione malware</li>
-        <li>Supporto prioritario</li>
-      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TECH MARQUEE -->
+<section class="marquee-section">
+  <div class="marquee-label">Stack tecnologico</div>
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-item">Astro</span><span class="dotsep"></span>
+      <span class="marquee-item">Jamstack</span><span class="dotsep"></span>
+      <span class="marquee-item">WordPress Headless</span><span class="dotsep"></span>
+      <span class="marquee-item">Webflow</span><span class="dotsep"></span>
+      <span class="marquee-item">Next.js</span><span class="dotsep"></span>
+      <span class="marquee-item">Stripe</span><span class="dotsep"></span>
+      <span class="marquee-item">Vercel</span><span class="dotsep"></span>
+    </div>
+    <div class="marquee-group">
+      <span class="marquee-item">Astro</span><span class="dotsep"></span>
+      <span class="marquee-item">Jamstack</span><span class="dotsep"></span>
+      <span class="marquee-item">WordPress Headless</span><span class="dotsep"></span>
+      <span class="marquee-item">Webflow</span><span class="dotsep"></span>
+      <span class="marquee-item">Next.js</span><span class="dotsep"></span>
+      <span class="marquee-item">Stripe</span><span class="dotsep"></span>
+      <span class="marquee-item">Vercel</span><span class="dotsep"></span>
     </div>
   </div>
 </section>
@@ -1008,7 +1245,7 @@
     </div>
 
     <div class="pricing-grid">
-      <div class="price-card featured reveal">
+      <div class="price-card featured glow-card spotlight reveal">
         <h3>Sviluppo Web</h3>
         <div class="price">700€<span>una tantum</span></div>
         <p class="note">Progetto completo, dal design al deployment.</p>
@@ -1028,7 +1265,7 @@
         <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary">Richiedi il preventivo</a>
       </div>
 
-      <div class="price-card reveal">
+      <div class="price-card glow-card spotlight reveal">
         <h3>Manutenzione</h3>
         <div class="price">30€<span>/mese</span></div>
         <p class="note">Rinnovo automatico via Stripe. Disdici quando vuoi.</p>
@@ -1095,29 +1332,37 @@
       <p class="section-sub">Una selezione di lavori realizzati con cura, performance e attenzione al dettaglio.</p>
     </div>
 
-    <div class="portfolio-grid">
-      <div class="portfolio-card reveal">
-        <div class="portfolio-thumb"><span class="glyph">studio-legale.it</span></div>
+    <div class="bento-grid">
+      <div class="portfolio-card glow-card spotlight span-2 reveal">
+        <div class="portfolio-thumb" style="height:240px;"><span class="glyph">studio-legale.it</span></div>
         <div class="portfolio-info">
           <h4>Studio Legale Associato</h4>
           <p>Sito vetrina con form di contatto e prenotazione consulenze.</p>
           <div class="stack-tags"><span>Astro</span><span>SEO tecnica</span></div>
         </div>
       </div>
-      <div class="portfolio-card reveal">
+      <div class="portfolio-card glow-card spotlight reveal">
         <div class="portfolio-thumb"><span class="glyph">officina-moto.it</span></div>
         <div class="portfolio-info">
           <h4>Officina Moto Custom</h4>
-          <p>Landing page ad alta conversione per generazione contatti locali.</p>
+          <p>Landing page ad alta conversione.</p>
           <div class="stack-tags"><span>Webflow</span><span>CRO</span></div>
         </div>
       </div>
-      <div class="portfolio-card reveal">
+      <div class="portfolio-card glow-card spotlight reveal">
         <div class="portfolio-thumb"><span class="glyph">atelier-shop.it</span></div>
         <div class="portfolio-info">
           <h4>Atelier Concept Store</h4>
-          <p>E-commerce leggero con catalogo prodotti e checkout semplificato.</p>
+          <p>E-commerce leggero con catalogo prodotti.</p>
           <div class="stack-tags"><span>Next.js</span><span>Stripe</span></div>
+        </div>
+      </div>
+      <div class="portfolio-card glow-card spotlight span-2 reveal">
+        <div class="portfolio-thumb" style="height:240px;"><span class="glyph">dentista-smile.it</span></div>
+        <div class="portfolio-info">
+          <h4>Studio Dentistico Smile</h4>
+          <p>Sito mobile-first con prenotazione appuntamenti online e SEO locale.</p>
+          <div class="stack-tags"><span>WordPress Headless</span><span>Performance</span></div>
         </div>
       </div>
     </div>
@@ -1132,7 +1377,7 @@
       <h2 class="section-title">Cosa dicono i clienti</h2>
     </div>
     <div class="reviews-grid">
-      <div class="review-card reveal">
+      <div class="review-card glow-card spotlight reveal">
         <div class="stars">★★★★★</div>
         <p>"Finalmente qualcuno che non sparisce dopo la consegna. Il supporto continuo fa davvero la differenza."</p>
         <div class="reviewer">
@@ -1143,7 +1388,7 @@
           </div>
         </div>
       </div>
-      <div class="review-card reveal">
+      <div class="review-card glow-card spotlight reveal">
         <div class="stars">★★★★★</div>
         <p>"Sito velocissimo e assistenza immediata ogni volta che ne ho avuto bisogno."</p>
         <div class="reviewer">
@@ -1360,6 +1605,242 @@
       header.style.background = 'rgba(11,15,25,0.7)';
     }
   });
+
+  // Mouse-tracking spotlight on cards
+  document.querySelectorAll('.spotlight').forEach(card=>{
+    card.addEventListener('mousemove', (e)=>{
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--spot-x', x + 'px');
+      card.style.setProperty('--spot-y', y + 'px');
+    });
+  });
+
+  // Magnetic WhatsApp floating button
+  const waFloat = document.querySelector('.wa-float');
+  const magRadius = 90;
+  window.addEventListener('mousemove', (e)=>{
+    const rect = waFloat.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if(dist < magRadius){
+      const pull = (1 - dist/magRadius) * 0.4;
+      waFloat.style.transform = `translate(${dx*pull}px, ${dy*pull}px) scale(1.06)`;
+    } else {
+      waFloat.style.transform = 'translate(0,0) scale(1)';
+    }
+  });
+
+  // ===== Magnetic reactive dot grid (fixed viewport) =====
+  (function(){
+    const canvas = document.getElementById('magneticGridCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    const spacing = 32;
+    const mouse = {x:-9999, y:-9999};
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', (e)=>{ mouse.x = e.clientX; mouse.y = e.clientY; });
+    window.addEventListener('mouseleave', ()=>{ mouse.x=-9999; mouse.y=-9999; });
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      const radius = 130;
+      const maxPush = 14;
+      for(let y=0; y<=h+spacing; y+=spacing){
+        for(let x=0; x<=w+spacing; x+=spacing){
+          let dx = x - mouse.x;
+          let dy = y - mouse.y;
+          let dist = Math.sqrt(dx*dx+dy*dy);
+          let px = x, py = y, alpha = 0.05, r = 1;
+          if(dist < radius && !reduceMotion){
+            const force = (1 - dist/radius);
+            const angle = Math.atan2(dy,dx);
+            px = x + Math.cos(angle) * force * maxPush;
+            py = y + Math.sin(angle) * force * maxPush;
+            alpha = 0.05 + force*0.35;
+            r = 1 + force*1.6;
+          }
+          ctx.beginPath();
+          ctx.arc(px, py, r, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+          ctx.fill();
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ===== Particle constellation (site-wide, connects to cursor) =====
+  (function(){
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    const mouse = {x:-9999, y:-9999};
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = document.documentElement.scrollHeight;
+    }
+    function initParticles(){
+      const count = Math.min(90, Math.floor((w*h)/22000));
+      particles = [];
+      for(let i=0;i<count;i++){
+        particles.push({
+          x:Math.random()*w,
+          y:Math.random()*h,
+          vx:(Math.random()-0.5)*0.25,
+          vy:(Math.random()-0.5)*0.25,
+          r:Math.random()*1.4+0.6
+        });
+      }
+    }
+    resize();
+    initParticles();
+    window.addEventListener('resize', ()=>{ resize(); initParticles(); });
+    window.addEventListener('mousemove', (e)=>{
+      mouse.x = e.clientX;
+      mouse.y = e.clientY + window.scrollY;
+    });
+    window.addEventListener('mouseleave', ()=>{ mouse.x=-9999; mouse.y=-9999; });
+
+    function tick(){
+      ctx.clearRect(0,0,w,h);
+      const viewTop = window.scrollY - 200;
+      const viewBottom = window.scrollY + window.innerHeight + 200;
+
+      for(let p of particles){
+        if(!reduceMotion){
+          p.x += p.vx;
+          p.y += p.vy;
+          if(p.x < 0) p.x = w; if(p.x > w) p.x = 0;
+          if(p.y < 0) p.y = h; if(p.y > h) p.y = 0;
+        }
+        if(p.y < viewTop || p.y > viewBottom) continue;
+
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx*dx+dy*dy);
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(160,180,200,0.45)';
+        ctx.fill();
+
+        if(dist < 140){
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(6,182,212,${0.35*(1-dist/140)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+      // connect nearby particles to each other (subtle constellation)
+      for(let i=0;i<particles.length;i++){
+        for(let j=i+1;j<particles.length;j++){
+          const a = particles[i], b = particles[j];
+          if(a.y < viewTop || a.y > viewBottom) continue;
+          const dx = a.x-b.x, dy = a.y-b.y;
+          const dist = Math.sqrt(dx*dx+dy*dy);
+          if(dist < 90){
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.strokeStyle = `rgba(34,197,94,${0.12*(1-dist/90)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+
+  // ===== Hero 3D perspective grid tunnel (accelerates on scroll) =====
+  (function(){
+    const canvas = document.getElementById('heroGridCanvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    let offset = 0;
+    let speed = 0.4;
+    let targetSpeed = 0.4;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      const rect = canvas.parentElement.getBoundingClientRect();
+      w = canvas.width = canvas.parentElement.offsetWidth;
+      h = canvas.height = 480;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let lastScroll = window.scrollY;
+    window.addEventListener('scroll', ()=>{
+      const delta = Math.abs(window.scrollY - lastScroll);
+      targetSpeed = 0.4 + Math.min(delta*0.15, 4);
+      lastScroll = window.scrollY;
+    });
+
+    function drawGrid(){
+      ctx.clearRect(0,0,w,h);
+      const horizonY = h*0.32;
+      const vanishX = w/2;
+      const cyan = '6,182,212';
+      const green = '34,197,94';
+
+      // perspective horizontal lines moving toward viewer
+      const rows = 26;
+      for(let i=0;i<rows;i++){
+        let t = (i/rows + offset) % 1;
+        const y = horizonY + Math.pow(t,2.2) * (h - horizonY);
+        const alpha = 0.5 * (1-t) + 0.04;
+        const mix = i%2===0 ? cyan : green;
+        ctx.strokeStyle = `rgba(${mix},${Math.max(alpha,0)})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0,y);
+        ctx.lineTo(w,y);
+        ctx.stroke();
+      }
+      // vertical converging lines
+      const cols = 14;
+      for(let i=-cols;i<=cols;i++){
+        const xBase = vanishX + i*(w/cols)*1.4;
+        ctx.strokeStyle = `rgba(${cyan},0.14)`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(vanishX, horizonY);
+        ctx.lineTo(xBase, h);
+        ctx.stroke();
+      }
+    }
+
+    function tick(){
+      if(!reduceMotion){
+        speed += (targetSpeed - speed) * 0.06;
+        targetSpeed += (0.4 - targetSpeed) * 0.02;
+        offset += 0.0022 * speed;
+      }
+      drawGrid();
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
 </script>
 
 </body>
