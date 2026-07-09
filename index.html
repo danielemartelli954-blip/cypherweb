@@ -253,6 +253,28 @@
     border-bottom:1px solid var(--border);
     transition: background 0.3s, border-color 0.3s;
   }
+  .launch-banner{
+  position:fixed;top:0;left:0;right:0;z-index:150;
+  background:linear-gradient(90deg, var(--cyan), var(--blue-deep));
+  color:#06101a;
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  font-weight:700;
+  padding:10px 46px 10px 16px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  flex-wrap:wrap;
+  box-shadow:0 4px 20px -6px rgba(46,155,255,0.5);
+}
+.launch-banner a{ color:#06101a; text-decoration:underline; }
+.launch-banner .close-banner{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:#06101a;font-size:20px;line-height:1;cursor:pointer;opacity:0.7;
+}
+.launch-banner .close-banner:hover{opacity:1;}
+
+header{ top:0; transition: top .25s ease; }
+body.banner-active header{ top:44px; }
   nav{
     display:flex;
     align-items:center;
@@ -969,6 +991,42 @@
     backdrop-filter: blur(10px);
     transition:all .3s cubic-bezier(0.16, 1, 0.3, 1);
   }
+  .blog-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+@media(max-width:860px){ .blog-grid{ grid-template-columns:1fr; } }
+
+.blog-card{
+  background:rgba(11,17,32,0.4);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  transition:all .3s cubic-bezier(0.16,1,0.3,1);
+}
+.blog-card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(46,155,255,0.3);
+  box-shadow: 0 20px 40px -15px rgba(46,155,255,0.15);
+}
+.blog-tag{
+  align-self:flex-start;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--cyan);
+  background:rgba(46,155,255,0.08);
+  border:1px solid rgba(46,155,255,0.2);
+  padding:4px 10px;border-radius:100px;margin-bottom:16px;
+}
+.blog-card h3{font-size:18px;margin-bottom:10px;}
+.blog-card p{color:var(--muted);font-size:14.5px;margin-bottom:18px;flex:1;}
+.blog-meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:14px;}
+.blog-link{color:var(--cyan);font-weight:600;font-size:14.5px;}
+.blog-link:hover{text-decoration:underline;}
   .portfolio-card:hover{
     transform:translateY(-6px);
     border-color:rgba(46,155,255,0.3);
@@ -1395,7 +1453,12 @@
 </style>
 </head>
 <body class="lang-it">
-
+<div class="launch-banner" id="launchBanner" role="banner">
+  <span class="lang-it">🚀 Offerta di lancio: il nostro <strong>primo cliente in assoluto</strong> riceve <strong>-50% sullo sviluppo</strong> + 1 mese di manutenzione gratuita.</span>
+  <span class="lang-en">🚀 Launch offer: our <strong>very first client</strong> gets <strong>-50% off development</strong> + 1 month of free maintenance.</span>
+  <a href="#contatti"><span class="lang-it">Scopri di più →</span><span class="lang-en">Learn more →</span></a>
+  <button class="close-banner" id="closeBanner" aria-label="Chiudi banner">&times;</button>
+</div>
 <a href="#main" class="skip-link">Salta al contenuto / Skip to content</a>
 
 <div class="noise-overlay"></div>
@@ -1423,6 +1486,10 @@
         <a href="#servizi" class="lang-it">Servizi</a>
         <a href="#servizi" class="lang-en">Services</a>
       </li>
+      <li>
+  <a href="#blog" class="lang-it">Blog</a>
+  <a href="#blog" class="lang-en">Blog</a>
+</li>
       <li>
         <a href="#portfolio" class="lang-it">Portfolio</a>
         <a href="#portfolio" class="lang-en">Portfolio</a>
@@ -1825,6 +1892,48 @@
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
+  <section id="blog">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow lang-it">Blog</div><div class="eyebrow lang-en">Blog</div>
+      <h2 class="section-title lang-it">Risorse e guide</h2><h2 class="section-title lang-en">Resources & Guides</h2>
+      <p class="section-sub lang-it">Consigli pratici su siti web, SEO e presenza digitale per la tua attività.</p>
+      <p class="section-sub lang-en">Practical advice on websites, SEO, and digital presence for your business.</p>
+    </div>
+
+    <div class="blog-grid">
+      <article class="blog-card glow-card spotlight reveal">
+        <span class="blog-tag lang-it">Guida</span><span class="blog-tag lang-en">Guide</span>
+        <h3 class="lang-it">Quanto costa un sito web nel 2026?</h3>
+        <h3 class="lang-en">How much does a website cost in 2026?</h3>
+        <p class="lang-it">Una panoramica onesta dei costi reali: sviluppo, hosting, manutenzione e cosa evitare nei preventivi.</p>
+        <p class="lang-en">An honest breakdown of real costs: development, hosting, maintenance, and quote red flags to avoid.</p>
+        <div class="blog-meta"><span>5 <span class="lang-it">min lettura</span><span class="lang-en">min read</span></span></div>
+        <a href="#" class="blog-link"><span class="lang-it">Leggi l'articolo →</span><span class="lang-en">Read article →</span></a>
+      </article>
+
+      <article class="blog-card glow-card spotlight reveal">
+        <span class="blog-tag lang-it">SEO</span><span class="blog-tag lang-en">SEO</span>
+        <h3 class="lang-it">WordPress vs sito su misura: quale scegliere</h3>
+        <h3 class="lang-en">WordPress vs custom-built: which to choose</h3>
+        <p class="lang-it">Vantaggi e limiti di entrambi gli approcci, spiegati senza tecnicismi per aiutarti a decidere.</p>
+        <p class="lang-en">The pros and cons of each approach, explained in plain language to help you decide.</p>
+        <div class="blog-meta"><span>6 <span class="lang-it">min lettura</span><span class="lang-en">min read</span></span></div>
+        <a href="#" class="blog-link"><span class="lang-it">Leggi l'articolo →</span><span class="lang-en">Read article →</span></a>
+      </article>
+
+      <article class="blog-card glow-card spotlight reveal">
+        <span class="blog-tag lang-it">Sicurezza</span><span class="blog-tag lang-en">Security</span>
+        <h3 class="lang-it">5 segnali che il tuo sito è a rischio</h3>
+        <h3 class="lang-en">5 signs your website is at risk</h3>
+        <p class="lang-it">Come riconoscere plugin obsoleti, backup mancanti e altri campanelli d'allarme prima che sia tardi.</p>
+        <p class="lang-en">How to spot outdated plugins, missing backups, and other warning signs before it's too late.</p>
+        <div class="blog-meta"><span>4 <span class="lang-it">min lettura</span><span class="lang-en">min read</span></span></div>
+        <a href="#" class="blog-link"><span class="lang-it">Leggi l'articolo →</span><span class="lang-en">Read article →</span></a>
+      </article>
+    </div>
+  </div>
+</section>
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow lang-it">Portfolio</div><div class="eyebrow lang-en">Portfolio</div>
@@ -2345,6 +2454,25 @@
     }
     rafId = requestAnimationFrame(tick);
   })();
+  (function(){
+  const banner = document.getElementById('launchBanner');
+  const KEY = 'cypher_banner_dismissed';
+  let dismissed = false;
+  try { dismissed = localStorage.getItem(KEY) === '1'; } catch(e){}
+  if(!banner) return;
+  if(dismissed){
+    banner.style.display = 'none';
+  } else {
+    document.body.classList.add('banner-active');
+  }
+  const closeBtn = document.getElementById('closeBanner');
+  closeBtn.addEventListener('click', ()=>{
+    banner.style.display = 'none';
+    document.body.classList.remove('banner-active');
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
+  });
+})();
+
 </script>
 
 </body>
