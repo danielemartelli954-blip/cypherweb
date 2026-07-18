@@ -3,22 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cypher Web — Siti web ad alte prestazioni. Zero stress di gestione.</title>
-<meta name="description" content="Sviluppo siti web premium a Milano con manutenzione continua: sicurezza, aggiornamenti e monitoraggio 24/7. Tu pensi al tuo business, noi al resto.">
+<title>Cypher Web — High-Performance Websites. Zero Management Stress.</title>
+<meta name="description" content="Sviluppo siti web premium con manutenzione continua. High-performance custom websites with 24/7 maintenance and security.">
+<link rel="canonical" href="https://www.cypherweb.dev/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232E9BFF'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='58' font-weight='700' fill='%2306101a' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cypher Web — Siti web ad alte prestazioni, zero pensieri">
+<meta property="og:description" content="Sviluppo siti web su misura con manutenzione, sicurezza e aggiornamenti continui. A partire da 700€ + 45€/mese.">
+<meta property="og:url" content="https://www.cypherweb.dev/">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cypher Web — Siti web ad alte prestazioni, zero pensieri">
+<meta name="twitter:description" content="Sviluppo siti web su misura con manutenzione, sicurezza e aggiornamenti continui.">
+<meta name="theme-color" content="#060913">
+<meta name="robots" content="index, follow">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Cypher Web",
+  "url": "https://www.cypherweb.dev/",
+  "telephone": "+393458409958",
+  "email": "danielemartelli37@gmail.com",
+  "areaServed": "IT",
+  "description": "Sviluppo siti web su misura con manutenzione, sicurezza e aggiornamenti continui.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Milano",
+    "addressCountry": "IT"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "12"
+  },
+  "priceRange": "€€"
+}
+</script>
+
 <style>
   :root{
-    --bg:#0B0F19;
-    --surface:#121826;
-    --surface-2:#161D2E;
-    --border:rgba(255,255,255,0.08);
+    --bg:#050810;
+    --surface:#0b1120;
+    --surface-2:#10172a;
+    --border:rgba(255,255,255,0.07);
     --text:#FFFFFF;
-    --muted:#A1A1AA;
-    --cyan:#06B6D4;
-    --green:#22C55E;
-    --gradient: linear-gradient(135deg, var(--cyan), var(--green));
+    --muted:#9aa7bd;
+    /* Brand palette derived from the Cypher Web logo: electric blue + brushed silver */
+    --cyan:#2E9BFF;
+    --blue-deep:#0B5ED7;
+    --silver:#E7ECF2;
+    --green:#3B82F6;
+    --purple:#7C8FFF;
+    --blue:#2E9BFF;
+    --gradient: linear-gradient(135deg, var(--cyan), var(--silver));
+    --gradient-brand: linear-gradient(135deg, #1E6FE0, #2E9BFF 45%, #E7ECF2 100%);
     --radius:16px;
     --maxw:1180px;
   }
@@ -32,8 +78,78 @@
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    position:relative;
   }
-  ::selection{background:rgba(6,182,212,0.3);}
+  ::selection{background:rgba(46,155,255,0.3);}
+
+  /* Visible keyboard focus everywhere */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--cyan);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* Skip link for keyboard/screen-reader users */
+  .skip-link{
+    position:absolute;
+    left:-9999px;
+    top:auto;
+    background:var(--cyan);
+    color:#06101a;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:600;
+    z-index:200;
+  }
+  .skip-link:focus{
+    left:16px;
+    top:16px;
+  }
+
+  /* MULTILANGUAGE TOGGLE SYSTEM */
+  body.lang-en .lang-it { display: none !important; }
+  body.lang-it .lang-en { display: none !important; }
+
+  .lang-switcher-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 3px;
+    border-radius: 8px;
+    margin-right: 8px;
+  }
+  .lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .lang-btn:hover { color: var(--text); }
+  body.lang-it .lang-btn.btn-it,
+  body.lang-en .lang-btn.btn-en {
+    background: rgba(255,255,255,0.08);
+    color: var(--cyan);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* Grain / Noise overlay */
+  .noise-overlay{
+    position:fixed;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    opacity:0.04;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 
   a{color:inherit;text-decoration:none;}
   ul{list-style:none;}
@@ -47,18 +163,88 @@
 
   .mono{font-family:'JetBrains Mono',monospace;}
 
-  /* background ambient glow */
+  /* RICH ANIMATED AURORA BACKGROUND — multi-layer, color-shifting, GPU-friendly */
   .bg-glow{
     position:fixed;
-    top:-200px;
-    left:50%;
-    transform:translateX(-50%);
-    width:900px;
-    height:900px;
-    background:radial-gradient(circle, rgba(6,182,212,0.12), rgba(34,197,94,0.06) 40%, transparent 70%);
+    inset:0;
     pointer-events:none;
     z-index:0;
-    filter:blur(40px);
+    overflow:hidden;
+    filter: blur(80px);
+    opacity: 0.85;
+    transform: translateZ(0);
+  }
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    will-change:transform;
+    mix-blend-mode:screen;
+  }
+  .blob-cyan{
+    top:-15%; left:-12%;
+    width:58vw; height:58vw;
+    background:radial-gradient(circle, rgba(46,155,255,0.22), transparent 70%);
+    animation:drift-a 26s infinite alternate ease-in-out, hue-shift 18s infinite linear;
+  }
+  .blob-green{
+    bottom:-18%; right:-12%;
+    width:54vw; height:54vw;
+    background:radial-gradient(circle, rgba(124,143,255,0.18), transparent 70%);
+    animation:drift-b 32s infinite alternate-reverse ease-in-out, hue-shift 22s infinite linear;
+  }
+  .blob-purple{
+    top:30%; left:50%;
+    width:44vw; height:44vw;
+    background:radial-gradient(circle, rgba(231,236,242,0.10), transparent 70%);
+    animation:drift-c 38s infinite ease-in-out;
+  }
+  .blob-blue{
+    top:5%; right:5%;
+    width:38vw; height:38vw;
+    background:radial-gradient(circle, rgba(11,94,215,0.20), transparent 70%);
+    animation:drift-d 30s infinite alternate ease-in-out;
+  }
+  @keyframes drift-a {
+    0% { transform: translate(0,0) scale(1) rotate(0deg); }
+    50% { transform: translate(8%,10%) scale(1.15) rotate(20deg); }
+    100% { transform: translate(-4%,4%) scale(0.95) rotate(-10deg); }
+  }
+  @keyframes drift-b {
+    0% { transform: translate(0,0) scale(1) rotate(0deg); }
+    50% { transform: translate(-10%,-6%) scale(1.12) rotate(-18deg); }
+    100% { transform: translate(5%,-8%) scale(0.92) rotate(12deg); }
+  }
+  @keyframes drift-c {
+    0% { transform: translate(-50%,0) scale(1); }
+    33% { transform: translate(-58%,8%) scale(1.2); }
+    66% { transform: translate(-42%,-6%) scale(0.9); }
+    100% { transform: translate(-50%,0) scale(1); }
+  }
+  @keyframes drift-d {
+    0% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-10%,12%) scale(1.18); }
+    100% { transform: translate(4%,-4%) scale(0.96); }
+  }
+  @keyframes hue-shift {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+
+  /* Subtle moving grid sheen across the whole page */
+  .bg-sheen{
+    position:fixed;
+    inset:-10%;
+    z-index:0;
+    pointer-events:none;
+    background:
+      linear-gradient(115deg, transparent 40%, rgba(46,155,255,0.05) 50%, transparent 60%);
+    background-size:200% 200%;
+    animation: sheen-move 16s ease-in-out infinite;
+    mix-blend-mode:screen;
+  }
+  @keyframes sheen-move {
+    0%, 100% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
   }
 
   /* ============ NAVBAR ============ */
@@ -66,15 +252,39 @@
     position:fixed;
     top:0;left:0;right:0;
     z-index:100;
-    backdrop-filter:blur(16px);
-    background:rgba(11,15,25,0.7);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    background:rgba(6,9,19,0.65);
     border-bottom:1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
   }
+  .launch-banner{
+  position:fixed;top:0;left:0;right:0;z-index:150;
+  background:linear-gradient(90deg, var(--cyan), var(--blue-deep));
+  color:#06101a;
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  font-weight:700;
+  padding:10px 46px 10px 16px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  flex-wrap:wrap;
+  box-shadow:0 4px 20px -6px rgba(46,155,255,0.5);
+}
+.launch-banner a{ color:#06101a; text-decoration:underline; }
+.launch-banner .close-banner{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:#06101a;font-size:20px;line-height:1;cursor:pointer;opacity:0.7;
+}
+.launch-banner .close-banner:hover{opacity:1;}
+
+header{ top:0; transition: top .25s ease; }
+body.banner-active header{ top:44px; }
   nav{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:18px 24px;
+    padding:16px 24px;
     max-width:var(--maxw);
     margin:0 auto;
   }
@@ -83,18 +293,31 @@
     align-items:center;
     gap:10px;
     font-weight:700;
-    font-size:17px;
-    letter-spacing:-0.01em;
+    font-size:18px;
+    letter-spacing:-0.02em;
   }
+  .logo img{
+    height:70px;
+    width:auto;
+    display:block;
+    transition:transform .3s ease;
+    filter:drop-shadow(0 4px 16px rgba(46,155,255,.35));
+}
+
+.logo:hover img{
+    transform:scale(1.05);
+}
+  .footer-brand .logo img{ height:150px; }
   .logo-mark{
-    width:28px;height:28px;
-    border-radius:8px;
+    width:30px;height:30px;
+    border-radius:9px;
     background:var(--gradient);
     display:flex;align-items:center;justify-content:center;
     font-family:'JetBrains Mono',monospace;
     font-weight:700;
-    font-size:14px;
+    font-size:15px;
     color:#06101a;
+    box-shadow: 0 4px 12px rgba(46,155,255,0.25);
   }
   .nav-links{
     display:flex;
@@ -105,7 +328,6 @@
     font-size:14.5px;
     color:var(--muted);
     transition:color .2s ease;
-    position:relative;
   }
   .nav-links a:hover{color:var(--text);}
 
@@ -113,30 +335,39 @@
     display:inline-flex;
     align-items:center;
     gap:8px;
-    padding:11px 20px;
+    padding:11px 22px;
     border-radius:10px;
     font-size:14.5px;
     font-weight:600;
     cursor:pointer;
     border:1px solid transparent;
-    transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    transition:all .25s cubic-bezier(0.16, 1, 0.3, 1);
     white-space:nowrap;
   }
   .btn-primary{
     background:var(--gradient);
     color:#06101a;
-    box-shadow:0 0 0 0 rgba(6,182,212,0.5);
+    box-shadow:0 4px 20px -4px rgba(46,155,255,0.4);
   }
   .btn-primary:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 24px -6px rgba(6,182,212,0.5);
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 12px 30px -6px rgba(46,155,255,0.6);
   }
   .btn-ghost{
-    background:rgba(255,255,255,0.04);
+    background:rgba(255,255,255,0.03);
     color:var(--text);
     border:1px solid var(--border);
   }
-  .btn-ghost:hover{background:rgba(255,255,255,0.08);}
+  .btn-ghost:hover{
+    background:rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
+  }
+
+  .nav-right-actions {
+    display: flex;
+    align-items: center;
+  }
 
   .nav-cta{display:none;}
   @media(min-width:880px){ .nav-cta{display:inline-flex;} }
@@ -147,6 +378,10 @@
     gap:5px;
     cursor:pointer;
     z-index:120;
+    margin-left: 10px;
+    background:none;
+    border:none;
+    padding:6px;
   }
   .burger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.2s;}
   @media(min-width:880px){ .burger{display:none;} }
@@ -163,7 +398,7 @@
     border-left:1px solid var(--border);
     z-index:110;
     padding:90px 28px 28px;
-    transition:right .3s ease;
+    transition:right .3s cubic-bezier(0.16, 1, 0.3, 1);
     display:flex;
     flex-direction:column;
     gap:24px;
@@ -172,7 +407,8 @@
   .mobile-menu a{font-size:17px;font-weight:500;color:var(--text);}
   .overlay{
     position:fixed;inset:0;
-    background:rgba(0,0,0,0.5);
+    background:rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
     z-index:105;
     opacity:0;
     pointer-events:none;
@@ -184,7 +420,7 @@
   section{
     position:relative;
     z-index:1;
-    padding:120px 0;
+    padding:140px 0;
     border-bottom:1px solid var(--border);
   }
   .eyebrow{
@@ -192,11 +428,11 @@
     align-items:center;
     gap:8px;
     font-family:'JetBrains Mono',monospace;
-    font-size:12.5px;
+    font-size:12px;
     color:var(--cyan);
     text-transform:uppercase;
-    letter-spacing:0.08em;
-    margin-bottom:18px;
+    letter-spacing:0.1em;
+    margin-bottom:20px;
   }
   .eyebrow::before{
     content:'';
@@ -206,25 +442,25 @@
     box-shadow:0 0 12px var(--green);
   }
   h1,h2,h3{
-    letter-spacing:-0.02em;
+    letter-spacing:-0.03em;
     font-weight:700;
   }
   .section-title{
-    font-size:clamp(28px, 4vw, 44px);
+    font-size:clamp(30px, 4.5vw, 46px);
     line-height:1.15;
     max-width:680px;
-    margin-bottom:18px;
+    margin-bottom:20px;
   }
   .section-sub{
     color:var(--muted);
     font-size:17px;
     max-width:560px;
   }
-  .section-head{margin-bottom:60px;}
+  .section-head{margin-bottom:64px;}
 
   /* ============ HERO ============ */
   .hero{
-    padding:200px 0 140px;
+    padding:220px 0 160px;
     text-align:center;
     border-bottom:1px solid var(--border);
   }
@@ -232,59 +468,88 @@
     display:inline-flex;
     align-items:center;
     gap:10px;
-    padding:8px 16px;
+    padding:8px 18px;
     border-radius:100px;
     border:1px solid var(--border);
-    background:var(--surface);
+    background:rgba(11, 17, 32, 0.6);
+    backdrop-filter: blur(10px);
     font-size:13px;
     color:var(--muted);
-    margin-bottom:32px;
+    margin-bottom:36px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
   }
   .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);}
+
   .hero h1{
-    font-size:clamp(34px, 6vw, 68px);
-    line-height:1.08;
-    max-width:920px;
-    margin:0 auto 24px;
+    font-size:clamp(38px, 6.5vw, 72px);
+    line-height:1.06;
+    max-width:960px;
+    margin:0 auto 28px;
   }
   .hero h1 .grad{
-    background:var(--gradient);
+    background: linear-gradient(135deg, var(--cyan), var(--green), var(--cyan));
+    background-size: 200% auto;
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
+    animation: text-shimmer 5s linear infinite;
   }
+  @keyframes text-shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
   .hero p{
     color:var(--muted);
-    font-size:clamp(16px,2vw,19px);
-    max-width:560px;
-    margin:0 auto 16px;
+    font-size:clamp(17px,2.2vw,20px);
+    max-width:600px;
+    margin:0 auto 20px;
   }
   .hero .closer{
     color:var(--text);
     font-weight:600;
-    margin-bottom:40px;
+    margin-bottom:44px;
   }
   .hero-ctas{
     display:flex;
     justify-content:center;
     gap:14px;
     flex-wrap:wrap;
-    margin-bottom:64px;
+    margin-bottom:24px;
   }
-  .btn-lg{padding:16px 30px;font-size:16px;border-radius:12px;}
+  .hero-trust{
+    color:var(--muted);
+    font-size:13.5px;
+    margin-bottom:24px;
+  }
+  .hero-guarantee{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--green);
+    background:rgba(59,130,246,0.08);
+    border:1px solid rgba(59,130,246,0.25);
+    padding:8px 16px;
+    border-radius:100px;
+    margin-bottom:48px;
+    font-weight:600;
+  }
+  .btn-lg{padding:16px 36px;font-size:16px;border-radius:12px;}
 
   .hero-mock{
-    max-width:920px;
+    max-width:940px;
     margin:0 auto;
     border-radius:var(--radius);
     border:1px solid var(--border);
-    background:linear-gradient(180deg, var(--surface), var(--surface-2));
+    background:linear-gradient(180deg, rgba(16,23,42,0.8), rgba(11,17,32,0.9));
+    backdrop-filter: blur(20px);
     padding:6px;
-    box-shadow:0 40px 100px -40px rgba(6,182,212,0.25), 0 0 0 1px rgba(255,255,255,0.03);
+    box-shadow:0 50px 100px -40px rgba(46,155,255,0.3), 0 0 0 1px rgba(255,255,255,0.02);
   }
   .hero-mock-inner{
     border-radius:12px;
-    background:#0d1320;
+    background:#080d1a;
     overflow:hidden;
   }
   .mock-topbar{
@@ -294,7 +559,7 @@
     padding:14px 18px;
     border-bottom:1px solid var(--border);
   }
-  .mock-topbar span{width:10px;height:10px;border-radius:50%;background:#2a3343;}
+  .mock-topbar span{width:10px;height:10px;border-radius:50%;background:#1e293b;}
   .mock-topbar .url{
     margin-left:8px;
     font-family:'JetBrains Mono',monospace;
@@ -302,23 +567,25 @@
     color:var(--muted);
   }
   .mock-body{
-    padding:36px;
+    padding:40px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:18px;
+    gap:20px;
     text-align:left;
   }
   @media(max-width:700px){ .mock-body{grid-template-columns:1fr;} }
   .mock-card{
-    background:var(--surface);
+    background:rgba(15, 23, 42, 0.5);
     border:1px solid var(--border);
     border-radius:10px;
-    padding:18px;
+    padding:22px;
+    transition: transform 0.3s;
   }
+  .mock-card:hover { transform: translateY(-2px); }
   .mock-card .label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:8px;}
-  .mock-card .value{font-size:24px;font-weight:700;margin-bottom:4px;}
+  .mock-card .value{font-size:26px;font-weight:700;margin-bottom:4px;}
   .mock-card .delta{font-size:12px;color:var(--green);}
-  .mock-card .bar{margin-top:14px;height:6px;border-radius:4px;background:#1b2435;overflow:hidden;}
+  .mock-card .bar{margin-top:14px;height:6px;border-radius:4px;background:#131c2e;overflow:hidden;}
   .mock-card .bar i{display:block;height:100%;background:var(--gradient);}
 
   /* ============ PROBLEMA ============ */
@@ -334,11 +601,14 @@
     display:flex;
     gap:14px;
     align-items:flex-start;
-    padding:16px 18px;
+    padding:18px 20px;
     border-radius:12px;
-    background:var(--surface);
+    background:rgba(11,17,32,0.4);
+    backdrop-filter: blur(10px);
     border:1px solid var(--border);
+    transition: border-color 0.3s;
   }
+  .problem-item:hover { border-color: rgba(239,68,68,0.2); }
   .problem-item .icon{
     flex-shrink:0;
     width:32px;height:32px;
@@ -356,19 +626,20 @@
     gap:18px;
   }
   .compare-card{
-    padding:24px;
+    padding:26px;
     border-radius:14px;
     border:1px solid var(--border);
   }
-  .compare-card.bad{background:rgba(239,68,68,0.04);}
+  .compare-card.bad{background:rgba(239,68,68,0.03);}
   .compare-card.good{
-    background:linear-gradient(135deg, rgba(6,182,212,0.08), rgba(34,197,94,0.06));
-    border:1px solid rgba(6,182,212,0.3);
+    background:linear-gradient(135deg, rgba(46,155,255,0.06), rgba(124,143,255,0.04));
+    border:1px solid rgba(46,155,255,0.25);
+    box-shadow: 0 10px 30px -10px rgba(46,155,255,0.1);
   }
-  .compare-card h4{font-size:15px;margin-bottom:8px;}
+  .compare-card h4{font-size:16px;margin-bottom:8px;}
   .compare-card.bad h4{color:#f87171;}
   .compare-card.good h4{color:var(--green);}
-  .compare-card p{color:var(--muted);font-size:14.5px;}
+  .compare-card p{color:var(--muted);font-size:15px;}
 
   /* ============ METODO ============ */
   .method-grid{
@@ -378,10 +649,11 @@
   }
   @media(max-width:860px){ .method-grid{grid-template-columns:1fr;} }
   .method-card{
-    background:var(--surface);
+    background:rgba(11,17,32,0.45);
+    backdrop-filter: blur(10px);
     border:1px solid var(--border);
     border-radius:var(--radius);
-    padding:32px 28px;
+    padding:36px 30px;
     position:relative;
     overflow:hidden;
   }
@@ -398,57 +670,88 @@
     font-family:'JetBrains Mono',monospace;
     color:var(--cyan);
     font-size:13px;
-    margin-bottom:18px;
+    margin-bottom:20px;
   }
-  .method-card h3{font-size:19px;margin-bottom:10px;}
-  .method-card p{color:var(--muted);font-size:14.5px;}
+  .method-card h3{font-size:20px;margin-bottom:12px;}
+  .method-card p{color:var(--muted);font-size:15px;}
   .method-quote{
-    margin-top:56px;
+    margin-top:64px;
     text-align:center;
-    font-size:clamp(18px,2.6vw,24px);
+    font-size:clamp(19px,2.8vw,26px);
     font-weight:600;
-    max-width:680px;
+    max-width:700px;
     margin-left:auto;
     margin-right:auto;
     color:var(--text);
   }
   .method-quote span{color:var(--cyan);}
 
-  /* ============ SERVIZI ============ */
-  .services-grid{
+  /* ============ STATS STRIP (trust) ============ */
+  .stats-strip{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:24px;
+    margin-top:56px;
   }
-  @media(max-width:860px){ .services-grid{grid-template-columns:1fr;} }
+  @media(max-width:760px){ .stats-strip{grid-template-columns:1fr 1fr;} }
+  .stat-card{
+    text-align:center;
+    padding:28px 16px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:rgba(11,17,32,0.4);
+    backdrop-filter: blur(10px);
+  }
+  .stat-card .num{
+    font-size:clamp(26px,3vw,34px);
+    font-weight:800;
+    background: linear-gradient(180deg, #fff 60%, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .stat-card .lbl{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:6px;
+  }
+
+  /* ============ SERVIZI ============ */
   .service-card{
-    background:var(--surface);
+    background:rgba(11,17,32,0.4);
+    backdrop-filter: blur(10px);
     border:1px solid var(--border);
     border-radius:var(--radius);
-    padding:30px;
-    transition:border-color .2s ease, transform .2s ease;
+    padding:32px;
+    transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .service-card:hover{border-color:rgba(6,182,212,0.4);transform:translateY(-4px);}
+  .service-card:hover{
+    border-color:rgba(46,155,255,0.35);
+    transform:translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(46,155,255,0.15);
+  }
   .service-card .ico{
-    width:44px;height:44px;
+    width:46px;height:46px;
     border-radius:10px;
-    background:rgba(6,182,212,0.1);
+    background:rgba(46,155,255,0.08);
     color:var(--cyan);
     display:flex;align-items:center;justify-content:center;
-    margin-bottom:20px;
-    font-size:19px;
+    margin-bottom:24px;
+    font-size:20px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
   }
-  .service-card h3{font-size:18px;margin-bottom:12px;}
-  .service-card ul{display:flex;flex-direction:column;gap:8px;}
+  .service-card h3{font-size:19px;margin-bottom:14px;}
+  .service-card ul{display:flex;flex-direction:column;gap:10px;}
   .service-card li{color:var(--muted);font-size:14.5px;display:flex;gap:8px;}
   .service-card li::before{content:'→';color:var(--green);flex-shrink:0;}
 
   .care-plan{
     margin-top:60px;
-    background:linear-gradient(135deg, var(--surface), var(--surface-2));
-    border:1px solid rgba(6,182,212,0.25);
+    background:linear-gradient(135deg, rgba(16,23,42,0.6), rgba(11,17,32,0.7));
+    backdrop-filter: blur(20px);
+    border:1px solid rgba(46,155,255,0.2);
     border-radius:20px;
-    padding:48px;
+    padding:54px 48px;
     display:flex;
     flex-wrap:wrap;
     gap:40px;
@@ -456,19 +759,24 @@
     align-items:center;
   }
   .care-left{flex:1;min-width:260px;}
-  .care-left h3{font-size:24px;margin-bottom:10px;}
+  .care-left h3{font-size:26px;margin-bottom:10px;}
   .care-left p{color:var(--muted);}
   .care-price{
-    font-size:46px;
+    font-size:52px;
     font-weight:800;
+    letter-spacing: -0.02em;
+    background: linear-gradient(180deg, #fff 60%, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
-  .care-price span{font-size:16px;color:var(--muted);font-weight:500;}
+  .care-price span{font-size:16px;color:var(--muted);font-weight:500;background:none;-webkit-background-clip:initial;color:var(--muted);}
   .care-badge{
     display:inline-block;
     margin-top:10px;
     padding:6px 14px;
     border-radius:100px;
-    background:rgba(34,197,94,0.12);
+    background:rgba(124,143,255,0.12);
     color:var(--green);
     font-size:12.5px;
     font-weight:600;
@@ -478,11 +786,11 @@
     min-width:260px;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
+    gap:14px;
   }
   .care-list li{
     color:var(--muted);
-    font-size:14px;
+    font-size:14.5px;
     display:flex;
     gap:8px;
     align-items:flex-start;
@@ -490,109 +798,343 @@
   .care-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
 
   /* ============ PREZZI ============ */
-  .pricing-grid{
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:24px;
-    align-items:stretch;
-  }
-  @media(max-width:860px){ .pricing-grid{grid-template-columns:1fr;} }
-  .price-card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:40px;
-    display:flex;
-    flex-direction:column;
-  }
-  .price-card.featured{
-    border:1px solid rgba(6,182,212,0.4);
-    background:linear-gradient(160deg, rgba(6,182,212,0.06), var(--surface) 60%);
-  }
-  .price-card h3{font-size:20px;margin-bottom:6px;}
-  .price-card .price{
-    font-size:42px;
-    font-weight:800;
-    margin:14px 0 4px;
-  }
-  .price-card .price span{font-size:15px;color:var(--muted);font-weight:500;}
-  .price-card .note{color:var(--muted);font-size:14px;margin-bottom:24px;}
-  .price-card ul{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
-  .price-card li{display:flex;gap:10px;font-size:14.5px;color:var(--text);}
-  .price-card li::before{content:'✓';color:var(--green);font-weight:700;}
-  .price-card .btn{margin-top:auto;justify-content:center;}
+  /* ============ PRICING GRID — 4 colonne desktop / 2 tablet / 1 mobile ============ */
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:24px;
+  align-items:stretch;
+}
+@media(max-width:1200px){
+  .pricing-grid{ grid-template-columns:repeat(2, 1fr); }
+}
+@media(max-width:640px){
+  .pricing-grid{ grid-template-columns:1fr; }
+}
+.price-card{
+  background:rgba(11,17,32,0.4);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:44px;
+  display:flex;
+  flex-direction:column;
+  transition:transform .4s cubic-bezier(0.16,1,0.3,1), box-shadow .4s;
+}
+.price-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,0.4);
+}
 
-  .split-payment{
-    margin-top:18px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    padding-top:18px;
-    border-top:1px solid var(--border);
-  }
-  .split-row{
-    display:flex;
-    justify-content:space-between;
-    font-size:13.5px;
-    color:var(--muted);
-  }
-  .split-row b{color:var(--text);}
+.price-card h3{ font-size:22px; margin-bottom:6px; }
 
-  /* ============ POLICY ACCORDION ============ */
-  .policy-grid{
+/* Prezzo barrato — elegante, grigio, discreto */
+.price-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:18px;
+}
+.price-old{
+  font-size:16px;
+  font-weight:500;
+  color:var(--muted);
+  text-decoration:line-through;
+  text-decoration-color:rgba(154,167,189,0.6);
+  text-decoration-thickness:1.5px;
+  opacity:0.75;
+}
+
+/* Badge sconto — verde, leggibile su dark mode */
+.discount-badge{
+  display:inline-flex;
+  align-items:center;
+  font-family:'JetBrains Mono', monospace;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.02em;
+  padding:4px 10px;
+  border-radius:100px;
+  color:#22C55E;
+  background:rgba(34,197,94,0.12);
+  border:1px solid rgba(34,197,94,0.3);
+  box-shadow:0 0 12px -2px rgba(34,197,94,0.25);
+}
+
+.price-card .price{
+  font-size:46px;
+  font-weight:800;
+  margin:4px 0 4px;
+  letter-spacing:-0.02em;
+}
+.price-card .price span{
+  font-size:15px;
+  color:var(--muted);
+  font-weight:500;
+  margin-left:6px;
+}
+
+.price-card .note{
+  color:var(--muted);
+  font-size:14.5px;
+  margin-bottom:28px;
+}
+.price-card ul{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom:32px;
+  list-style:none;
+}
+.price-card li{
+  display:flex;
+  gap:10px;
+  font-size:15px;
+  color:var(--text);
+}
+.price-card li::before{
+  content:'✓';
+  color:var(--cyan);
+  font-weight:700;
+}
+.price-card .btn{ margin-top:auto; justify-content:center; }
+
+/* ============ PIANO IN EVIDENZA — bordo laser-beam animato ============ */
+.price-card.featured{
+  position:relative;
+  border:1px solid transparent;
+  background:rgba(11,17,32,0.65);
+  isolation:isolate;
+  transform:scale(1.02);
+}
+.price-card.featured::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:var(--radius);
+  padding:1.5px;
+  background:linear-gradient(90deg, transparent, var(--cyan), var(--silver), transparent);
+  background-size:200% 100%;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+  animation:laser-beam 4s linear infinite;
+}
+@keyframes laser-beam{
+  0%{ background-position:0% 0%; }
+  100%{ background-position:200% 0%; }
+}
+.featured-tag{
+  position:absolute;
+  top:-13px;
+  left:34px;
+  background:var(--gradient);
+  color:#06101a;
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  padding:5px 12px;
+  border-radius:100px;
+  z-index:2;
+}
+.new-tag{
+  position:absolute;
+  top:-13px;
+  left:34px;
+  background:rgba(124,143,255,0.9);
+  color:#06101a;
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  padding:5px 12px;
+  border-radius:100px;
+  z-index:2;
+}
+
+@media(prefers-reduced-motion: reduce){
+  .price-card.featured::after{ animation:none; }
+}
+  /* Pricing footnote — money-back guarantee */
+  .pricing-footnote{
     display:flex;
-    flex-direction:column;
-    gap:1px;
-    background:var(--border);
-    border-radius:var(--radius);
-    overflow:hidden;
-    border:1px solid var(--border);
-  }
-  .policy-item{background:var(--surface);}
-  .policy-q{
-    display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:16px;
-    padding:22px 28px;
-    cursor:pointer;
-    font-weight:600;
-    font-size:15.5px;
+    justify-content:center;
+    gap:10px;
+    margin-top:36px;
+    color:var(--muted);
+    font-size:14px;
+    text-align:center;
   }
-  .policy-q .plus{
-    font-size:20px;
-    color:var(--cyan);
-    transition:transform .25s ease;
-    flex-shrink:0;
-  }
-  .policy-item.open .plus{transform:rotate(45deg);}
-  .policy-a{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .3s ease;
-    padding:0 28px;
-  }
-  .policy-item.open .policy-a{max-height:240px;}
-  .policy-a p{color:var(--muted);font-size:14.5px;padding-bottom:22px;}
+  .pricing-footnote strong{ color:var(--text); }
+/*
+DOVE INCOLLARE:
 
+
+/* ============ APP SHOWCASE ============ */
+.app-showcase-wrap{
+  display:flex;
+  align-items:center;
+  gap:64px;
+  flex-wrap:wrap;
+}
+.app-copy{ flex:1; min-width:280px; }
+.phone-frame{
+  width:280px;
+  flex-shrink:0;
+  margin:0 auto;
+  border-radius:36px;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(16,23,42,0.9), rgba(11,17,32,0.95));
+  backdrop-filter: blur(20px);
+  padding:14px;
+  box-shadow:0 40px 80px -30px rgba(46,155,255,0.35), 0 0 0 1px rgba(255,255,255,0.02);
+}
+.phone-notch{
+  width:70px;height:6px;
+  background:rgba(255,255,255,0.15);
+  border-radius:100px;
+  margin:0 auto 16px;
+}
+.phone-screen{
+  background:#080d1a;
+  border-radius:24px;
+  padding:20px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  min-height:360px;
+}
+.app-notif{
+  background:rgba(15,23,42,0.6);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px;
+  transition: border-color .3s ease;
+}
+.app-notif.highlight{ border-color:rgba(46,155,255,0.35); }
+.app-notif-title{ font-size:13px; font-weight:600; margin-bottom:4px; }
+.app-notif-sub{ font-size:12px; color:var(--muted); }
+
+/* ============ STEPS FLOW (Come funziona) ============ */
+.steps-flow{
+  display:flex;
+  align-items:stretch;
+  gap:16px;
+}
+.steps-flow .step-card{ flex:1; }
+.step-arrow{
+  align-self:center;
+  flex:0 0 auto;
+  font-size:22px;
+  color:var(--cyan);
+  opacity:0.7;
+}
+@media(max-width:860px){
+  .steps-flow{ flex-direction:column; }
+  .step-arrow{ transform:rotate(90deg); margin:-6px 0; }
+}
+
+/* ============ PORTFOLIO STORY (Problema → Soluzione → Risultato) ============ */
+.portfolio-story{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin:14px 0 18px;
+}
+.story-row{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.story-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:#f87171;
+}
+.story-row.solution .story-label{ color:var(--cyan); }
+.story-row.result .story-label{ color:var(--green); }
+.story-text{
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.55;
+}
+.story-arrow{
+  color:var(--muted);
+  font-size:12px;
+  opacity:0.5;
+  margin-left:2px;
+}
+/*
+DOVE INCOLLARE:
+Dentro il tag <style> esistente, subito dopo il blocco "PORTFOLIO STORY"
+già fornito in css-additions.css (quello con .portfolio-story, .story-row, ecc.).
+Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
+*/
+
+/* ============ PORTFOLIO — link al sito reale + badge "demo live" ============ */
+.portfolio-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:16px;
+  padding:9px 16px;
+  border-radius:8px;
+  background:rgba(46,155,255,0.08);
+  border:1px solid rgba(46,155,255,0.25);
+  color:var(--cyan);
+  font-size:13.5px;
+  font-weight:600;
+  transition:all .2s ease;
+}
+.portfolio-link:hover{
+  background:rgba(46,155,255,0.15);
+  border-color:rgba(46,155,255,0.4);
+  transform:translateX(2px);
+}
+.portfolio-link .arrow{ transition:transform .2s ease; }
+.portfolio-link:hover .arrow{ transform:translateX(3px); }
+
+.demo-live-tag{
+  position:absolute;
+  top:-13px;
+  left:34px;
+  background:linear-gradient(135deg, #22C55E, #16A34A);
+  color:#06101a;
+  font-family:'JetBrains Mono', monospace;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  padding:5px 12px;
+  border-radius:100px;
+  z-index:2;
+  box-shadow:0 4px 12px rgba(34,197,94,0.3);
+}
   /* ============ PORTFOLIO ============ */
-  .portfolio-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
-  }
-  @media(max-width:860px){ .portfolio-grid{grid-template-columns:1fr;} }
   .portfolio-card{
     border-radius:var(--radius);
     border:1px solid var(--border);
     overflow:hidden;
-    background:var(--surface);
-    transition:transform .2s ease, border-color .2s ease;
+    background:rgba(11,17,32,0.4);
+    backdrop-filter: blur(10px);
+    transition:all .3s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .portfolio-card:hover{transform:translateY(-6px);border-color:rgba(6,182,212,0.35);}
+  .portfolio-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(46,155,255,0.3);
+    box-shadow: 0 30px 60px -20px rgba(46,155,255,0.15);
+  }
   .portfolio-thumb{
-    height:180px;
-    background:linear-gradient(135deg, #0d1320, #141b2c);
+    height:190px;
+    background:linear-gradient(135deg, #090e1a, #111827);
     position:relative;
     display:flex;
     align-items:center;
@@ -604,8 +1146,8 @@
     position:absolute;
     inset:0;
     background:
-      radial-gradient(circle at 30% 20%, rgba(6,182,212,0.18), transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(34,197,94,0.14), transparent 45%);
+      radial-gradient(circle at 30% 20%, rgba(46,155,255,0.15), transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(124,143,255,0.12), transparent 45%);
   }
   .portfolio-thumb .glyph{
     font-family:'JetBrains Mono',monospace;
@@ -613,20 +1155,22 @@
     color:var(--muted);
     z-index:1;
     border:1px solid var(--border);
-    padding:6px 12px;
+    padding:6px 14px;
     border-radius:8px;
-    background:rgba(11,15,25,0.6);
+    background:rgba(6,9,19,0.7);
+    backdrop-filter: blur(5px);
   }
-  .portfolio-info{padding:22px 24px;}
-  .portfolio-info h4{font-size:16.5px;margin-bottom:6px;}
-  .portfolio-info p{color:var(--muted);font-size:13.5px;margin-bottom:14px;}
+  .portfolio-info{padding:24px;}
+  .portfolio-info h4{font-size:18px;margin-bottom:6px;}
+  .portfolio-info p{color:var(--muted);font-size:14px;margin-bottom:16px;}
   .stack-tags{display:flex;gap:8px;flex-wrap:wrap;}
   .stack-tags span{
     font-family:'JetBrains Mono',monospace;
     font-size:11px;
     color:var(--cyan);
-    background:rgba(6,182,212,0.08);
-    padding:4px 9px;
+    background:rgba(46,155,255,0.06);
+    border: 1px solid rgba(46,155,255,0.15);
+    padding:4px 10px;
     border-radius:6px;
   }
 
@@ -638,25 +1182,88 @@
   }
   @media(max-width:760px){ .reviews-grid{grid-template-columns:1fr;} }
   .review-card{
-    background:var(--surface);
+    background:rgba(11,17,32,0.4);
+    backdrop-filter: blur(10px);
     border:1px solid var(--border);
     border-radius:var(--radius);
-    padding:30px;
+    padding:32px;
   }
-  .stars{color:var(--green);margin-bottom:14px;font-size:15px;letter-spacing:2px;}
-  .review-card p{font-size:15.5px;margin-bottom:18px;}
+  .stars{color:var(--green);margin-bottom:16px;font-size:15px;letter-spacing:2px;}
+  .review-card p{font-size:16px;margin-bottom:20px;color:rgba(255,255,255,0.95);}
   .reviewer{display:flex;align-items:center;gap:12px;}
   .reviewer .avatar{
-    width:38px;height:38px;border-radius:50%;
+    width:40px;height:40px;border-radius:50%;
     background:var(--gradient);
     display:flex;align-items:center;justify-content:center;
     font-weight:700;font-size:14px;color:#06101a;
+    box-shadow: 0 4px 10px rgba(46,155,255,0.2);
   }
-  .reviewer .name{font-weight:600;font-size:14px;}
-  .reviewer .role{color:var(--muted);font-size:12.5px;}
+  .reviewer .name{font-weight:600;font-size:14.5px;}
+  .reviewer .role{color:var(--muted);font-size:13px;}
 
   /* ============ FAQ ============ */
   .faq-grid{max-width:760px;margin:0 auto;}
+  /* ============ ACCORDION (Politiche + FAQ) ============ */
+.policy-grid{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.policy-item{
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(11,17,32,0.4);
+  backdrop-filter: blur(10px);
+  overflow:hidden;
+  transition: border-color .3s ease;
+}
+.policy-item.open{
+  border-color: rgba(46,155,255,0.3);
+}
+.policy-q{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  background:none;
+  border:none;
+  color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:16px;
+  font-weight:600;
+  text-align:left;
+  padding:22px 26px;
+  cursor:pointer;
+}
+.policy-q .plus{
+  flex-shrink:0;
+  font-size:20px;
+  line-height:1;
+  color:var(--cyan);
+  transition: transform .3s cubic-bezier(0.16,1,0.3,1);
+}
+.policy-item.open .policy-q .plus{
+  transform: rotate(45deg);
+}
+.policy-a{
+  max-height:0;
+  overflow:hidden;
+  padding:0 26px;
+  transition: max-height .4s ease, padding .4s ease;
+}
+.policy-item.open .policy-a{
+  max-height:500px;
+  padding:0 26px 24px;
+}
+.policy-a p{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.7;
+}
+.policy-a p + p{
+  margin-top:10px;
+}
 
   /* ============ CONTATTI ============ */
   .contact-wrap{
@@ -669,81 +1276,101 @@
   .contact-info .item{
     display:flex;
     gap:14px;
-    margin-bottom:22px;
+    margin-bottom:24px;
   }
   .contact-info .ico{
-    width:38px;height:38px;
+    width:40px;height:40px;
     border-radius:9px;
-    background:var(--surface);
+    background:rgba(11,17,32,0.5);
     border:1px solid var(--border);
     display:flex;align-items:center;justify-content:center;
     color:var(--cyan);
     flex-shrink:0;
   }
   .contact-info .item h4{font-size:14px;color:var(--muted);margin-bottom:3px;}
-  .contact-info .item p, .contact-info .item a{font-size:15.5px;font-weight:500;}
+  .contact-info .item p, .contact-info .item a{font-size:16px;font-weight:500;}
 
   .form-card{
-    background:var(--surface);
+    background:rgba(11,17,32,0.45);
+    backdrop-filter: blur(10px);
     border:1px solid var(--border);
     border-radius:var(--radius);
-    padding:36px;
+    padding:40px;
   }
-  .field{margin-bottom:18px;}
+  .field{margin-bottom:20px;}
   .field label{
     display:block;
     font-size:13px;
     color:var(--muted);
     margin-bottom:8px;
+    font-family:'JetBrains Mono',monospace;
   }
   .field input, .field textarea{
     width:100%;
-    background:#0d1320;
+    background:#080d1a;
     border:1px solid var(--border);
     border-radius:10px;
-    padding:13px 14px;
+    padding:14px;
     color:var(--text);
     font-family:inherit;
-    font-size:14.5px;
-    transition:border-color .2s ease;
+    font-size:15px;
+    transition:all .2s ease;
   }
   .field input:focus, .field textarea:focus{
     outline:none;
     border-color:var(--cyan);
+    box-shadow: 0 0 15px rgba(46,155,255,0.15);
   }
-  .field textarea{resize:vertical;min-height:100px;}
+  .field textarea{resize:vertical;min-height:110px;}
+  .field .error-msg{
+    display:none;
+    color:#f87171;
+    font-size:12.5px;
+    margin-top:6px;
+  }
+  .field.invalid input, .field.invalid textarea{border-color:#f87171;}
+  .field.invalid .error-msg{display:block;}
   .form-card .btn{width:100%;justify-content:center;margin-top:6px;}
+  .form-note{
+    font-size:12.5px;
+    color:var(--muted);
+    margin-top:14px;
+    text-align:center;
+  }
 
   /* ============ CTA FINALE ============ */
   .final-cta{
     text-align:center;
     border-bottom:none;
-    padding:100px 0 80px;
+    padding:120px 0 100px;
   }
   .final-cta h2{
-    font-size:clamp(28px,4.5vw,48px);
-    max-width:680px;
-    margin:0 auto 20px;
+    font-size:clamp(30px,5vw,52px);
+    max-width:720px;
+    margin:0 auto 24px;
+    line-height: 1.1;
   }
-  .final-cta p{color:var(--muted);max-width:480px;margin:0 auto 36px;}
+  .final-cta p{color:var(--muted);max-width:500px;margin:0 auto 40px;font-size:17px;}
 
   /* ============ FOOTER ============ */
   footer{
-    padding:60px 0 36px;
+    padding:80px 0 40px;
     position:relative;
     z-index:1;
+    background: rgba(4, 6, 13, 0.4);
+    border-top: 1px solid var(--border);
   }
   .footer-top{
     display:flex;
     flex-wrap:wrap;
     justify-content:space-between;
     gap:40px;
-    margin-bottom:48px;
+    margin-bottom:56px;
   }
-  .footer-brand .logo{margin-bottom:14px;}
-  .footer-brand p{color:var(--muted);font-size:14px;max-width:280px;}
-  .footer-col h5{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px;}
-  .footer-col a, .footer-col p{display:block;font-size:14.5px;color:var(--muted);margin-bottom:10px;}
+  .footer-brand .logo{margin-bottom:16px;}
+  .footer-brand p{color:var(--muted);font-size:14.5px;max-width:300px;}
+  .footer-col h5{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:18px;font-family:'JetBrains Mono',monospace;}
+  .footer-col a, .footer-col p{display:block;font-size:14.5px;color:var(--muted);margin-bottom:12px;}
   .footer-col a:hover{color:var(--text);}
   .footer-cols{display:flex;gap:60px;flex-wrap:wrap;}
   .footer-bottom{
@@ -751,14 +1378,14 @@
     justify-content:space-between;
     flex-wrap:wrap;
     gap:14px;
-    padding-top:28px;
+    padding-top:32px;
     border-top:1px solid var(--border);
     font-size:13px;
     color:var(--muted);
   }
 
-  /* reveal animation */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease;}
+  /* Reveal animation on scroll */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(0.16, 1, 0.3, 1), transform .7s cubic-bezier(0.16, 1, 0.3, 1);}
   .reveal.show{opacity:1;transform:translateY(0);}
 
   @media (prefers-reduced-motion: reduce){
@@ -768,68 +1395,294 @@
   /* WhatsApp floating button */
   .wa-float{
     position:fixed;
-    bottom:24px;
-    right:24px;
+    bottom:28px;
+    right:28px;
     z-index:90;
-    width:58px;height:58px;
+    width:60px;height:60px;
     border-radius:50%;
     background:var(--gradient);
     display:flex;
     align-items:center;
     justify-content:center;
-    box-shadow:0 10px 30px -8px rgba(6,182,212,0.6);
+    box-shadow:0 12px 35px -8px rgba(46,155,255,0.6);
     color:#06101a;
     transition:transform .2s ease;
-}
-  .wa-float:hover{transform:scale(1.08);}
+  }
 
-  h2.section-title{margin-bottom:8px;}
+  .section-title.reveal, .section-head.reveal{
+    transform:translateY(36px);
+  }
+  .section-head.reveal.show{transform:translateY(0);}
+
+  /* Canvas styling — single lightweight particle layer */
+  #particleCanvas{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:0.4;
+  }
+
+  /* Hero 3D perspective grid */
+  .hero{ position:relative; overflow:hidden; }
+  #heroGridCanvas{
+    position:absolute;
+    bottom:0; left:0;
+    width:100%; height:480px;
+    z-index:0;
+    pointer-events:none;
+    -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+    mask-image:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+  }
+  .hero .container{position:relative;z-index:1;}
+
+  /* Border glow (gradient corners) */
+  .glow-card{
+    position:relative;
+    isolation:isolate;
+  }
+  .glow-card::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    padding:1px;
+    background:conic-gradient(from 180deg at 0% 0%, rgba(46,155,255,0.4), transparent 40%),
+               conic-gradient(from 0deg at 100% 100%, rgba(124,143,255,0.35), transparent 40%);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    pointer-events:none;
+    opacity:0.8;
+    z-index:0;
+  }
+  .glow-card > *{position:relative;z-index:1;}
+
+  /* Mouse spotlight (desktop only — see JS gating) */
+  .spotlight{ position:relative; overflow:hidden; }
+  .spotlight::after{
+    content:'';
+    position:absolute;
+    top:var(--spot-y, 50%);
+    left:var(--spot-x, 50%);
+    width:300px;
+    height:300px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(46,155,255,0.14), transparent 70%);
+    opacity:0;
+    transition:opacity .3s ease;
+    pointer-events:none;
+    z-index:0;
+  }
+  .spotlight:hover::after{opacity:1;}
+  .spotlight > *{position:relative;z-index:1;}
+
+  /* 3D badge tags */
+  .tag-3d{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    padding:7px 14px;
+    border-radius:100px;
+    background:rgba(124,143,255,0.08);
+    backdrop-filter:blur(20px);
+    color:var(--green);
+    box-shadow:0 4px 24px -6px rgba(124,143,255,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+    border:1px solid rgba(124,143,255,0.2);
+  }
+
+  /* Logo Marquee */
+  .marquee-section{
+    padding:64px 0;
+    border-bottom:1px solid var(--border);
+    overflow:hidden;
+  }
+  .marquee-label{
+    text-align:center;
+    color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    margin-bottom:36px;
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    animation:marquee 28s linear infinite;
+    gap:64px;
+  }
+  .marquee-section:hover .marquee-track{animation-play-state:paused;}
+  .marquee-group{display:flex;gap:64px;align-items:center;}
+  .marquee-item{
+    font-family:'JetBrains Mono',monospace;
+    font-size:18px;
+    color:var(--muted);
+    white-space:nowrap;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    opacity:0.6;
+    transition:all .2s ease;
+  }
+  .marquee-item:hover{opacity:1;color:var(--cyan);transform: scale(1.04);}
+  .marquee-item .dotsep{width:5px;height:5px;border-radius:50%;background:var(--muted);}
+  @keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* Bento grid */
+  .bento-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:minmax(220px, auto);
+    gap:24px;
+  }
+  .bento-grid .span-2{grid-column:span 2;}
+  .bento-grid .span-3{grid-column:span 3;}
+  @media(max-width:860px){
+    .bento-grid{grid-template-columns:1fr;}
+    .bento-grid .span-2, .bento-grid .span-3{grid-column:span 1;}
+  }
 </style>
 </head>
-<body>
+<body class="lang-it">
+<div class="launch-banner" id="launchBanner" role="banner">
+  <span class="lang-it">🚀 Offerta di lancio: il nostro <strong>primo cliente in assoluto</strong> riceve <strong>-50% sullo sviluppo</strong> + 1 mese di manutenzione gratuita.</span>
+  <span class="lang-en">🚀 Launch offer: our <strong>very first client</strong> gets <strong>-50% off development</strong> + 1 month of free maintenance.</span>
+  <a href="#contatti"><span class="lang-it">Scopri di più →</span><span class="lang-en">Learn more →</span></a>
+  <button class="close-banner" id="closeBanner" aria-label="Chiudi banner">&times;</button>
+</div>
+<a href="#main" class="skip-link">Salta al contenuto / Skip to content</a>
 
-<div class="bg-glow"></div>
+<div class="noise-overlay"></div>
+<canvas id="particleCanvas" aria-hidden="true"></canvas>
+<div class="bg-glow" aria-hidden="true">
+  <div class="blob blob-cyan"></div>
+  <div class="blob blob-green"></div>
+  <div class="blob blob-purple"></div>
+  <div class="blob blob-blue"></div>
+</div>
+<div class="bg-sheen" aria-hidden="true"></div>
 
 <header>
-  <nav>
+  <nav aria-label="Navigazione principale">
     <a href="#" class="logo">
-      <span class="logo-mark">C</span>
-      Cypher Web
+      <img src="C:\Users\danie\Desktop\cypherweb\logocypher.png">
+       <span class="sr-only-logo-text" style="position:absolute;left:-9999px;">Cypher Web</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#metodo">Metodo</a></li>
-      <li><a href="#servizi">Servizi</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#prezzi">Prezzi</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contatti">Contatti</a></li>
+      <li>
+        <a href="/preventivi-intelligenti" class="lang-it">Preventivi IA</a>
+        <a href="/preventivi-intelligenti" class="lang-en">AI Quotes</a>
+      </li>
+      <li>
+        <a href="#metodo" class="lang-it">Metodo</a>
+        <a href="#metodo" class="lang-en">Method</a>
+      </li>
+      <li>
+        <a href="#servizi" class="lang-it">Servizi</a>
+        <a href="#servizi" class="lang-en">Services</a>
+      </li>
+      <li>
+        <a href="#portfolio" class="lang-it">Portfolio</a>
+        <a href="#portfolio" class="lang-en">Portfolio</a>
+      </li>
+      <li>
+        <a href="#prezzi" class="lang-it">Prezzi</a>
+        <a href="#prezzi" class="lang-en">Pricing</a>
+      </li>
+      <li>
+        <a href="#faq" class="lang-it">FAQ</a>
+        <a href="#faq" class="lang-en">FAQ</a>
+      </li>
+      <li>
+        <a href="#contatti" class="lang-it">Contatti</a>
+        <a href="#contatti" class="lang-en">Contact</a>
+      </li>
     </ul>
-    <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary nav-cta">Mandami un messaggio WhatsApp</a>
-    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+
+    <div class="nav-right-actions">
+      <div class="lang-switcher-wrapper" role="group" aria-label="Seleziona lingua / Select language">
+        <button class="lang-btn btn-it" onclick="setLanguage('it')" aria-pressed="true">ITA</button>
+        <button class="lang-btn btn-en" onclick="setLanguage('en')" aria-pressed="false">ENG</button>
+      </div>
+
+      <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20informazioni%20sul%20vostro%20servizio." target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+        <span class="lang-it">WhatsApp</span>
+        <span class="lang-en">Message on WhatsApp</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Apri menu di navigazione" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+    </div>
   </nav>
 </header>
 
 <div class="overlay" id="overlay"></div>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#metodo">Metodo</a>
-  <a href="#servizi">Servizi</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#prezzi">Prezzi</a>
-  <a href="#faq">FAQ</a>
-  <a href="#contatti">Contatti</a>
-  <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary" style="margin-top:10px;justify-content:center;">WhatsApp</a>
-</div>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+  <a href="#metodo" class="lang-it">Metodo</a><a href="#metodo" class="lang-en">Method</a>
+  <a href="#servizi" class="lang-it">Servizi</a><a href="#servizi" class="lang-en">Services</a>
+  <a href="/preventivi-intelligenti" class="lang-it">Preventivi IA</a><a href="/preventivi-intelligenti" class="lang-en">AI Quotes</a>
+  <a href="#portfolio" class="lang-it">Portfolio</a><a href="#portfolio" class="lang-en">Portfolio</a>
+  <a href="#prezzi" class="lang-it">Prezzi</a><a href="#prezzi" class="lang-en">Pricing</a>
+  <a href="#faq" class="lang-it">FAQ</a><a href="#faq" class="lang-en">FAQ</a>
+  <a href="#contatti" class="lang-it">Contatti</a><a href="#contatti" class="lang-en">Contact</a>
+  <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20informazioni%20sul%20vostro%20servizio." target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:10px;justify-content:center;">WhatsApp</a>
+</nav>
+
+<main id="main">
 
 <!-- HERO -->
 <section class="hero">
+  <canvas id="heroGridCanvas" aria-hidden="true"></canvas>
   <div class="container">
-    <div class="hero-badge"><span class="dot"></span> Sviluppo + manutenzione continua · Milano</div>
-    <h1>Siti web che <span class="grad">generano clienti</span>.<br>Senza pensieri.</h1>
-    <p>Sviluppiamo siti veloci, moderni e ottimizzati SEO con gestione continua di sicurezza, aggiornamenti e manutenzione.</p>
-    <p class="closer">Tu pensi al tuo business. Noi al resto.</p>
-    <div class="hero-ctas">
-      <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary btn-lg">Mandami un messaggio WhatsApp</a>
-    </div>
+<!--
+DOVE INCOLLARE:
+Sostituisci tutto il contenuto tra <div class="hero-badge"> e la chiusura di </div> del .hero-mock
+(cioè: badge, h1, paragrafi, CTA, trust line, guarantee — lascia .hero-mock così com'è, o aggiornalo dopo con lo screenshot dell'app).
+-->
+
+<div class="hero-badge">
+  <span class="dot"></span>
+  <span class="lang-it">Non solo un sito. Un sistema digitale · Milano</span>
+  <span class="lang-en">Not just a website. A digital system · Milan, Italy</span>
+</div>
+
+<h1 class="lang-it">Il sistema digitale per <span class="grad">far crescere</span> la tua attività.</h1>
+<h1 class="lang-en">The digital system to <span class="grad">grow</span> your business.</h1>
+
+<p class="lang-it">Sito web, prenotazioni online, CRM, applicazione gestionale e automazioni: tutto collegato, tutto gestito da noi.</p>
+<p class="lang-en">Website, online booking, CRM, management app, and automations — all connected, all managed for you.</p>
+
+<p class="closer lang-it">Non un progetto chiuso. Un sistema che cresce con te.</p>
+<p class="closer lang-en">Not a closed project. A system that grows with you.</p>
+
+<div class="hero-ctas">
+  <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20una%20demo%20della%20Business%20Suite." target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+    <span class="lang-it">Richiedi una demo</span>
+    <span class="lang-en">Request a demo</span>
+  </a>
+  <a href="#suite" class="btn btn-ghost btn-lg">
+    <span class="lang-it">Scopri la Business Suite</span>
+    <span class="lang-en">Explore the Business Suite</span>
+  </a>
+</div>
+
+<p class="hero-trust">
+  <span class="lang-it">Nessun vincolo sulla manutenzione · Risposta in 24h · Dominio sempre tuo</span>
+  <span class="lang-en">No maintenance lock-in · 24h response time · You always own your domain</span>
+</p>
+
+<div class="hero-guarantee">
+  <span aria-hidden="true">🛡️</span>
+  <span class="lang-it">Soddisfatto o rimborsato entro 14 giorni</span>
+  <span class="lang-en">14-day satisfaction guarantee</span>
+</div>
 
     <div class="hero-mock reveal">
       <div class="hero-mock-inner">
@@ -841,7 +1694,8 @@
           <div class="mock-card">
             <div class="label">UPTIME</div>
             <div class="value">99.98%</div>
-            <div class="delta">▲ stabile 24/7</div>
+            <div class="delta lang-it">▲ stabile 24/7</div>
+            <div class="delta lang-en">▲ stable 24/7</div>
             <div class="bar"><i style="width:99%"></i></div>
           </div>
           <div class="mock-card">
@@ -851,12 +1705,178 @@
             <div class="bar"><i style="width:98%"></i></div>
           </div>
           <div class="mock-card">
-            <div class="label">SICUREZZA</div>
-            <div class="value">Protetto</div>
-            <div class="delta">▲ backup automatici</div>
+            <div class="label">SECURITY</div>
+            <div class="value lang-it">Protetto</div><div class="value lang-en">Protected</div>
+            <div class="delta lang-it">▲ backup automatici</div><div class="delta lang-en">▲ auto-backups active</div>
             <div class="bar"><i style="width:100%"></i></div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--
+DOVE INCOLLARE:
+Subito dopo la chiusura </section> dell'hero (<section class="hero">...</section>)
+e PRIMA di <section id="problema">.
+Riusa le classi esistenti (bento-grid, service-card, glow-card, spotlight) quindi non serve CSS aggiuntivo.
+Il link #suite nell'hero CTA punta qui.
+-->
+
+<section id="suite">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow lang-it">La suite</div><div class="eyebrow lang-en">The Suite</div>
+      <h2 class="section-title lang-it">CypherWeb Business Suite</h2>
+      <h2 class="section-title lang-en">CypherWeb Business Suite</h2>
+      <p class="section-sub lang-it">Quattro moduli pensati per lavorare insieme: il sito porta i clienti, il resto li trasforma in appuntamenti, dati e tempo risparmiato.</p>
+      <p class="section-sub lang-en">Four modules built to work together: the website brings in clients, the rest turns them into bookings, data, and time saved.</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">🌐</div>
+        <h3 class="lang-it">Website</h3><h3 class="lang-en">Website</h3>
+        <ul>
+          <li class="lang-it">Design su misura, veloce e SEO-ready</li><li class="lang-en">Custom design, fast and SEO-ready</li>
+          <li class="lang-it">Sempre online, sempre aggiornato</li><li class="lang-en">Always online, always up to date</li>
+          <li class="lang-it">Il punto d'ingresso di tutta la suite</li><li class="lang-en">The entry point of the whole suite</li>
+        </ul>
+      </div>
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">📅</div>
+        <h3 class="lang-it">Booking</h3><h3 class="lang-en">Booking</h3>
+        <ul>
+          <li class="lang-it">Prenotazioni online 24/7</li><li class="lang-en">24/7 online bookings</li>
+          <li class="lang-it">Promemoria automatici al cliente</li><li class="lang-en">Automatic client reminders</li>
+          <li class="lang-it">Niente più telefonate a vuoto</li><li class="lang-en">No more missed calls</li>
+        </ul>
+      </div>
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">📱</div>
+        <h3 class="lang-it">Manager App</h3><h3 class="lang-en">Manager App</h3>
+        <ul>
+          <li class="lang-it">Gestisci prenotazioni e clienti dal telefono</li><li class="lang-en">Manage bookings and clients from your phone</li>
+          <li class="lang-it">Notifiche in tempo reale</li><li class="lang-en">Real-time notifications</li>
+          <li class="lang-it">Tutto in un'unica app</li><li class="lang-en">Everything in one app</li>
+        </ul>
+      </div>
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">🤖</div>
+        <h3 class="lang-it">AI Automation</h3><h3 class="lang-en">AI Automation</h3>
+        <ul>
+          <li class="lang-it">Preventivi generati dall'IA in 30 secondi</li><li class="lang-en">AI-generated quotes in 30 seconds</li>
+          <li class="lang-it">Promemoria e follow-up automatici</li><li class="lang-en">Automatic reminders and follow-ups</li>
+          <li class="lang-it">Meno lavoro manuale, più tempo per il cliente</li><li class="lang-en">Less manual work, more time for clients</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!--
+DOVE INCOLLARE:
+Subito dopo la chiusura </section> della sezione Suite (id="suite"),
+prima di <section id="problema">.
+Richiede il blocco CSS in css-additions.css (vedi sezione "APP SHOWCASE").
+-->
+
+<section id="app-preview">
+  <div class="container">
+    <div class="app-showcase-wrap">
+      <div class="app-copy reveal">
+        <span class="tag-3d lang-it">In arrivo</span><span class="tag-3d lang-en">Coming soon</span>
+        <h2 class="section-title" style="margin-top:16px;"><span class="lang-it">Tutto il tuo business, in un'app.</span><span class="lang-en">Your whole business, in one app.</span></h2>
+        <p class="section-sub lang-it">Prenotazioni, clienti, preventivi e notifiche: la Manager App è il quartier generale della tua attività, ovunque tu sia.</p>
+        <p class="section-sub lang-en">Bookings, clients, quotes, and notifications: the Manager App is your business's command center, wherever you are.</p>
+        <p style="color:var(--muted);font-size:13.5px;margin-top:20px;">
+          <span class="lang-it">Il modulo è in fase di sviluppo: questa è la direzione verso cui stiamo lavorando.</span>
+          <span class="lang-en">This module is currently in development — here's the direction we're building toward.</span>
+        </p>
+      </div>
+
+      <div class="phone-frame reveal">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);" class="lang-it">Oggi</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);" class="lang-en">Today</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);">●&nbsp;<span class="lang-it">8 prenotazioni</span><span class="lang-en">8 bookings</span></span>
+          </div>
+
+          <div class="app-notif highlight">
+            <div class="app-notif-title lang-it">Nuova prenotazione</div>
+            <div class="app-notif-title lang-en">New booking</div>
+            <div class="app-notif-sub lang-it">Marco R. — oggi alle 15:30</div>
+            <div class="app-notif-sub lang-en">Marco R. — today at 3:30 PM</div>
+          </div>
+
+          <div class="app-notif">
+            <div class="app-notif-title lang-it">Preventivo accettato</div>
+            <div class="app-notif-title lang-en">Quote accepted</div>
+            <div class="app-notif-sub">Officina Moto Custom — €490</div>
+          </div>
+
+          <div class="app-notif">
+            <div class="app-notif-title lang-it">Promemoria inviato</div>
+            <div class="app-notif-title lang-en">Reminder sent</div>
+            <div class="app-notif-sub lang-it">3 clienti per domani</div>
+            <div class="app-notif-sub lang-en">3 clients for tomorrow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--
+DOVE INCOLLARE:
+Subito dopo la chiusura </section> della sezione App preview (id="app-preview"),
+prima di <section id="problema">.
+Requisito CSS: blocco "STEPS FLOW" in css-additions.css.
+Nota: questa è una sezione diversa da quella esistente id="metodo" (che resta invariata:
+lì si parla del VOSTRO processo interno, qui del percorso del CLIENTE dentro la Suite).
+-->
+
+<section id="come-funziona">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+      <div class="eyebrow" style="justify-content:center;"><span class="lang-it">Come funziona</span><span class="lang-en">How it works</span></div>
+      <h2 class="section-title" style="margin:0 auto;max-width:100%;"><span class="lang-it">Dal sito al gestionale, in quattro passi</span><span class="lang-en">From website to management, in four steps</span></h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;"><span class="lang-it">Un unico percorso, senza pezzi scollegati.</span><span class="lang-en">One connected path, no disjointed pieces.</span></p>
+    </div>
+
+    <div class="steps-flow">
+      <div class="step-card method-card glow-card spotlight reveal">
+        <div class="method-num">01</div>
+        <h3 class="lang-it">Creiamo il sito</h3><h3 class="lang-en">We build your site</h3>
+        <p class="lang-it">Il tuo biglietto da visita online, pensato per convertire i visitatori in contatti reali.</p>
+        <p class="lang-en">Your online storefront, built to turn visitors into real leads.</p>
+      </div>
+
+      <div class="step-arrow" aria-hidden="true">→</div>
+
+      <div class="step-card method-card glow-card spotlight reveal">
+        <div class="method-num">02</div>
+        <h3 class="lang-it">Colleghiamo il sistema</h3><h3 class="lang-en">We connect the system</h3>
+        <p class="lang-it">Booking, CRM e automazioni collegati al sito: tutto parla la stessa lingua.</p>
+        <p class="lang-en">Booking, CRM, and automations linked to your site — everything speaks the same language.</p>
+      </div>
+
+      <div class="step-arrow" aria-hidden="true">→</div>
+
+      <div class="step-card method-card glow-card spotlight reveal">
+        <div class="method-num">03</div>
+        <h3 class="lang-it">Ricevi prenotazioni</h3><h3 class="lang-en">You receive bookings</h3>
+        <p class="lang-it">I clienti prenotano da soli, 24 ore su 24, senza passare dal telefono.</p>
+        <p class="lang-en">Clients book on their own, 24/7, without a single phone call.</p>
+      </div>
+
+      <div class="step-arrow" aria-hidden="true">→</div>
+
+      <div class="step-card method-card glow-card spotlight reveal">
+        <div class="method-num">04</div>
+        <h3 class="lang-it">Gestisci tutto dall'app</h3><h3 class="lang-en">Manage everything from the app</h3>
+        <p class="lang-it">Appuntamenti, clienti e preventivi sempre a portata di mano, ovunque tu sia.</p>
+        <p class="lang-en">Appointments, clients, and quotes always within reach, wherever you are.</p>
       </div>
     </div>
   </div>
@@ -866,77 +1886,183 @@
 <section id="problema">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Il problema</div>
-      <h2 class="section-title">Il tuo sito web è davvero al sicuro?</h2>
-      <p class="section-sub">La maggior parte dei siti viene consegnata e poi abbandonata. È lì che iniziano i problemi.</p>
+      <div class="eyebrow lang-it">Il problema</div><div class="eyebrow lang-en">The Problem</div>
+      <h2 class="section-title lang-it">Il tuo sito è davvero al sicuro?</h2>
+      <h2 class="section-title lang-en">Is your website actually safe?</h2>
+      <p class="section-sub lang-it">La maggior parte delle agenzie consegna il sito e poi scompare. È lì che iniziano i problemi.</p>
+      <p class="section-sub lang-en">Most agencies launch a site and disappear. That's exactly when problems start.</p>
     </div>
 
     <div class="problem-grid">
       <div class="problem-list reveal">
         <div class="problem-item">
-          <div class="icon">⚠</div>
-          <p>Plugin non aggiornati che diventano porte d'accesso per attacchi.</p>
+          <div class="icon" aria-hidden="true">⚠</div>
+          <p class="lang-it">Plugin non aggiornati che diventano porte d'accesso per attacchi.</p>
+          <p class="lang-en">Outdated plugins and core software turning into easy entry points for attackers.</p>
         </div>
         <div class="problem-item">
-          <div class="icon">⚠</div>
-          <p>Prestazioni che peggiorano mese dopo mese, senza che nessuno se ne accorga.</p>
+          <div class="icon" aria-hidden="true">⚠</div>
+          <p class="lang-it">Prestazioni che peggiorano mese dopo mese, senza che nessuno se ne accorga.</p>
+          <p class="lang-en">Performance that quietly declines month after month, hurting your search ranking.</p>
         </div>
         <div class="problem-item">
-          <div class="icon">⚠</div>
-          <p>Vulnerabilità e attacchi hacker su siti lasciati senza monitoraggio.</p>
+          <div class="icon" aria-hidden="true">⚠</div>
+          <p class="lang-it">Vulnerabilità e attacchi hacker su siti lasciati senza monitoraggio.</p>
+          <p class="lang-en">Vulnerabilities and hacking attempts going unnoticed on unmonitored sites.</p>
         </div>
         <div class="problem-item">
-          <div class="icon">⚠</div>
-          <p>Assenza di supporto tecnico quando qualcosa si rompe davvero.</p>
-        </div>
-        <div class="problem-item">
-          <div class="icon">⚠</div>
-          <p>Siti offline o lenti, che fanno perdere clienti ogni giorno.</p>
+          <div class="icon" aria-hidden="true">⚠</div>
+          <p class="lang-it">Nessun supporto tecnico disponibile quando qualcosa si rompe davvero.</p>
+          <p class="lang-en">No one to call when a page actually breaks.</p>
         </div>
       </div>
 
       <div class="compare reveal">
         <div class="compare-card bad">
-          <h4>Agenzia tradizionale</h4>
-          <p>Consegna il sito e sparisce. Da quel momento, sei solo.</p>
+          <h4 class="lang-it">Agenzia tradizionale</h4><h4 class="lang-en">Traditional Agency</h4>
+          <p class="lang-it">Consegna il sito e sparisce. Da quel momento, sei solo.</p>
+          <p class="lang-en">Delivers the files, deploys once, and disappears. From then on, you're on your own.</p>
         </div>
         <div class="compare-card good">
           <h4>Cypher Web</h4>
-          <p>Sviluppiamo, monitoriamo e aggiorniamo il tuo sito ogni giorno. Una relazione continua, non un progetto chiuso.</p>
+          <p class="lang-it">Sviluppiamo, monitoriamo e aggiorniamo il tuo sito ogni giorno. Una relazione continua, non un progetto chiuso.</p>
+          <p class="lang-en">We build, monitor, and update your site every day. An ongoing partnership, not a closed project.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+<!--
+DOVE INCOLLARE:
+Sezione standalone da inserire nel sito, per esempio subito dopo <section id="problema">
+e prima di <section id="metodo">, oppure prima di <section id="recensioni">
+(funziona bene come "riepilogo" prima della riprova sociale).
+Riusa classi esistenti (bento-grid, service-card, glow-card, spotlight, stats-strip) —
+zero CSS aggiuntivo necessario.
+-->
 
+<section id="perche-cypherweb">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow lang-it">Perché noi</div><div class="eyebrow lang-en">Why us</div>
+      <h2 class="section-title lang-it">Perché scegliere Cypher Web</h2>
+      <h2 class="section-title lang-en">Why choose Cypher Web</h2>
+      <p class="section-sub lang-it">Non l'ennesima agenzia che sparisce dopo la consegna. Un partner tecnico che resta.</p>
+      <p class="section-sub lang-en">Not another agency that disappears after delivery. A technical partner that stays.</p>
+    </div>
+
+    <div class="bento-grid">
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">⚡</div>
+        <h3 class="lang-it">Velocità reale</h3><h3 class="lang-en">Real performance</h3>
+        <ul>
+          <li class="lang-it">Punteggio Core Web Vitals medio 98/100</li><li class="lang-en">Average Core Web Vitals score of 98/100</li>
+          <li class="lang-it">Nessun page builder appesantito</li><li class="lang-en">No bloated page builders</li>
+          <li class="lang-it">Codice pulito, scritto su misura</li><li class="lang-en">Clean, custom-written code</li>
+        </ul>
+      </div>
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">🛡️</div>
+        <h3 class="lang-it">Nessun vincolo</h3><h3 class="lang-en">No lock-in</h3>
+        <ul>
+          <li class="lang-it">Dominio sempre intestato a te</li><li class="lang-en">Domain always registered in your name</li>
+          <li class="lang-it">Codice sorgente consegnato</li><li class="lang-en">Source code handed over</li>
+          <li class="lang-it">Disdici la manutenzione quando vuoi</li><li class="lang-en">Cancel maintenance anytime</li>
+        </ul>
+      </div>
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">🕐</div>
+        <h3 class="lang-it">Risposta in 24h</h3><h3 class="lang-en">24h response</h3>
+        <ul>
+          <li class="lang-it">Un punto di contatto diretto, non un ticket anonimo</li><li class="lang-en">A direct point of contact, not an anonymous ticket</li>
+          <li class="lang-it">WhatsApp ed email, sempre presidiati</li><li class="lang-en">WhatsApp and email, always monitored</li>
+          <li class="lang-it">Nessuna attesa settimane per una modifica</li><li class="lang-en">No weeks-long wait for a simple edit</li>
+        </ul>
+      </div>
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">🔧</div>
+        <h3 class="lang-it">Gestione continuativa</h3><h3 class="lang-en">Ongoing care</h3>
+        <ul>
+          <li class="lang-it">Backup, sicurezza e aggiornamenti inclusi</li><li class="lang-en">Backups, security, and updates included</li>
+          <li class="lang-it">Monitoraggio uptime 24/7</li><li class="lang-en">24/7 uptime monitoring</li>
+          <li class="lang-it">Il sito resta veloce anche dopo 2 anni</li><li class="lang-en">The site stays fast even after 2 years</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stats-strip reveal">
+      <div class="stat-card">
+        <div class="num">24h</div>
+        <div class="lbl lang-it">Tempo medio di risposta</div><div class="lbl lang-en">Average response time</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">98/100</div>
+        <div class="lbl lang-it">Punteggio performance medio</div><div class="lbl lang-en">Average performance score</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">99.98%</div>
+        <div class="lbl lang-it">Uptime garantito</div><div class="lbl lang-en">Guaranteed uptime</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">14gg</div>
+        <div class="lbl lang-it">Garanzia soddisfatti o rimborsati</div><div class="lbl lang-en">Money-back guarantee</div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- METODO -->
 <section id="metodo">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Il metodo</div>
-      <h2 class="section-title">Sviluppo + Manutenzione Continua</h2>
-      <p class="section-sub">Un processo pensato per durare, non solo per essere consegnato.</p>
+      <div class="eyebrow lang-it">Il metodo</div><div class="eyebrow lang-en">The Method</div>
+      <h2 class="section-title lang-it">Sviluppo + manutenzione continua</h2>
+      <h2 class="section-title lang-en">Development + continuous care</h2>
+      <p class="section-sub lang-it">Un processo pensato per durare, non solo per essere consegnato.</p>
+      <p class="section-sub lang-en">A process built to last, not just to ship.</p>
     </div>
 
     <div class="method-grid">
-      <div class="method-card reveal">
-        <div class="method-num">01 — Progettiamo</div>
-        <h3>Analisi e strategia</h3>
-        <p>Studiamo il tuo business e definiamo la strategia digitale più adatta a generare contatti reali.</p>
+      <div class="method-card glow-card spotlight reveal">
+        <div class="method-num">01 — Strategia</div>
+        <h3 class="lang-it">Analisi e strategia</h3><h3 class="lang-en">Analysis & Strategy</h3>
+        <p class="lang-it">Studiamo il tuo business e definiamo la strategia digitale più adatta a generare contatti reali.</p>
+        <p class="lang-en">We study your business and map out the digital strategy most likely to generate real leads.</p>
       </div>
-      <div class="method-card reveal">
-        <div class="method-num">02 — Realizziamo</div>
-        <h3>Sviluppo su misura</h3>
-        <p>Siti veloci, ottimizzati SEO e mobile-first, costruiti con stack moderni e performanti.</p>
+      <div class="method-card glow-card spotlight reveal">
+        <div class="method-num">02 — Sviluppo</div>
+        <h3 class="lang-it">Sviluppo su misura</h3><h3 class="lang-en">Tailored Development</h3>
+        <p class="lang-it">Siti veloci, ottimizzati SEO e mobile-first, costruiti con stack moderni e performanti.</p>
+        <p class="lang-en">Fast, SEO-optimized, mobile-first websites, built with modern, high-performance stacks.</p>
       </div>
-      <div class="method-card reveal">
-        <div class="method-num">03 — Manteniamo</div>
-        <h3>Cura continua</h3>
-        <p>Aggiornamenti, sicurezza e monitoraggio costante, così il sito resta veloce e protetto nel tempo.</p>
+      <div class="method-card glow-card spotlight reveal">
+        <div class="method-num">03 — Cura</div>
+        <h3 class="lang-it">Cura continua</h3><h3 class="lang-en">Ongoing Care</h3>
+        <p class="lang-it">Aggiornamenti, sicurezza e monitoraggio costante, così il sito resta veloce e protetto nel tempo.</p>
+        <p class="lang-en">Regular updates, security checks, and constant monitoring keep your site fast and protected over time.</p>
       </div>
     </div>
 
-    <p class="method-quote reveal">"È come avere un <span>web developer nel team</span>, al costo di un caffè al giorno."</p>
+    <p class="method-quote reveal lang-it">"È come avere un <span>web developer nel team</span>, al costo di un caffè al giorno."</p>
+    <p class="method-quote reveal lang-en">"It's like having a <span>developer on your team</span>, for the cost of a coffee a day."</p>
+
+    <div class="stats-strip reveal">
+      <div class="stat-card">
+        <div class="num">24h</div>
+        <div class="lbl lang-it">Tempo medio di risposta</div><div class="lbl lang-en">Average response time</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">98/100</div>
+        <div class="lbl lang-it">Punteggio performance medio</div><div class="lbl lang-en">Average performance score</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">99.98%</div>
+        <div class="lbl lang-it">Uptime garantito</div><div class="lbl lang-en">Guaranteed uptime</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">100%</div>
+        <div class="lbl lang-it">Clienti che restano con noi</div><div class="lbl lang-en">Client retention</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -944,213 +2070,491 @@
 <section id="servizi">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Servizi</div>
-      <h2 class="section-title">Sviluppo Web Sartoriale</h2>
-      <p class="section-sub">Ogni progetto costruito sulle esigenze reali del tuo business.</p>
+      <div class="eyebrow lang-it">Servizi</div><div class="eyebrow lang-en">Services</div>
+      <h2 class="section-title lang-it">Sviluppo web su misura</h2>
+      <h2 class="section-title lang-en">Tailored web development</h2>
+      <p class="section-sub lang-it">Ogni progetto costruito sulle esigenze reali del tuo business.</p>
+      <p class="section-sub lang-en">Every project built around your business's real needs — no rigid templates.</p>
     </div>
 
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="ico">◆</div>
-        <h3>Siti vetrina</h3>
+    <div class="bento-grid">
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">◆</div>
+        <h3 class="lang-it">Siti vetrina</h3><h3 class="lang-en">Business Websites</h3>
         <ul>
-          <li>Design su misura</li>
-          <li>Performance ottimizzata</li>
-          <li>SEO tecnica integrata</li>
+          <li class="lang-it">Design su misura</li><li class="lang-en">Custom design</li>
+          <li class="lang-it">Performance ottimizzata</li><li class="lang-en">Optimized performance</li>
+          <li class="lang-it">SEO tecnica integrata</li><li class="lang-en">Built-in technical SEO</li>
         </ul>
       </div>
-      <div class="service-card reveal">
-        <div class="ico">▲</div>
-        <h3>Landing page</h3>
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">▲</div>
+        <h3 class="lang-it">Landing page</h3><h3 class="lang-en">Landing Pages</h3>
         <ul>
-          <li>Conversione alta</li>
-          <li>Copy orientato all'azione</li>
-          <li>Test e ottimizzazione</li>
+          <li class="lang-it">Pensate per convertire</li><li class="lang-en">Built to convert</li>
+          <li class="lang-it">Copy orientato all'azione</li><li class="lang-en">Action-driven copywriting</li>
+          <li class="lang-it">Test e ottimizzazione</li><li class="lang-en">Testing and optimization</li>
         </ul>
       </div>
-      <div class="service-card reveal">
-        <div class="ico">●</div>
-        <h3>E-commerce leggeri</h3>
+      <div class="service-card glow-card spotlight reveal">
+        <div class="ico" aria-hidden="true">●</div>
+        <h3 class="lang-it">E-commerce leggeri</h3><h3 class="lang-en">Lean E-Commerce</h3>
         <ul>
-          <li>Catalogo prodotti</li>
-          <li>Checkout semplice</li>
-          <li>Velocità di carico</li>
+          <li class="lang-it">Catalogo prodotti</li><li class="lang-en">Product catalog</li>
+          <li class="lang-it">Checkout semplice</li><li class="lang-en">Simple checkout</li>
+          <li class="lang-it">Velocità di carico</li><li class="lang-en">Fast load times</li>
         </ul>
       </div>
-    </div>
 
-    <div class="care-plan reveal">
-      <div class="care-left">
-        <h3>Piano Scacciapensieri</h3>
-        <p>Manutenzione completa, sicurezza e supporto prioritario.</p>
-        <div class="care-price">30€<span>/mese</span></div>
-        <span class="care-badge">Meno di 1€ al giorno</span>
+      <div class="care-plan glow-card spotlight span-3 reveal">
+        <div class="care-left">
+          <span class="tag-3d lang-it">Meno di 1€ al giorno</span><span class="tag-3d lang-en">Under €1 per day</span>
+          <h3 style="margin-top:14px;" class="lang-it">Piano Scacciapensieri</h3>
+          <h3 style="margin-top:14px;" class="lang-en">The Worry-Free Plan</h3>
+          <p class="lang-it">Manutenzione completa, sicurezza e supporto prioritario.</p>
+          <p class="lang-en">Full maintenance, security, and priority support.</p>
+          <div class="care-price">45€<span>/mese</span><span>/mo</span></div>
+        </div>
+        <ul class="care-list">
+          <li class="lang-it">Hosting premium</li><li class="lang-en">Premium hosting</li>
+          <li class="lang-it">Backup automatici</li><li class="lang-en">Automatic daily backups</li>
+          <li class="lang-it">Aggiornamenti continui</li><li class="lang-en">Continuous updates</li>
+          <li class="lang-it">Uptime monitoring 24/7</li><li class="lang-en">24/7 uptime monitoring</li>
+          <li class="lang-it">Protezione malware</li><li class="lang-en">Malware protection</li>
+          <li class="lang-it">Supporto prioritario</li><li class="lang-en">Priority support</li>
+        </ul>
       </div>
-      <ul class="care-list">
-        <li>Hosting premium</li>
-        <li>Backup automatici</li>
-        <li>Aggiornamenti continui</li>
-        <li>Uptime monitoring 24/7</li>
-        <li>Protezione malware</li>
-        <li>Supporto prioritario</li>
-      </ul>
     </div>
   </div>
 </section>
-
+<!-- TEASER PREVENTIVI IA -->
+<section id="preventivi-teaser" style="padding:90px 0;">
+  <div class="container">
+    <div class="care-plan glow-card spotlight reveal">
+      <div class="care-left">
+        <span class="tag-3d lang-it">Novità</span><span class="tag-3d lang-en">New</span>
+        <h3 style="margin-top:14px;" class="lang-it">Fai preventivi? C'è un modo più veloce.</h3>
+        <h3 style="margin-top:14px;" class="lang-en">Do you send quotes? There's a faster way.</h3>
+        <p class="lang-it">Per artigiani e piccole imprese: preventivo professionale in 30 secondi, invece che su Word o WhatsApp.</p>
+        <p class="lang-en">For tradespeople and small businesses: a professional quote in 30 seconds, instead of Word or WhatsApp.</p>
+      </div>
+      <a href="/preventivi-intelligenti" class="btn btn-primary btn-lg">
+        <span class="lang-it">Scopri Preventivi IA</span>
+        <span class="lang-en">Discover AI Quotes</span>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- TECH MARQUEE -->
+<section class="marquee-section" aria-label="Stack tecnologico">
+  <div class="marquee-label">
+    <span class="lang-it">Stack tecnologico</span><span class="lang-en">Technology Stack</span>
+  </div>
+  <div class="marquee-track" aria-hidden="true">
+    <div class="marquee-group">
+      <span class="marquee-item">Astro</span><span class="dotsep"></span>
+      <span class="marquee-item">Jamstack</span><span class="dotsep"></span>
+      <span class="marquee-item">WordPress Headless</span><span class="dotsep"></span>
+      <span class="marquee-item">Webflow</span><span class="dotsep"></span>
+      <span class="marquee-item">Next.js</span><span class="dotsep"></span>
+      <span class="marquee-item">Stripe</span><span class="dotsep"></span>
+      <span class="marquee-item">Vercel</span><span class="dotsep"></span>
+    </div>
+    <div class="marquee-group">
+      <span class="marquee-item">Astro</span><span class="dotsep"></span>
+      <span class="marquee-item">Jamstack</span><span class="dotsep"></span>
+      <span class="marquee-item">WordPress Headless</span><span class="dotsep"></span>
+      <span class="marquee-item">Webflow</span><span class="dotsep"></span>
+      <span class="marquee-item">Next.js</span><span class="dotsep"></span>
+      <span class="marquee-item">Stripe</span><span class="dotsep"></span>
+      <span class="marquee-item">Vercel</span><span class="dotsep"></span>
+    </div>
+  </div>
+</section>
 <!-- PREZZI -->
 <section id="prezzi">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">Prezzi</div>
-      <h2 class="section-title">Trasparenza totale</h2>
-      <p class="section-sub">Nessuna sorpresa: sai esattamente cosa paghi e cosa ottieni.</p>
-    </div>
+<div class="container">
+<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+  <div class="eyebrow" style="justify-content:center;"><span class="lang-it">Prezzi</span><span class="lang-en">Pricing</span></div>
+  <h2 class="section-title" style="margin:0 auto;max-width:100%;"><span class="lang-it">Un piano per ogni fase del tuo business</span><span class="lang-en">A plan for every stage of your business</span></h2>
+</div>
+<div class="pricing-grid">
 
-    <div class="pricing-grid">
-      <div class="price-card featured reveal">
-        <h3>Sviluppo Web</h3>
-        <div class="price">700€<span>una tantum</span></div>
-        <p class="note">Progetto completo, dal design al deployment.</p>
-        <ul>
-          <li>Design personalizzato</li>
-          <li>Responsive su tutti i dispositivi</li>
-          <li>SEO tecnica</li>
-          <li>Performance optimization</li>
-          <li>Deployment incluso</li>
-          <li>2 round di revisioni inclusi</li>
-        </ul>
-        <div class="split-payment">
-          <div class="split-row"><span>Avvio progetto (40%)</span><b>280€</b></div>
-          <div class="split-row"><span>Approvazione design (30%)</span><b>210€</b></div>
-          <div class="split-row"><span>Delivery finale (30%)</span><b>210€</b></div>
-        </div>
-        <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary">Richiedi il preventivo</a>
-      </div>
-
-      <div class="price-card reveal">
-        <h3>Manutenzione</h3>
-        <div class="price">30€<span>/mese</span></div>
-        <p class="note">Rinnovo automatico via Stripe. Disdici quando vuoi.</p>
-        <ul>
-          <li>Hosting, backup e sicurezza</li>
-          <li>Aggiornamenti continui</li>
-          <li>30 minuti/mese di supporto incluso</li>
-          <li>Modifiche extra a 45€/ora</li>
-        </ul>
-        <a href="https://wa.me/393458409958" target="_blank" class="btn btn-ghost">Scopri di più</a>
-      </div>
+  <!-- ESSENTIAL -->
+  <div class="price-card glow-card spotlight reveal">
+    <h3>Essential</h3>
+    <div class="price-row">
+      <span class="price-old">900€</span>
+      <span class="discount-badge">-20%</span>
     </div>
+    <div class="price">700€<span>una tantum</span></div>
+    <p class="note">Ideale per chi parte da zero con un sito vetrina professionale.</p>
+    <ul>
+      <li>Design personalizzato</li>
+      <li>Responsive su tutti i dispositivi</li>
+      <li>SEO tecnica di base</li>
+      <li>Deployment incluso</li>
+    </ul>
+    <a href="#contatti" class="btn btn-ghost">Richiedi preventivo</a>
   </div>
-</section>
 
+  <!-- BUSINESS — piano in evidenza con effetto laser-beam -->
+  <div class="price-card featured spotlight reveal">
+    <span class="featured-tag">Più richiesto</span>
+    <h3>Business</h3>
+    <div class="price-row">
+      <span class="price-old">3.200€</span>
+      <span class="discount-badge">-20%</span>
+    </div>
+    <div class="price">2.500€<span>una tantum</span></div>
+    <p class="note">Sito dinamico con database, area riservata e automazioni.</p>
+    <ul>
+      <li>Database e area riservata</li>
+      <li>Dashboard personale</li>
+      <li>Automazioni incluse</li>
+      <li>Pannello admin</li>
+      <li>2 round di revisioni</li>
+    </ul>
+    <a href="#contatti" class="btn btn-primary">Richiedi preventivo</a>
+  </div>
+
+  <!-- ENTERPRISE -->
+  <div class="price-card glow-card spotlight reveal">
+    <h3>Enterprise</h3>
+    <div class="price-row">
+      <span class="price-old">6.500€</span>
+      <span class="discount-badge">-23%</span>
+    </div>
+    <div class="price">5.000€<span>una tantum</span></div>
+    <p class="note">Piattaforma completa con integrazioni e moduli avanzati.</p>
+    <ul>
+      <li>Integrazioni esterne (CRM, pagamenti)</li>
+      <li>Automazioni multiple</li>
+      <li>Ruoli utente differenziati</li>
+      <li>Reportistica avanzata</li>
+    </ul>
+    <a href="#contatti" class="btn btn-ghost">Richiedi preventivo</a>
+  </div>
+<!-- PREVENTIVI INTELLIGENTI -->
+<div class="price-card glow-card spotlight reveal" style="position:relative;">
+  <span class="new-tag lang-it">Nuovo</span><span class="new-tag lang-en">New</span>
+  <h3>Preventivi Intelligenti</h3>
+  <div class="price">490€<span class="lang-it">una tantum</span><span class="lang-en">setup</span></div>
+  <p class="note lang-it">+ 39€/mese di abbonamento. Prezzo di lancio.</p>
+  <p class="note lang-en">+ €39/mo subscription. Launch price.</p>
+  <ul>
+    <li class="lang-it">Preventivo generato dall'IA in 30 secondi</li><li class="lang-en">AI-generated quote in 30 seconds</li>
+    <li class="lang-it">PDF + email automatici al cliente</li><li class="lang-en">Automatic PDF + email to the client</li>
+    <li class="lang-it">Acconto via Stripe all'accettazione</li><li class="lang-en">Deposit via Stripe on acceptance</li>
+    <li class="lang-it">Promemoria automatico</li><li class="lang-en">Automatic reminders</li>
+    <li class="lang-it">Fino a 50 preventivi/mese</li><li class="lang-en">Up to 50 quotes/month</li>
+  </ul>
+  <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20richiedere%20accesso%20a%20Preventivi%20Intelligenti." target="_blank" rel="noopener" class="btn btn-primary">
+    <span class="lang-it">Richiedi accesso</span><span class="lang-en">Request access</span>
+  </a>
+</div>
+</div>
+<div class="pricing-footnote">
+  <span aria-hidden="true">🛡️</span>
+  <span class="lang-it"><strong>Garanzia soddisfatti o rimborsati:</strong> non convinto entro 14 giorni dalla consegna? Ti rimborsiamo, senza domande.</span>
+  <span class="lang-en"><strong>Money-back guarantee:</strong> not happy within 14 days of delivery? We'll refund you, no questions asked.</span>
+</div>
+<div class="container" style="padding:20px 0 0;">
+  <p class="section-sub" style="max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
+    <span class="lang-it">Diverso dal Piano Scacciapensieri (quello è manutenzione del sito, questo è l'abbonamento per usare lo strumento preventivi).</span>
+    <span class="lang-en">Different from the Worry-Free Plan (that's website maintenance — this is the subscription to use the quoting tool).</span>
+  </p>
+</div>
+</div>
+</section>
 <!-- POLITICHE -->
 <section id="politiche">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Come lavoriamo</div>
-      <h2 class="section-title">Politiche operative chiare</h2>
-      <p class="section-sub">Regole semplici, pensate per proteggere te e il progetto.</p>
+      <div class="eyebrow lang-it">Come lavoriamo</div><div class="eyebrow lang-en">How we work</div>
+      <h2 class="section-title lang-it">Regole chiare, per lavorare bene insieme</h2>
+      <h2 class="section-title lang-en">Clear ground rules, for a smooth collaboration</h2>
+      <p class="section-sub lang-it">Niente sorprese: ecco come gestiamo tempi, pagamenti e supporto.</p>
+      <p class="section-sub lang-en">No surprises: here's how we handle timing, payments, and support.</p>
     </div>
 
     <div class="policy-grid reveal" id="policyAccordion">
       <div class="policy-item open">
-        <div class="policy-q"><span>Fair use del supporto</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>30 minuti al mese inclusi per modifiche rapide (testi, immagini, contatti). Lavori strutturali extra: 45€/ora.</p></div>
+        <button class="policy-q" aria-expanded="true"><span class="lang-it">Cosa include il supporto mensile</span><span class="lang-en">What monthly support includes</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">Ogni mese hai 30 minuti inclusi per modifiche rapide (testi, immagini, contatti). Per interventi più estesi, fatturiamo 45€/ora, in modo trasparente prima di iniziare.</p>
+          <p class="lang-en">Every month you get 30 minutes included for quick edits (text, images, contact details). For bigger changes, we bill €45/hr — always quoted upfront.</p>
+        </div>
       </div>
       <div class="policy-item">
-        <div class="policy-q"><span>Fornitura materiali</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>I materiali vanno forniti entro 7 giorni lavorativi. Oltre i 14 giorni il progetto viene temporaneamente congelato.</p></div>
+        <button class="policy-q" aria-expanded="false"><span class="lang-it">Quando ci servono i tuoi materiali</span><span class="lang-en">When we need your content</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">Per restare nei tempi ti chiediamo testi e immagini entro 7 giorni lavorativi. Se servisse più tempo, va benissimo: basta avvisarci per riorganizzare il calendario.</p>
+          <p class="lang-en">To keep things on schedule, we ask for your text and images within 7 business days. Need more time? Just let us know and we'll adjust the calendar.</p>
+        </div>
       </div>
       <div class="policy-item">
-        <div class="policy-q"><span>Pagamenti</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Stripe con retry automatici. Dopo 10 giorni di mancato pagamento il servizio viene sospeso.</p></div>
+        <button class="policy-q" aria-expanded="false"><span class="lang-it">Come funzionano i pagamenti</span><span class="lang-en">How payments work</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">Il canone mensile viene gestito in automatico via Stripe, in totale sicurezza. In caso di problemi con un pagamento ti avvisiamo sempre prima di intervenire.</p>
+          <p class="lang-en">Your monthly fee is handled automatically and securely through Stripe. If a payment ever fails, we always reach out before taking any action.</p>
+        </div>
       </div>
       <div class="policy-item">
-        <div class="policy-q"><span>Offboarding</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Al termine della collaborazione ricevi file e database: la proprietà totale del sito è sempre tua. Migrazione opzionale: 150€ una tantum.</p></div>
+        <button class="policy-q" aria-expanded="false"><span class="lang-it">Se decidi di lasciarci</span><span class="lang-en">If you ever decide to leave</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">Il sito e il database sono sempre tuoi al 100%. Se vuoi andartene, ti consegniamo tutto subito; se preferisci una mano con la migrazione, è un servizio extra a 150€ una tantum.</p>
+          <p class="lang-en">Your site and database are always 100% yours. If you decide to leave, we hand everything over right away — and offer optional migration help for a flat €150 if you'd like support.</p>
+        </div>
       </div>
       <div class="policy-item">
-        <div class="policy-q"><span>Proprietà del dominio</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Il dominio viene registrato e intestato legalmente a te fin dal primo giorno. Cypher Web si occupa solo della configurazione tecnica, DNS e collegamento hosting.</p></div>
-      </div>
-      <div class="policy-item">
-        <div class="policy-q"><span>SEO</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>È incluso solo la SEO tecnica: performance, meta tag, sitemap e indicizzazione. Non includiamo articoli, link building o campagne SEO.</p></div>
-      </div>
-      <div class="policy-item">
-        <div class="policy-q"><span>GDPR & Privacy</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Configurazione del cookie banner inclusa, con strumenti come Iubenda. Le eventuali licenze esterne sono a carico del cliente.</p></div>
+        <button class="policy-q" aria-expanded="false"><span class="lang-it">Proprietà del dominio</span><span class="lang-en">Domain ownership</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">Il dominio viene registrato e intestato legalmente a te fin dal primo giorno. Noi ci occupiamo solo della configurazione tecnica, DNS e collegamento all'hosting.</p>
+          <p class="lang-en">Your domain is registered under your legal name from day one. We only handle the technical setup — DNS, hosting connection, and configuration.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
+<!--
+DOVE INCOLLARE:
+Sostituisce INTERAMENTE l'attuale <section id="portfolio">...</section>
+(sia la versione originale a 2 card, sia 05-portfolio.html o 05-portfolio-esteso.html
+consegnati in precedenza). 6 progetti totali: TuboFix (reale, con link) + i 5 case study
+fittizi già scritti in precedenza.
+
+IMPORTANTE — prima di pubblicare:
+Il pulsante "Vedi il sito" punta a /demo/tubofix.html — carica il file tubofix-home.html
+sul tuo hosting esattamente a quel percorso (rinominandolo in tubofix.html dentro una
+cartella "demo"), oppure cambia l'href qui sotto per farlo puntare a dove lo carichi tu.
+
+Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito reale"
+(css-additions.css e css-additions-2.css) devono essere entrambi nello <style> del sito.
+-->
+
 <section id="portfolio">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Portfolio</div>
-      <h2 class="section-title">Progetti recenti</h2>
-      <p class="section-sub">Una selezione di lavori realizzati con cura, performance e attenzione al dettaglio.</p>
+      <div class="eyebrow lang-it">Portfolio</div><div class="eyebrow lang-en">Portfolio</div>
+      <h2 class="section-title lang-it">Progetti recenti</h2><h2 class="section-title lang-en">Recent Projects</h2>
+      <p class="section-sub lang-it">Esempi illustrativi del tipo di lavoro che realizziamo.</p>
+      <p class="section-sub lang-en">Illustrative examples of the kind of work we do.</p>
     </div>
 
-    <div class="portfolio-grid">
-      <div class="portfolio-card reveal">
-        <div class="portfolio-thumb"><span class="glyph">studio-legale.it</span></div>
+    <div class="bento-grid">
+
+      <!-- 1. TuboFix — REALE, demo navigabile, featured span-2 -->
+      <div class="portfolio-card glow-card spotlight span-2 reveal" style="position:relative;">
+        <span class="demo-live-tag lang-it">Demo live</span><span class="demo-live-tag lang-en">Live demo</span>
+        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">tubofix.it</span></div>
         <div class="portfolio-info">
-          <h4>Studio Legale Associato</h4>
-          <p>Sito vetrina con form di contatto e prenotazione consulenze.</p>
-          <div class="stack-tags"><span>Astro</span><span>SEO tecnica</span></div>
+          <h4 class="lang-it">TuboFix — Pronto Intervento Idraulico</h4><h4 class="lang-en">TuboFix — Emergency Plumbing Service</h4>
+          <div class="portfolio-story">
+            <div class="story-row problem">
+              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Un idraulico vive di urgenze: chi cerca aiuto è spesso in un momento di stress e deve fidarsi in pochi secondi.</span>
+              <span class="story-text lang-en">A plumber lives on emergencies: whoever's searching is often stressed and needs to trust you within seconds.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row solution">
+              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">Sito con identità propria (non un template riciclato): tariffa oraria dichiarata, zona servita reale, tempi di intervento in evidenza.</span>
+              <span class="story-text lang-en">A site with its own identity (not a recycled template): stated hourly rate, real service area, response times front and center.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row result">
+              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-text lang-it">Un unico numero da chiamare, prezzo chiaro prima di iniziare: la trasparenza diventa l'argomento di vendita.</span>
+              <span class="story-text lang-en">One number to call, a clear price before starting: transparency becomes the selling point.</span>
+            </div>
+          </div>
+          <div class="stack-tags"><span class="lang-it">Sito custom</span><span class="lang-en">Custom build</span><span class="lang-it">Identità su misura</span><span class="lang-en">Bespoke identity</span></div>
+          <a href="C:\Users\danie\Desktop\cypherwebtesting\demo\tubofix.html" target="_blank" rel="noopener" class="portfolio-link">
+            <span class="lang-it">Vedi il sito</span><span class="lang-en">View the site</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
-      <div class="portfolio-card reveal">
-        <div class="portfolio-thumb"><span class="glyph">officina-moto.it</span></div>
+
+           <!-- 2. Studio Legale Bassani — REALE, demo navigabile -->
+      <div class="portfolio-card glow-card spotlight reveal" style="position:relative;">
+        <span class="demo-live-tag lang-it">Demo live</span><span class="demo-live-tag lang-en">Live demo</span>
+        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">studiobassani.it</span></div>
         <div class="portfolio-info">
-          <h4>Officina Moto Custom</h4>
-          <p>Landing page ad alta conversione per generazione contatti locali.</p>
+          <h4 class="lang-it">Studio Legale Bassani & Associati — Avvocati a Milano</h4>
+          <h4 class="lang-en">Bassani & Associates Law Firm — Milan</h4>
+          <div class="portfolio-story">
+            <div class="story-row problem">
+              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Uno studio con 16 anni di esperienza ma zero presenza digitale professionale: i clienti arrivavano solo per passaparola.</span>
+              <span class="story-text lang-en">A firm with 16 years of experience but no professional digital presence: clients came only by word of mouth.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row solution">
+              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">Design istituzionale ispirato al mondo legale: colori sobri, tipografia serif, layout a fascicolo con "spina dorsale" visiva.</span>
+              <span class="story-text lang-en">Institutional design inspired by the legal world: sober colors, serif typography, binder-style layout with a visual "spine".</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row result">
+              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-text lang-it">Un sito che trasmette autorità e fiducia: le consulenze ora arrivano anche dal form online, non solo dal passaparola.</span>
+              <span class="story-text lang-en">A site that conveys authority and trust: consultations now also come from the online form, not just word of mouth.</span>
+            </div>
+          </div>
+          <div class="stack-tags"><span>Astro</span><span class="lang-it">Design istituzionale</span><span class="lang-en">Institutional design</span><span class="lang-it">SEO locale</span><span class="lang-en">Local SEO</span></div>
+          <a href="C:\Users\danie\Desktop\cypherwebtesting\demo\studiolegale.html" target="_blank" rel="noopener" class="portfolio-link">
+            <span class="lang-it">Vedi il sito</span><span class="lang-en">View the site</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+      <!-- 3. Officina Moto -->
+      <div class="portfolio-card glow-card spotlight reveal">
+        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">officina-moto.it</span></div>
+        <div class="portfolio-info">
+          <h4 class="lang-it">Officina Moto Custom</h4><h4 class="lang-en">Custom Motorcycle Workshop</h4>
+          <div class="portfolio-story">
+            <div class="story-row problem">
+              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Buon lavoro, ma zero visibilità online: i clienti arrivavano solo per passaparola.</span>
+              <span class="story-text lang-en">Great work, but zero online visibility — clients only found them by word of mouth.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row solution">
+              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">Landing page ad alta conversione per portare il traffico social al contatto diretto.</span>
+              <span class="story-text lang-en">A high-conversion landing page turning social traffic into direct contact.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row result">
+              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-text lang-it">Prenotazioni raddoppiate in 3 mesi, con un costo di acquisizione clienti più basso.</span>
+              <span class="story-text lang-en">Bookings doubled in 3 months, with a lower customer acquisition cost.</span>
+            </div>
+          </div>
           <div class="stack-tags"><span>Webflow</span><span>CRO</span></div>
         </div>
       </div>
-      <div class="portfolio-card reveal">
-        <div class="portfolio-thumb"><span class="glyph">atelier-shop.it</span></div>
+
+      <!-- 4. Ristorante -->
+      <div class="portfolio-card glow-card spotlight reveal">
+        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">trattoria-delborgo.it</span></div>
         <div class="portfolio-info">
-          <h4>Atelier Concept Store</h4>
-          <p>E-commerce leggero con catalogo prodotti e checkout semplificato.</p>
-          <div class="stack-tags"><span>Next.js</span><span>Stripe</span></div>
+          <h4 class="lang-it">Trattoria del Borgo</h4><h4 class="lang-en">Trattoria del Borgo (Restaurant)</h4>
+          <div class="portfolio-story">
+            <div class="story-row problem">
+              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Prenotazioni gestite solo a voce, con errori nei weekend di punta.</span>
+              <span class="story-text lang-en">Reservations handled only by phone, with mistakes during busy weekends.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row solution">
+              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">Sito con menu digitale e modulo di prenotazione tavoli collegato a WhatsApp.</span>
+              <span class="story-text lang-en">A website with a digital menu and a table booking form linked to WhatsApp.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row result">
+              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-text lang-it">Quasi azzerati gli errori di prenotazione, sala piena anche nei giorni infrasettimanali.</span>
+              <span class="story-text lang-en">Booking mistakes nearly eliminated, full tables even on weekdays.</span>
+            </div>
+          </div>
+          <div class="stack-tags"><span>Astro</span><span class="lang-it">Prenotazioni</span><span class="lang-en">Booking</span></div>
         </div>
       </div>
+
+      <!-- 5. Centro estetico -->
+      <div class="portfolio-card glow-card spotlight reveal">
+        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">centro-estetico-lux.it</span></div>
+        <div class="portfolio-info">
+          <h4 class="lang-it">Centro Estetico Lux</h4><h4 class="lang-en">Lux Beauty Center</h4>
+          <div class="portfolio-story">
+            <div class="story-row problem">
+              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Appuntamenti gestiti tra DM Instagram e messaggi WhatsApp, spesso persi.</span>
+              <span class="story-text lang-en">Appointments juggled between Instagram DMs and WhatsApp, often lost.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row solution">
+              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">Sito con catalogo trattamenti e sistema di prenotazione online integrato.</span>
+              <span class="story-text lang-en">A website with a treatment catalog and integrated online booking system.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row result">
+              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-text lang-it">Agenda sempre aggiornata in automatico, -70% di tempo speso a rispondere ai messaggi.</span>
+              <span class="story-text lang-en">Calendar always up to date automatically, -70% time spent replying to messages.</span>
+            </div>
+          </div>
+          <div class="stack-tags"><span>Webflow</span><span class="lang-it">Prenotazioni</span><span class="lang-en">Booking</span></div>
+        </div>
+      </div>
+
+      <!-- 6. Artigiano / bottega -->
+      <div class="portfolio-card glow-card spotlight reveal">
+        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">bottega-artigiana.it</span></div>
+        <div class="portfolio-info">
+          <h4 class="lang-it">Bottega Artigiana del Legno</h4><h4 class="lang-en">Artisan Woodworking Shop</h4>
+          <div class="portfolio-story">
+            <div class="story-row problem">
+              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Vendeva solo tramite marketplace, con commissioni alte e zero relazione diretta col cliente.</span>
+              <span class="story-text lang-en">Sold only through marketplaces, with high fees and no direct customer relationship.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row solution">
+              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">Sito vetrina con galleria prodotti su misura e contatto diretto per preventivi.</span>
+              <span class="story-text lang-en">A showcase website with a custom product gallery and direct contact for quotes.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row result">
+              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-text lang-it">Primi ordini diretti già nel primo mese, senza commissioni di intermediazione.</span>
+              <span class="story-text lang-en">First direct orders within the first month, with no marketplace commissions.</span>
+            </div>
+          </div>
+          <div class="stack-tags"><span>Astro</span><span class="lang-it">Galleria prodotti</span><span class="lang-en">Product gallery</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-
 <!-- RECENSIONI -->
 <section id="recensioni">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Recensioni</div>
-      <h2 class="section-title">Cosa dicono i clienti</h2>
+      <div class="eyebrow lang-it">Recensioni</div><div class="eyebrow lang-en">Reviews</div>
+      <h2 class="section-title lang-it">Cosa dicono i clienti</h2><h2 class="section-title lang-en">What clients say</h2>
     </div>
     <div class="reviews-grid">
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Finalmente qualcuno che non sparisce dopo la consegna. Il supporto continuo fa davvero la differenza."</p>
+      <div class="review-card glow-card spotlight reveal">
+        <div class="stars" aria-label="5 stelle su 5">★★★★★</div>
+        <p class="lang-it">"Finalmente qualcuno che non sparisce dopo la consegna. Il supporto continuo fa davvero la differenza."</p>
+        <p class="lang-en">"Finally, someone who doesn't disappear after launch. The ongoing support genuinely makes a difference."</p>
         <div class="reviewer">
-          <div class="avatar">MR</div>
+          <div class="avatar" aria-hidden="true">MR</div>
           <div>
             <div class="name">Marco R.</div>
-            <div class="role">Titolare attività locale</div>
+            <div class="role lang-it">Titolare attività locale</div><div class="role lang-en">Local Business Owner</div>
           </div>
         </div>
       </div>
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Sito velocissimo e assistenza immediata ogni volta che ne ho avuto bisogno."</p>
+      <div class="review-card glow-card spotlight reveal">
+        <div class="stars" aria-label="5 stelle su 5">★★★★★</div>
+        <p class="lang-it">"Sito velocissimo e assistenza immediata ogni volta che ne ho avuto bisogno."</p>
+        <p class="lang-en">"A blazing-fast site and quick answers every time I needed something changed."</p>
         <div class="reviewer">
-          <div class="avatar">EV</div>
+          <div class="avatar" aria-hidden="true">EV</div>
           <div>
             <div class="name">Elena V.</div>
-            <div class="role">Professionista freelance</div>
+            <div class="role lang-it">Professionista freelance</div><div class="role lang-en">Independent Consultant</div>
           </div>
         </div>
       </div>
@@ -1163,33 +2567,53 @@
   <div class="container">
     <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
       <div class="eyebrow" style="justify-content:center;">FAQ</div>
-      <h2 class="section-title" style="margin:0 auto;">Domande frequenti</h2>
+      <h2 class="section-title" style="margin:0 auto; max-width:100%;">
+        <span class="lang-it">Domande frequenti</span><span class="lang-en">Frequently asked questions</span>
+      </h2>
     </div>
 
     <div class="policy-grid faq-grid reveal" id="faqAccordion">
+      <div class="policy-item">
+  <button class="policy-q" aria-expanded="false"><span class="lang-it">Cos'è Preventivi Intelligenti?</span><span class="lang-en">What is AI Quotes?</span><span class="plus" aria-hidden="true">+</span></button>
+  <div class="policy-a">
+    <p class="lang-it">È uno strumento separato dal sito: generi un preventivo professionale in 30 secondi con l'IA, invece di scriverlo a mano su Word o WhatsApp.</p>
+    <p class="lang-en">It's a tool separate from your website: you generate a professional quote in 30 seconds with AI, instead of writing it by hand in Word or WhatsApp.</p>
+  </div>
+</div>
+<div class="policy-item">
+  <button class="policy-q" aria-expanded="false"><span class="lang-it">Come funziona l'abbonamento mensile?</span><span class="lang-en">How does the monthly subscription work?</span><span class="plus" aria-hidden="true">+</span></button>
+  <div class="policy-a">
+    <p class="lang-it">39€/mese include fino a 50 preventivi. Oltre questa soglia ti contattiamo per un piano su misura. Nessun vincolo: puoi disdire quando vuoi.</p>
+    <p class="lang-en">€39/mo includes up to 50 quotes. Beyond that, we'll reach out about a custom plan. No lock-in: cancel anytime.</p>
+  </div>
+</div>
       <div class="policy-item open">
-        <div class="policy-q"><span>Perché il canone mensile?</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Perché un sito non finisce mai davvero: serve sicurezza, aggiornamenti e monitoraggio costante per restare veloce e protetto nel tempo.</p></div>
+        <button class="policy-q" aria-expanded="true"><span class="lang-it">Perché un canone mensile?</span><span class="lang-en">Why a monthly fee?</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">Perché un sito non finisce mai davvero: serve sicurezza, aggiornamenti e monitoraggio costante per restare veloce e protetto nel tempo.</p>
+          <p class="lang-en">Because a website is never really "finished" — it needs security, updates, and ongoing monitoring to stay fast and protected over time.</p>
+        </div>
       </div>
       <div class="policy-item">
-        <div class="policy-q"><span>Posso disdire?</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Sì, in qualsiasi momento. Non ci sono vincoli di durata sul piano di manutenzione.</p></div>
+        <button class="policy-q" aria-expanded="false"><span class="lang-it">Posso disdire quando voglio?</span><span class="lang-en">Can I cancel anytime?</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">Sì, in qualsiasi momento. Non ci sono vincoli di durata sul piano di manutenzione.</p>
+          <p class="lang-en">Yes, anytime. The maintenance plan has no minimum commitment.</p>
+        </div>
       </div>
       <div class="policy-item">
-        <div class="policy-q"><span>Il sito è mio?</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Sì, al termine del rapporto ricevi tutti i file e il database: la proprietà del sito è sempre tua.</p></div>
+        <button class="policy-q" aria-expanded="false"><span class="lang-it">Quanto tempo serve per realizzare il sito?</span><span class="lang-en">How long does a website take?</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">In media tra 2 e 4 settimane, a seconda della complessità e di quanto velocemente ci fornisci i materiali.</p>
+          <p class="lang-en">On average, 2 to 4 weeks, depending on complexity and how quickly you provide content and materials.</p>
+        </div>
       </div>
       <div class="policy-item">
-        <div class="policy-q"><span>Il dominio è mio?</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Sì, sempre. Il dominio viene registrato e intestato a te fin dal primo giorno.</p></div>
-      </div>
-      <div class="policy-item">
-        <div class="policy-q"><span>Tempi di sviluppo?</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>In media 2-4 settimane, in base alla complessità del progetto e ai tempi di consegna dei materiali.</p></div>
-      </div>
-      <div class="policy-item">
-        <div class="policy-q"><span>Hosting incluso?</span><span class="plus">+</span></div>
-        <div class="policy-a"><p>Sì, l'hosting premium è incluso nel piano di manutenzione mensile.</p></div>
+        <button class="policy-q" aria-expanded="false"><span class="lang-it">Cosa succede se non sono soddisfatto?</span><span class="lang-en">What if I'm not satisfied?</span><span class="plus" aria-hidden="true">+</span></button>
+        <div class="policy-a">
+          <p class="lang-it">Hai una garanzia soddisfatti o rimborsati di 14 giorni dalla consegna del sito: se qualcosa non ti convince, ti rimborsiamo senza domande.</p>
+          <p class="lang-en">You get a 14-day money-back guarantee from delivery: if something doesn't convince you, we refund you — no questions asked.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1199,62 +2623,54 @@
 <section id="contatti">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">Contatti</div>
-      <h2 class="section-title">Parliamo del tuo progetto</h2>
-      <p class="section-sub">Raccontami di cosa hai bisogno: ti rispondo personalmente.</p>
+      <div class="eyebrow lang-it">Contatti</div><div class="eyebrow lang-en">Contact</div>
+      <h2 class="section-title lang-it">Parliamo del tuo progetto</h2><h2 class="section-title lang-en">Let's talk about your project</h2>
+      <p class="section-sub lang-it">Rispondiamo entro 24 ore. Il primo confronto è sempre gratuito e senza impegno.</p>
+      <p class="section-sub lang-en">We reply within 24 hours. The first conversation is always free, with no obligation.</p>
     </div>
 
     <div class="contact-wrap">
       <div class="contact-info reveal">
         <div class="item">
-          <div class="ico">@</div>
+          <div class="ico" aria-hidden="true">@</div>
           <div>
             <h4>Email</h4>
             <a href="mailto:danielemartelli37@gmail.com">danielemartelli37@gmail.com</a>
           </div>
         </div>
         <div class="item">
-          <div class="ico">☏</div>
+          <div class="ico" aria-hidden="true">☏</div>
           <div>
-            <h4>Telefono</h4>
-            <p>+39 345 840 9958</p>
+            <h4 class="lang-it">Telefono</h4><h4 class="lang-en">Phone</h4>
+            <a href="tel:+393458409958">+39 345 840 9958</a>
           </div>
         </div>
-        <div class="item">
-          <div class="ico">⌖</div>
-          <div>
-            <h4>Sede</h4>
-            <p>Milano (MI)</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="ico">◎</div>
-          <div>
-            <h4>Instagram</h4>
-            <a href="https://instagram.com/cypherweb.dev" target="_blank">@cypherweb.dev</a>
-          </div>
-        </div>
-        <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary" style="margin-top:10px;">Mandami un messaggio WhatsApp</a>
+        <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20parlare%20del%20mio%20progetto." target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:10px;">
+          <span class="lang-it">Chatta ora su WhatsApp</span><span class="lang-en">Chat now on WhatsApp</span>
+        </a>
       </div>
 
-      <form class="form-card reveal" id="contactForm">
-        <div class="field">
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required>
+      <form class="form-card reveal" id="contactForm" novalidate>
+        <div class="field" id="field-nome">
+          <label for="nome"><span class="lang-it">Nome</span><span class="lang-en">Name</span></label>
+          <input type="text" id="nome" name="nome" placeholder="Mario Rossi" required autocomplete="name">
+          <span class="error-msg lang-it">Inserisci il tuo nome.</span><span class="error-msg lang-en">Please enter your name.</span>
         </div>
-        <div class="field">
+        <div class="field" id="field-email">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="nome@azienda.it" required>
+          <input type="email" id="email" name="email" placeholder="mario@azienda.it" required autocomplete="email">
+          <span class="error-msg lang-it">Inserisci un'email valida.</span><span class="error-msg lang-en">Please enter a valid email.</span>
         </div>
-        <div class="field">
-          <label for="azienda">Azienda</label>
-          <input type="text" id="azienda" name="azienda" placeholder="Nome attività (opzionale)">
+        <div class="field" id="field-messaggio">
+          <label for="messaggio"><span class="lang-it">Messaggio</span><span class="lang-en">Project Brief</span></label>
+          <textarea id="messaggio" name="messaggio" placeholder="..." required></textarea>
+          <span class="error-msg lang-it">Raccontaci brevemente il tuo progetto.</span><span class="error-msg lang-en">Tell us a bit about your project.</span>
         </div>
-        <div class="field">
-          <label for="messaggio">Messaggio</label>
-          <textarea id="messaggio" name="messaggio" placeholder="Raccontami del tuo progetto..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Invia messaggio</button>
+        <button type="submit" class="btn btn-primary">
+          <span class="lang-it">Richiedi il tuo preventivo gratuito</span><span class="lang-en">Get your free quote</span>
+        </button>
+        <p class="form-note lang-it">Ti risponderemo direttamente su WhatsApp, di solito entro 24 ore.</p>
+        <p class="form-note lang-en">We'll reply directly on WhatsApp, usually within 24 hours.</p>
       </form>
     </div>
   </div>
@@ -1263,66 +2679,104 @@
 <!-- CTA FINALE -->
 <section class="final-cta">
   <div class="container">
-    <h2>Siti web ad alte prestazioni.<br>Zero stress di gestione.</h2>
-    <p>Scrivimi su WhatsApp: parliamo del tuo progetto in 5 minuti.</p>
-    <a href="https://wa.me/393458409958" target="_blank" class="btn btn-primary btn-lg">Mandami un messaggio WhatsApp</a>
+    <h2 class="lang-it">Siti web ad alte prestazioni.<br>Zero stress di gestione.</h2>
+    <h2 class="lang-en">High-performance websites.<br>Zero management stress.</h2>
+    <p class="lang-it">Preventivo gratuito, senza impegno. Rispondiamo entro 24 ore.</p>
+    <p class="lang-en">Free, no-obligation quote. We reply within 24 hours.</p>
+    <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20iniziare%20un%20progetto." target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+      <span class="lang-it">Inizia ora</span><span class="lang-en">Get Started</span>
+    </a>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#" class="logo"><span class="logo-mark">C</span>Cypher Web</a>
-        <p>Sviluppo siti web e servizi SaaS per piccole e medie imprese, professionisti e attività locali. Milano (MI).</p>
+        <a href="#" class="logo"><img src="logocypher.png" alt="Cypher Web"></a>
+        <p class="lang-it">Sviluppo siti web e servizi digitali per piccole e medie imprese, professionisti e attività locali. Milano (MI).</p>
+        <p class="lang-en">Web development and digital services for small businesses, professionals, and local shops. Based in Milan, Italy.</p>
       </div>
       <div class="footer-cols">
         <div class="footer-col">
-          <h5>Sito</h5>
-          <a href="#metodo">Metodo</a>
-          <a href="#servizi">Servizi</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#prezzi">Prezzi</a>
+          <h5 class="lang-it">Naviga</h5><h5 class="lang-en">Navigate</h5>
+          <a href="#metodo" class="lang-it">Metodo</a><a href="#metodo" class="lang-en">Method</a>
+          <a href="#servizi" class="lang-it">Servizi</a><a href="#servizi" class="lang-en">Services</a>
+          <a href="#prezzi" class="lang-it">Prezzi</a><a href="#prezzi" class="lang-en">Pricing</a>
         </div>
         <div class="footer-col">
-          <h5>Contatti</h5>
+          <h5 class="lang-it">Contatti</h5><h5 class="lang-en">Contact</h5>
           <a href="mailto:danielemartelli37@gmail.com">danielemartelli37@gmail.com</a>
-          <p>+39 345 840 9958</p>
-          <a href="https://instagram.com/cypherweb.dev" target="_blank">@cypherweb.dev</a>
+          <a href="tel:+393458409958">+39 345 840 9958</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Cypher Web. Tutti i diritti riservati.</span>
-      <span>Milano, Italia</span>
+      <span>© 2026 Cypher Web. <span class="lang-it">Tutti i diritti riservati.</span><span class="lang-en">All rights reserved.</span></span>
+      <span class="lang-it">P.IVA in fase di apertura</span><span class="lang-en">Italy</span>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/393458409958" target="_blank" class="wa-float" aria-label="Scrivi su WhatsApp">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.51 3.62 1.4 5.12L2 22l5.13-1.5a9.85 9.85 0 0 0 4.9 1.3h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.06h-.01a8.16 8.16 0 0 1-4.17-1.14l-.3-.18-3.1.9.92-3.03-.2-.31a8.12 8.12 0 0 1-1.27-4.39c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.16 3.66 8.16 8.16 0 4.5-3.66 8.15-8.19 8.15zm4.49-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.65.81-.79.98-.15.17-.29.18-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.5.12-.12.27-.31.4-.46.13-.16.18-.27.27-.45.08-.17.04-.31-.04-.43-.08-.12-.55-1.32-.75-1.81-.2-.48-.4-.42-.55-.42-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.74 2.65 4.21 3.61.59.23 1.05.36 1.41.46.59.16 1.13.14 1.55.08.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+<a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20informazioni." target="_blank" rel="noopener" class="wa-float" aria-label="Contattaci su WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.51 3.62 1.4 5.12L2 22l5.13-1.5a9.85 9.85 0 0 0 4.9 1.3h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.06h-.01a8.16 8.16 0 0 1-4.17-1.14l-.3-.18-3.1.9.92-3.03-.2-.31a8.12 8.12 0 0 1-1.27-4.39c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.16 3.66 8.16 8.16 0 4.5-3.66 8.15-8.19 8.15zm4.49-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.65.81-.79.98-.15.17-.29.18-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.5.12-.12.27-.31.4-.46.13-.16.18-.27.27-.45.08-.17.04-.31-.04-.43-.08-.12-.55-1.32-.75-1.81-.2-.48-.4-.42-.55-.42-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.74 2.65 4.21 3.61.59.23 1.05.36 1.41.46.59.16 1.13.14 1.55.08.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
 </a>
 
 <script>
+  function setLanguage(lang) {
+    if(lang === 'en') {
+      document.body.classList.remove('lang-it');
+      document.body.classList.add('lang-en');
+      document.documentElement.setAttribute('lang','en');
+    } else {
+      document.body.classList.remove('lang-en');
+      document.body.classList.add('lang-it');
+      document.documentElement.setAttribute('lang','it');
+    }
+    document.querySelector('.btn-it').setAttribute('aria-pressed', lang === 'it');
+    document.querySelector('.btn-en').setAttribute('aria-pressed', lang === 'en');
+    try { localStorage.setItem('cypher_lang', lang); } catch(e) {}
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    let savedLang = 'it';
+    try { savedLang = localStorage.getItem('cypher_lang') || 'it'; } catch(e) {}
+    setLanguage(savedLang);
+  });
+
   // Mobile menu
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobileMenu');
   const overlay = document.getElementById('overlay');
-  function closeMenu(){ mobileMenu.classList.remove('open'); overlay.classList.remove('open'); }
+  function closeMenu(){
+    mobileMenu.classList.remove('open');
+    overlay.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+  }
   burger.addEventListener('click', ()=>{
-    mobileMenu.classList.toggle('open');
+    const isOpen = mobileMenu.classList.toggle('open');
     overlay.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
   });
   overlay.addEventListener('click', closeMenu);
   mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeMenu(); });
 
   // Accordion (politiche + faq)
   document.querySelectorAll('.policy-q').forEach(q=>{
     q.addEventListener('click', ()=>{
       const item = q.parentElement;
       const wasOpen = item.classList.contains('open');
-      item.parentElement.querySelectorAll('.policy-item').forEach(i=>i.classList.remove('open'));
-      if(!wasOpen) item.classList.add('open');
+      item.parentElement.querySelectorAll('.policy-item').forEach(i=>{
+        i.classList.remove('open');
+        i.querySelector('.policy-q').setAttribute('aria-expanded','false');
+      });
+      if(!wasOpen){
+        item.classList.add('open');
+        q.setAttribute('aria-expanded','true');
+      }
     });
   });
 
@@ -1338,28 +2792,273 @@
   }, {threshold:0.12});
   revealEls.forEach(el=>observer.observe(el));
 
-  // Contact form -> redirect to WhatsApp with prefilled message
-  document.getElementById('contactForm').addEventListener('submit', function(e){
+  // Contact form -> validate, then redirect to WhatsApp with prefilled message
+  const form = document.getElementById('contactForm');
+  const isEn = () => document.body.classList.contains('lang-en');
+
+  function setFieldValid(fieldId, valid){
+    const field = document.getElementById(fieldId);
+    field.classList.toggle('invalid', !valid);
+  }
+
+  form.addEventListener('submit', function(e){
     e.preventDefault();
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const azienda = document.getElementById('azienda').value;
-    const messaggio = document.getElementById('messaggio').value;
-    const text = encodeURIComponent(
-      `Ciao! Sono ${nome}.\nEmail: ${email}\nAzienda: ${azienda || '-'}\nMessaggio: ${messaggio}`
-    );
-    window.open(`https://wa.me/393458409958?text=${text}`, '_blank');
+    const nomeEl = document.getElementById('nome');
+    const emailEl = document.getElementById('email');
+    const msgEl = document.getElementById('messaggio');
+
+    const nome = nomeEl.value.trim();
+    const email = emailEl.value.trim();
+    const messaggio = msgEl.value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    setFieldValid('field-nome', nome.length > 0);
+    setFieldValid('field-email', emailOk);
+    setFieldValid('field-messaggio', messaggio.length > 0);
+
+    if(!nome || !emailOk || !messaggio){
+      const firstInvalid = form.querySelector('.invalid input, .invalid textarea');
+      if(firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    const greeting = isEn()
+      ? `Hi Cypher Web! I'm ${nome}.\nEmail: ${email}\nBrief: ${messaggio}`
+      : `Ciao Cypher Web! Sono ${nome}.\nEmail: ${email}\nMessaggio: ${messaggio}`;
+    const text = encodeURIComponent(greeting);
+    window.open(`https://wa.me/393458409958?text=${text}`, '_blank', 'noopener');
   });
 
-  // Header background on scroll (slightly stronger blur)
+  // Live-clear validation state as user types
+  ['nome','email','messaggio'].forEach(id=>{
+    document.getElementById(id).addEventListener('input', ()=>{
+      document.getElementById('field-'+id).classList.remove('invalid');
+    });
+  });
+
+  // Header background on scroll
   const header = document.querySelector('header');
   window.addEventListener('scroll', ()=>{
     if(window.scrollY > 20){
-      header.style.background = 'rgba(11,15,25,0.9)';
+      header.style.background = 'rgba(6,9,19,0.85)';
+      header.style.borderColor = 'rgba(255,255,255,0.12)';
     } else {
-      header.style.background = 'rgba(11,15,25,0.7)';
+      header.style.background = 'rgba(6,9,19,0.65)';
+      header.style.borderColor = 'rgba(255,255,255,0.06)';
     }
+  }, { passive: true });
+
+  // Mouse-tracking spotlight on cards — desktop/fine-pointer only
+  const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+  if(hasFinePointer){
+    document.querySelectorAll('.spotlight').forEach(card=>{
+      card.addEventListener('mousemove', (e)=>{
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--spot-x', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--spot-y', (e.clientY - rect.top) + 'px');
+      });
+    });
+  }
+
+  // Magnetic WhatsApp floating button — desktop only, paused off-screen
+  const waFloat = document.querySelector('.wa-float');
+  if(hasFinePointer){
+    const magRadius = 90;
+    window.addEventListener('mousemove', (e)=>{
+      const rect = waFloat.getBoundingClientRect();
+      const dx = e.clientX - (rect.left + rect.width/2);
+      const dy = e.clientY - (rect.top + rect.height/2);
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < magRadius){
+        const pull = (1 - dist/magRadius) * 0.4;
+        waFloat.style.transform = `translate(${dx*pull}px, ${dy*pull}px) scale(1.06)`;
+      } else {
+        waFloat.style.transform = 'translate(0,0) scale(1)';
+      }
+    }, { passive: true });
+  }
+
+  // ===== Lightweight particle layer (single canvas, density-capped, pauses when tab hidden) =====
+  (function(){
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+    const mouse = {x:-9999, y:-9999};
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let running = true;
+    let rafId = null;
+
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = document.documentElement.scrollHeight;
+    }
+    function initParticles(){
+      // Lower density than before, capped harder for low-end devices
+      const count = Math.min(50, Math.floor((w*h)/40000));
+      particles = [];
+      for(let i=0;i<count;i++){
+        particles.push({
+          x:Math.random()*w,
+          y:Math.random()*h,
+          vx:(Math.random()-0.5)*0.2,
+          vy:(Math.random()-0.5)*0.2,
+          r:Math.random()*1.3+0.6
+        });
+      }
+    }
+    resize();
+    initParticles();
+    let resizeTimer;
+    window.addEventListener('resize', ()=>{
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(()=>{ resize(); initParticles(); }, 200);
+    });
+    if(hasFinePointer){
+      window.addEventListener('mousemove', (e)=>{
+        mouse.x = e.clientX;
+        mouse.y = e.clientY + window.scrollY;
+      }, { passive: true });
+      window.addEventListener('mouseleave', ()=>{ mouse.x=-9999; mouse.y=-9999; });
+    }
+    document.addEventListener('visibilitychange', ()=>{
+      running = !document.hidden;
+      if(running && !rafId) rafId = requestAnimationFrame(tick);
+    });
+
+    function tick(){
+      if(!running){ rafId = null; return; }
+      ctx.clearRect(0,0,w,h);
+      const viewTop = window.scrollY - 200;
+      const viewBottom = window.scrollY + window.innerHeight + 200;
+
+      for(let p of particles){
+        if(!reduceMotion){
+          p.x += p.vx;
+          p.y += p.vy;
+          if(p.x < 0) p.x = w; if(p.x > w) p.x = 0;
+          if(p.y < 0) p.y = h; if(p.y > h) p.y = 0;
+        }
+        if(p.y < viewTop || p.y > viewBottom) continue;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(160,180,200,0.4)';
+        ctx.fill();
+
+        if(hasFinePointer){
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx*dx+dy*dy);
+          if(dist < 130){
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(46,155,255,${0.3*(1-dist/130)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+    rafId = requestAnimationFrame(tick);
+  })();
+
+  // ===== Hero 3D perspective grid tunnel (accelerates on scroll, pauses off-screen) =====
+  (function(){
+    const canvas = document.getElementById('heroGridCanvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    let offset = 0;
+    let speed = 0.4;
+    let targetSpeed = 0.4;
+    let visible = true;
+    let rafId = null;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize(){
+      w = canvas.width = canvas.parentElement.offsetWidth;
+      h = 480;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let lastScroll = window.scrollY;
+    window.addEventListener('scroll', ()=>{
+      const delta = Math.abs(window.scrollY - lastScroll);
+      targetSpeed = 0.4 + Math.min(delta*0.15, 4);
+      lastScroll = window.scrollY;
+    }, { passive: true });
+
+    const io = new IntersectionObserver((entries)=>{
+      visible = entries[0].isIntersecting;
+      if(visible && !rafId) rafId = requestAnimationFrame(tick);
+    });
+    io.observe(canvas);
+
+    function drawGrid(){
+      ctx.clearRect(0,0,w,h);
+      const horizonY = h*0.32;
+      const vanishX = w/2;
+      const cyan = '46,155,255';
+      const green = '124,143,255';
+
+      const rows = 26;
+      for(let i=0;i<rows;i++){
+        let t = (i/rows + offset) % 1;
+        const y = horizonY + Math.pow(t,2.2) * (h - horizonY);
+        const alpha = 0.5 * (1-t) + 0.04;
+        const mix = i%2===0 ? cyan : green;
+        ctx.strokeStyle = `rgba(${mix},${Math.max(alpha,0)})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0,y);
+        ctx.lineTo(w,y);
+        ctx.stroke();
+      }
+      const cols = 14;
+      for(let i=-cols;i<=cols;i++){
+        const xBase = vanishX + i*(w/cols)*1.4;
+        ctx.strokeStyle = `rgba(${cyan},0.14)`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(vanishX, horizonY);
+        ctx.lineTo(xBase, h);
+        ctx.stroke();
+      }
+    }
+
+    function tick(){
+      if(!visible){ rafId = null; return; }
+      if(!reduceMotion){
+        speed += (targetSpeed - speed) * 0.06;
+        targetSpeed += (0.4 - targetSpeed) * 0.02;
+        offset += 0.0022 * speed;
+      }
+      drawGrid();
+      rafId = requestAnimationFrame(tick);
+    }
+    rafId = requestAnimationFrame(tick);
+  })();
+  (function(){
+  const banner = document.getElementById('launchBanner');
+  const KEY = 'cypher_banner_dismissed';
+  let dismissed = false;
+  try { dismissed = localStorage.getItem(KEY) === '1'; } catch(e){}
+  if(!banner) return;
+  if(dismissed){
+    banner.style.display = 'none';
+  } else {
+    document.body.classList.add('banner-active');
+  }
+  const closeBtn = document.getElementById('closeBanner');
+  closeBtn.addEventListener('click', ()=>{
+    banner.style.display = 'none';
+    document.body.classList.remove('banner-active');
+    try{ localStorage.setItem(KEY,'1'); }catch(e){}
   });
+})();
+
 </script>
 
 </body>
