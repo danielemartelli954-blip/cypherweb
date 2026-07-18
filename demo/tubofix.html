@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TuboFix — Pronto Intervento Idraulico Milano | Interventi entro 60 minuti</title>
+<meta name="description" content="Idraulico a Milano e provincia: pronto intervento perdite, caldaie, sanitari e ristrutturazioni bagno. Preventivo gratuito, prezzo fisso concordato prima di iniziare.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0F2A3D;
+    --ink-2:#153650;
+    --porcelain:#F3F5F6;
+    --porcelain-2:#EAEDEF;
+    --white:#FFFFFF;
+    --steel:#5C6B75;
+    --steel-light:#9BA8B0;
+    --line:#DCE1E3;
+    --amber:#F2A93B;
+    --amber-deep:#D98F1F;
+    --copper:#C1673A;
+    --teal:#0F6E8C;
+    --danger:#C1442E;
+    --radius:10px;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'IBM Plex Sans', sans-serif;
+    background:var(--porcelain);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  img,svg{ display:block; }
+  .display{ font-family:'Space Grotesk', sans-serif; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .container{ max-width:1120px; margin:0 auto; padding:0 28px; }
+  .icon{ width:22px; height:22px; stroke:currentColor; stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--teal); outline-offset:3px; border-radius:4px; }
+
+  /* ============ SIGNATURE: pipe route line ============ */
+  .pipe-route{
+    position:absolute; left:44px; top:0; width:3px; height:100%;
+    background: repeating-linear-gradient(to bottom, var(--copper) 0 8px, transparent 8px 16px);
+    opacity:0.35;
+  }
+  .pipe-joint{
+    position:absolute; left:38px; width:16px; height:16px; border-radius:50%;
+    background:var(--porcelain); border:3px solid var(--copper); opacity:0.55;
+  }
+  @media(max-width:900px){ .pipe-route, .pipe-joint{ display:none; } }
+
+  /* ============ HEADER ============ */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(243,245,246,0.92); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1120px; margin:0 auto;
+  }
+  .logo{ display:flex; align-items:center; gap:2px; }
+  .logo .tubo{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:21px; color:var(--ink); letter-spacing:-0.01em; }
+  .logo .fix{ font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:21px; color:var(--amber-deep); letter-spacing:-0.01em; }
+  .logo .tag{ margin-left:10px; font-size:11px; color:var(--steel); font-family:'JetBrains Mono',monospace; border-left:1px solid var(--line); padding-left:10px; }
+  @media(max-width:640px){ .logo .tag{ display:none; } }
+
+  .nav-links{ display:flex; gap:30px; align-items:center; }
+  .nav-links a{ font-size:14.5px; font-weight:500; color:var(--steel); }
+  .nav-links a:hover{ color:var(--ink); }
+  @media(max-width:860px){ .nav-links{ display:none; } }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 22px; border-radius:8px; font-weight:600; font-size:14.5px;
+    border:1px solid transparent; cursor:pointer;
+  }
+  .btn-amber{ background:var(--amber); color:var(--ink); }
+  .btn-amber:hover{ background:var(--amber-deep); }
+  .btn-outline{ background:transparent; border-color:var(--ink); color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:var(--white); }
+  .btn-ghost-light{ background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.25); color:var(--white); }
+  .btn-ghost-light:hover{ background:rgba(255,255,255,0.16); }
+
+  /* ============ HERO ============ */
+  .hero{
+    background: var(--ink);
+    background-image:
+      linear-gradient(var(--ink), var(--ink)),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 42px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 42px);
+    color:var(--white);
+    padding:76px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:50px; align-items:center; }
+  @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(242,169,59,0.14); border:1px solid rgba(242,169,59,0.4);
+    color:var(--amber); font-size:13px; font-weight:600;
+    padding:7px 16px; border-radius:100px; margin-bottom:22px;
+  }
+  .hero-badge .dot{ width:7px; height:7px; border-radius:50%; background:var(--amber); }
+
+  .hero h1{
+    font-size:clamp(32px, 4.4vw, 48px); font-weight:700; line-height:1.14; letter-spacing:-0.01em;
+    margin-bottom:20px;
+  }
+  .hero h1 .accent{ color:var(--amber); }
+  .hero p.lead{ font-size:17.5px; color:#C7D2D8; max-width:520px; margin-bottom:28px; }
+
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:26px; }
+  .hero-trust{ display:flex; gap:22px; flex-wrap:wrap; font-size:13px; color:#9FB0B9; }
+  .hero-trust span{ display:flex; align-items:center; gap:7px; }
+  .hero-trust .icon{ width:16px; height:16px; color:var(--amber); }
+
+  /* Gauge signature graphic */
+  .gauge-wrap{ display:flex; justify-content:center; }
+  .gauge-card{
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12);
+    border-radius:16px; padding:30px; width:280px;
+  }
+  .gauge-label{ font-family:'JetBrains Mono',monospace; font-size:11px; color:#8FA1AA; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; }
+  .gauge-readout{ display:flex; justify-content:space-between; margin-top:18px; }
+  .gauge-readout div{ text-align:center; }
+  .gauge-readout .num{ font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--white); }
+  .gauge-readout .lbl{ font-size:10.5px; color:#8FA1AA; margin-top:2px; }
+  @media(max-width:900px){ .gauge-wrap{ margin-top:10px; } }
+
+  /* ============ SECTION GENERIC ============ */
+  section{ padding:80px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:48px; }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--copper);
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px; font-weight:700;
+  }
+  .section-title{ font-size:clamp(26px,3.6vw,34px); font-weight:700; letter-spacing:-0.01em; margin-bottom:14px; }
+  .section-sub{ color:var(--steel); font-size:15.5px; }
+
+  /* ============ TRUST BAR ============ */
+  .trust-bar{ background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 0; }
+  .trust-row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+  .trust-item{ display:flex; align-items:center; gap:10px; flex:1; min-width:220px; }
+  .trust-item .icon{ color:var(--teal); flex-shrink:0; }
+  .trust-item span{ font-size:13.5px; color:var(--ink); font-weight:500; }
+
+  /* ============ SERVIZI ============ */
+  .servizi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media(max-width:900px){ .servizi-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:640px){ .servizi-grid{ grid-template-columns:1fr; } }
+  .servizio-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; transition:border-color .2s ease, transform .2s ease;
+  }
+  .servizio-card:hover{ border-color:var(--copper); transform:translateY(-2px); }
+  .servizio-card .ico-wrap{
+    width:44px; height:44px; border-radius:9px; background:var(--porcelain-2);
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .servizio-card .ico-wrap .icon{ color:var(--copper); }
+  .servizio-card h3{ font-size:17px; font-weight:600; margin-bottom:8px; font-family:'Space Grotesk',sans-serif; }
+  .servizio-card p{ font-size:13.5px; color:var(--steel); }
+
+  /* ============ COME LAVORIAMO (sequential — numbers justified) ============ */
+  .process-wrap{ position:relative; padding-left:76px; }
+  @media(max-width:900px){ .process-wrap{ padding-left:0; } }
+  .process-step{ display:flex; gap:22px; margin-bottom:36px; position:relative; }
+  .process-step:last-child{ margin-bottom:0; }
+  .step-num{
+    flex-shrink:0; width:52px; height:52px; border-radius:50%;
+    background:var(--ink); color:var(--amber);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px;
+    position:relative; z-index:2;
+  }
+  .step-body h3{ font-size:17px; font-weight:600; margin-bottom:6px; font-family:'Space Grotesk',sans-serif; }
+  .step-body p{ font-size:14px; color:var(--steel); max-width:480px; }
+
+  /* ============ PREZZI TRASPARENTI ============ */
+  .price-callout{
+    background:var(--ink); color:var(--white); border-radius:16px;
+    padding:44px 40px; display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap;
+  }
+  .price-callout .left{ flex:1; min-width:280px; }
+  .price-callout h3{ font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; margin-bottom:10px; }
+  .price-callout p{ color:#B9C7CD; font-size:14.5px; max-width:460px; }
+  .price-callout .rate{ text-align:center; }
+  .price-callout .rate .num{ font-family:'Space Grotesk',sans-serif; font-size:38px; font-weight:700; color:var(--amber); }
+  .price-callout .rate .unit{ font-size:12.5px; color:#9FB0B9; margin-top:2px; }
+  .price-callout .rate .note{ font-size:11px; color:#7E939C; margin-top:6px; max-width:160px; }
+
+  /* ============ ZONA SERVITA ============ */
+  .zona-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+  @media(max-width:860px){ .zona-wrap{ grid-template-columns:1fr; } }
+  .radar{
+    width:260px; height:260px; border-radius:50%; position:relative; margin:0 auto;
+    background: radial-gradient(circle, rgba(15,110,140,0.08) 0%, transparent 70%);
+    border:1px dashed var(--line);
+  }
+  .radar .ring{ position:absolute; border:1px dashed var(--line); border-radius:50%; }
+  .radar .ring1{ inset:60px; }
+  .radar .ring2{ inset:30px; }
+  .radar .center{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:14px; height:14px; border-radius:50%; background:var(--copper);
+  }
+  .radar .center::after{
+    content:'TuboFix'; position:absolute; top:20px; left:50%; transform:translateX(-50%);
+    font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--steel); white-space:nowrap;
+  }
+  .zona-list{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .zona-chip{
+    font-size:13px; padding:7px 14px; border-radius:100px; background:var(--white);
+    border:1px solid var(--line); color:var(--ink);
+  }
+
+  /* ============ RECENSIONI ============ */
+  .reviews-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  @media(max-width:860px){ .reviews-grid{ grid-template-columns:1fr; } }
+  .review-card{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+  .review-card .stars{ color:var(--amber-deep); font-size:14px; margin-bottom:12px; letter-spacing:2px; }
+  .review-card p{ font-size:14px; color:var(--ink); margin-bottom:16px; }
+  .review-card .who{ font-size:12.5px; color:var(--steel); font-weight:600; }
+  .verified-tag{
+    display:inline-flex; align-items:center; gap:5px; font-size:10.5px; font-family:'JetBrains Mono',monospace;
+    color:var(--teal); background:rgba(15,110,140,0.08); padding:3px 9px; border-radius:100px; margin-bottom:12px;
+  }
+
+  /* ============ CTA FINALE ============ */
+  .final-cta{ background:var(--ink); color:var(--white); text-align:center; padding:80px 0; }
+  .final-cta h2{ font-family:'Space Grotesk',sans-serif; font-size:clamp(26px,4vw,38px); font-weight:700; margin-bottom:16px; }
+  .final-cta p{ color:#B9C7CD; margin-bottom:34px; }
+  .final-phone{ font-family:'JetBrains Mono',monospace; font-size:28px; font-weight:700; color:var(--amber); margin-bottom:22px; }
+  .final-hours{ font-size:13px; color:#8FA1AA; margin-top:24px; }
+
+  /* ============ FOOTER ============ */
+  footer{ background:var(--porcelain-2); border-top:1px solid var(--line); padding:44px 0 28px; }
+  .footer-top{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:28px; margin-bottom:28px; }
+  .footer-col h5{ font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--steel); margin-bottom:12px; font-family:'JetBrains Mono',monospace; }
+  .footer-col a, .footer-col p{ display:block; font-size:13.5px; color:var(--steel); margin-bottom:8px; }
+  .footer-col a:hover{ color:var(--ink); }
+  .footer-bottom{
+    border-top:1px solid var(--line); padding-top:20px; display:flex; justify-content:space-between;
+    flex-wrap:wrap; gap:10px; font-size:12.5px; color:var(--steel);
+  }
+  .footer-bottom a{ color:var(--copper); }
+
+  /* mobile menu */
+  .burger{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
+  .burger span{ width:22px; height:2px; background:var(--ink); }
+  @media(max-width:860px){ .burger{ display:flex; } }
+  .mobile-menu{
+    display:none; flex-direction:column; gap:16px; padding:20px 28px 26px;
+    background:var(--white); border-bottom:1px solid var(--line);
+  }
+  .mobile-menu.open{ display:flex; }
+  .mobile-menu a{ font-size:15px; font-weight:500; color:var(--ink); }
+
+  .reveal{ opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.show{ opacity:1; transform:translateY(0); }
+  @media(prefers-reduced-motion:reduce){ *{ transition:none !important; } .reveal{ opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#" class="logo">
+      <span class="tubo">TUBO</span><span class="fix">FIX</span>
+      <span class="tag">PRONTO INTERVENTO IDRAULICO</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servizi">Servizi</a></li>
+      <li><a href="#come-lavoriamo">Come lavoriamo</a></li>
+      <li><a href="#zona">Zona servita</a></li>
+      <li><a href="#recensioni">Recensioni</a></li>
+      <li><a href="#contatti" class="btn btn-outline">Contatti</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Apri menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#servizi">Servizi</a>
+    <a href="#come-lavoriamo">Come lavoriamo</a>
+    <a href="#zona">Zona servita</a>
+    <a href="#recensioni">Recensioni</a>
+    <a href="#contatti">Contatti</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge"><span class="dot"></span> Interventi urgenti 7 giorni su 7, festivi inclusi</div>
+        <h1>Perdita d'acqua?<br>Arriviamo entro <span class="accent">60 minuti</span>.</h1>
+        <p class="lead">Idraulici abilitati per emergenze, caldaie, sanitari e ristrutturazioni bagno a Milano e provincia. Preventivo gratuito, prezzo fisso concordato prima di iniziare.</p>
+        <div class="hero-ctas">
+          <a href="tel:+390212345678" class="btn btn-amber">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Chiama ora — 02 1234 5678
+          </a>
+          <a href="#contatti" class="btn btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">Preventivo gratuito</a>
+        </div>
+        <div class="hero-trust">
+          <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4.5 8-11.8V5l-8-3-8 3v5.2C4 17.5 12 22 12 22z"/></svg> Iscritto Albo Installatori L.46/90</span>
+          <span><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg> Preventivo scritto prima dei lavori</span>
+          <span><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4.5 8-11.8V5l-8-3-8 3v5.2C4 17.5 12 22 12 22z"/></svg> Assicurazione RC €1.000.000</span>
+        </div>
+      </div>
+
+      <div class="gauge-wrap">
+        <div class="gauge-card">
+          <div class="gauge-label">Stato interventi — oggi</div>
+          <svg viewBox="0 0 200 120" width="100%" height="auto">
+            <path d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="14"/>
+            <path d="M20 110 A80 80 0 0 1 150 42" fill="none" stroke="#F2A93B" stroke-width="14" stroke-linecap="round"/>
+            <line x1="100" y1="110" x2="140" y2="55" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="100" cy="110" r="6" fill="#fff"/>
+          </svg>
+          <div class="gauge-readout">
+            <div><div class="num">4</div><div class="lbl">Squadre attive</div></div>
+            <div><div class="num">38'</div><div class="lbl">Tempo medio</div></div>
+            <div><div class="num">7/7</div><div class="lbl">Reperibilità</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-row">
+      <div class="trust-item">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4.5 8-11.8V5l-8-3-8 3v5.2C4 17.5 12 22 12 22z"/></svg>
+        <span>Assicurazione RC professionale</span>
+      </div>
+      <div class="trust-item">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+        <span>Preventivo scritto, prezzo fisso</span>
+      </div>
+      <div class="trust-item">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <span>Garanzia 24 mesi su ricambi e manodopera</span>
+      </div>
+      <div class="trust-item">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span>Reperibili 7 giorni su 7</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVIZI -->
+<section id="servizi" style="position:relative;">
+  <div class="pipe-route"></div>
+  <div class="pipe-joint" style="top:78px;"></div>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Servizi</div>
+      <h2 class="section-title">Cosa facciamo</h2>
+      <p class="section-sub">Dall'emergenza alla ristrutturazione completa del bagno, un unico numero da chiamare.</p>
+    </div>
+
+    <div class="servizi-grid">
+      <div class="servizio-card reveal">
+        <div class="ico-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2s6 7 6 11.5a6 6 0 0 1-12 0C6 9 12 2 12 2z"/></svg></div>
+        <h3>Pronto intervento perdite e allagamenti</h3>
+        <p>Rilevamento perdite anche nascoste, riparazione tubazioni, prosciugamento locali. Attivi 7 giorni su 7, festivi inclusi.</p>
+      </div>
+      <div class="servizio-card reveal">
+        <div class="ico-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 17c1.5 0 2.5-1 2.5-2.5S12.5 12 11 10.5 8.5 8 8.5 8"/><path d="M17 3.34A10 10 0 1 1 12 22a10 10 0 0 1-3.5-.66"/></svg></div>
+        <h3>Caldaie e scaldabagni</h3>
+        <p>Installazione, manutenzione annuale e riparazione caldaie a condensazione e scaldabagni elettrici.</p>
+      </div>
+      <div class="servizio-card reveal">
+        <div class="ico-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M4 12h16M4 12a2 2 0 0 1 2-2h1V7a3 3 0 0 1 6 0M4 12v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/></svg></div>
+        <h3>Sanitari e rubinetteria</h3>
+        <p>Sostituzione WC, lavabi, miscelatori e box doccia. Ti consigliamo anche i modelli più adatti al tuo bagno.</p>
+      </div>
+      <div class="servizio-card reveal">
+        <div class="ico-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h6"/></svg></div>
+        <h3>Tubazioni e scarichi</h3>
+        <p>Disotturazione scarichi con videoispezione, sostituzione colonne di scarico, rifacimento impianti.</p>
+      </div>
+      <div class="servizio-card reveal">
+        <div class="ico-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
+        <h3>Ristrutturazione bagno chiavi in mano</h3>
+        <p>Dalla demolizione alle rifiniture: coordiniamo idraulico, piastrellista ed elettricista in un unico cantiere.</p>
+      </div>
+      <div class="servizio-card reveal">
+        <div class="ico-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6M9 12h.01M15 12h.01"/></svg></div>
+        <h3>Manutenzione condominiale</h3>
+        <p>Contratti di manutenzione programmata per amministratori di condominio, con reperibilità dedicata.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COME LAVORIAMO -->
+<section id="come-lavoriamo" style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line); position:relative;">
+  <div class="pipe-route"></div>
+  <div class="pipe-joint" style="top:78px;"></div>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Come lavoriamo</div>
+      <h2 class="section-title">Quattro passaggi, zero sorprese</h2>
+    </div>
+
+    <div class="process-wrap">
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Chiamata o messaggio</h3>
+          <p>Ci descrivi il problema, anche solo con una foto su WhatsApp. Rispondiamo entro pochi minuti, anche fuori orario in caso di emergenza.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>Sopralluogo e preventivo</h3>
+          <p>Veniamo a vedere il problema e ti diciamo il prezzo fisso prima di iniziare qualsiasi lavoro. Nessuna sorpresa in fattura.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Intervento</h3>
+          <p>Lavoriamo con teli protettivi per non sporcare casa tua e puliamo tutto a fine intervento.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>Garanzia scritta</h3>
+          <p>Ricevi fattura regolare e garanzia scritta di 24 mesi su ricambi e manodopera.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREZZI TRASPARENTI -->
+<section>
+  <div class="container">
+    <div class="price-callout reveal">
+      <div class="left">
+        <h3>Prezzi trasparenti, dichiarati prima di iniziare</h3>
+        <p>Sopralluogo e preventivo sempre gratuiti. La tariffa oraria è fissa e la conosci prima che l'idraulico metta mano agli attrezzi.</p>
+      </div>
+      <div class="rate">
+        <div class="num">45€</div>
+        <div class="unit">/ ora + materiali</div>
+        <div class="note">Comunicata sempre prima di iniziare, IVA inclusa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONA SERVITA -->
+<section id="zona" style="background:var(--white); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="zona-wrap">
+      <div class="reveal">
+        <div class="eyebrow">Zona servita</div>
+        <h2 class="section-title">Milano e prima cintura</h2>
+        <p class="section-sub">Interventi urgenti entro 60 minuti in tutta l'area servita.</p>
+        <div class="zona-list">
+          <span class="zona-chip">Milano città</span>
+          <span class="zona-chip">Sesto San Giovanni</span>
+          <span class="zona-chip">Cinisello Balsamo</span>
+          <span class="zona-chip">San Donato Milanese</span>
+          <span class="zona-chip">Cologno Monzese</span>
+          <span class="zona-chip">Segrate</span>
+        </div>
+      </div>
+      <div class="radar reveal">
+        <div class="ring ring1"></div>
+        <div class="ring ring2"></div>
+        <div class="center"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section id="recensioni">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Recensioni</div>
+      <h2 class="section-title">Cosa dicono i clienti</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="verified-tag">✓ VERIFICATA</div>
+        <div class="stars">★★★★★</div>
+        <p>"Perdita sotto il lavello alle 22 di sera, sono arrivati in 40 minuti. Prezzo esattamente come da preventivo al telefono."</p>
+        <div class="who">Marta B. — San Siro</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="verified-tag">✓ VERIFICATA</div>
+        <div class="stars">★★★★★</div>
+        <p>"Caldaia sostituita in un giorno. Hanno anche sistemato una valvola di zona che perdeva da mesi, senza farmela pagare extra."</p>
+        <div class="who">Giuseppe R. — Sesto San Giovanni</div>
+      </div>
+      <div class="review-card reveal">
+        <div class="verified-tag">✓ VERIFICATA</div>
+        <div class="stars">★★★★★</div>
+        <p>"Ristrutturazione bagno completa in 12 giorni come promesso, comunicazione chiarissima su tempi e costi durante tutto il cantiere."</p>
+        <div class="who">Elena T. — Cologno Monzese</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINALE -->
+<section class="final-cta" id="contatti">
+  <div class="container">
+    <h2>Un problema idraulico non aspetta.</h2>
+    <p>Chiamaci ora o scrivici su WhatsApp: rispondiamo anche in giornata festiva.</p>
+    <div class="final-phone">📞 02 1234 5678</div>
+    <div class="hero-ctas" style="justify-content:center;">
+      <a href="tel:+390212345678" class="btn btn-amber">Chiama ora</a>
+      <a href="https://wa.me/393331234567" class="btn btn-ghost-light">Scrivi su WhatsApp</a>
+    </div>
+    <div class="final-hours">Lun–Sab 7:30–20:00 · Urgenze 7 giorni su 7, festivi inclusi</div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-col" style="max-width:260px;">
+        <div class="logo" style="margin-bottom:10px;"><span class="tubo">TUBO</span><span class="fix">FIX</span></div>
+        <p>Pronto intervento idraulico a Milano e provincia. Iscritto Albo Installatori Legge 46/90.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Servizi</h5>
+        <a href="#servizi">Pronto intervento</a>
+        <a href="#servizi">Caldaie</a>
+        <a href="#servizi">Ristrutturazione bagno</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contatti</h5>
+        <a href="tel:+390212345678">02 1234 5678</a>
+        <a href="mailto:info@tubofix.it">info@tubofix.it</a>
+        <p>Milano e provincia</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TuboFix S.r.l. — P.IVA 00000000000</span>
+      <span>Sito realizzato da <a href="#">Cypher Web</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
