@@ -1570,7 +1570,6 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
   <div class="blob blob-blue"></div>
 </div>
 <div class="bg-sheen" aria-hidden="true"></div>
-
 <header>
   <nav aria-label="Navigazione principale">
     <a href="#" class="logo">
@@ -1578,10 +1577,6 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
        <span class="sr-only-logo-text" style="position:absolute;left:-9999px;">Cypher Web</span>
     </a>
     <ul class="nav-links">
-      <li>
-        <a href="/preventivi-intelligenti" class="lang-it">Preventivi IA</a>
-        <a href="/preventivi-intelligenti" class="lang-en">AI Quotes</a>
-      </li>
       <li>
         <a href="#metodo" class="lang-it">Metodo</a>
         <a href="#metodo" class="lang-en">Method</a>
@@ -1734,14 +1729,19 @@ Il link #suite nell'hero CTA punta qui.
     </div>
 
     <div class="bento-grid">
-      <div class="service-card glow-card spotlight reveal">
-        <div class="ico" aria-hidden="true">🌐</div>
-        <h3 class="lang-it">Website</h3><h3 class="lang-en">Website</h3>
+      <div class="service-card glow-card spotlight reveal" style="position:relative;">
+        <span class="tag-3d" style="position:absolute;top:20px;right:20px;"><span class="lang-it">In sviluppo</span><span class="lang-en">In development</span></span>
+        <div class="ico" aria-hidden="true">📱</div>
+        <h3 class="lang-it">Manager App</h3><h3 class="lang-en">Manager App</h3>
         <ul>
-          <li class="lang-it">Design su misura, veloce e SEO-ready</li><li class="lang-en">Custom design, fast and SEO-ready</li>
-          <li class="lang-it">Sempre online, sempre aggiornato</li><li class="lang-en">Always online, always up to date</li>
-          <li class="lang-it">Il punto d'ingresso di tutta la suite</li><li class="lang-en">The entry point of the whole suite</li>
+          <li class="lang-it">Gestisci prenotazioni e clienti dal telefono</li><li class="lang-en">Manage bookings and clients from your phone</li>
+          <li class="lang-it">Notifiche in tempo reale</li><li class="lang-en">Real-time notifications</li>
+          <li class="lang-it">Tutto in un'unica app</li><li class="lang-en">Everything in one app</li>
         </ul>
+        <p style="color:var(--muted);font-size:12.5px;margin-top:14px;">
+          <span class="lang-it">Modulo ancora in fase di sviluppo: qui trovi la direzione verso cui stiamo lavorando.</span>
+          <span class="lang-en">This module is still in development — here's the direction we're building toward.</span>
+        </p>
       </div>
       <div class="service-card glow-card spotlight reveal">
         <div class="ico" aria-hidden="true">📅</div>
@@ -1761,14 +1761,18 @@ Il link #suite nell'hero CTA punta qui.
           <li class="lang-it">Tutto in un'unica app</li><li class="lang-en">Everything in one app</li>
         </ul>
       </div>
-      <div class="service-card glow-card spotlight reveal">
+      <div class="service-card glow-card spotlight reveal" style="position:relative;">
+        <span class="tag-3d" style="position:absolute;top:20px;right:20px;"><span class="lang-it">In sviluppo</span><span class="lang-en">In development</span></span>
         <div class="ico" aria-hidden="true">🤖</div>
         <h3 class="lang-it">AI Automation</h3><h3 class="lang-en">AI Automation</h3>
         <ul>
-          <li class="lang-it">Preventivi generati dall'IA in 30 secondi</li><li class="lang-en">AI-generated quotes in 30 seconds</li>
           <li class="lang-it">Promemoria e follow-up automatici</li><li class="lang-en">Automatic reminders and follow-ups</li>
           <li class="lang-it">Meno lavoro manuale, più tempo per il cliente</li><li class="lang-en">Less manual work, more time for clients</li>
         </ul>
+        <p style="color:var(--muted);font-size:12.5px;margin-top:14px;">
+          <span class="lang-it">Modulo ancora in fase di sviluppo: qui trovi la direzione verso cui stiamo lavorando.</span>
+          <span class="lang-en">This module is still in development — here's the direction we're building toward.</span>
+        </p>
       </div>
     </div>
   </div>
@@ -2127,24 +2131,7 @@ zero CSS aggiuntivo necessario.
     </div>
   </div>
 </section>
-<!-- TEASER PREVENTIVI IA -->
-<section id="preventivi-teaser" style="padding:90px 0;">
-  <div class="container">
-    <div class="care-plan glow-card spotlight reveal">
-      <div class="care-left">
-        <span class="tag-3d lang-it">Novità</span><span class="tag-3d lang-en">New</span>
-        <h3 style="margin-top:14px;" class="lang-it">Fai preventivi? C'è un modo più veloce.</h3>
-        <h3 style="margin-top:14px;" class="lang-en">Do you send quotes? There's a faster way.</h3>
-        <p class="lang-it">Per artigiani e piccole imprese: preventivo professionale in 30 secondi, invece che su Word o WhatsApp.</p>
-        <p class="lang-en">For tradespeople and small businesses: a professional quote in 30 seconds, instead of Word or WhatsApp.</p>
-      </div>
-      <a href="/preventivi-intelligenti" class="btn btn-primary btn-lg">
-        <span class="lang-it">Scopri Preventivi IA</span>
-        <span class="lang-en">Discover AI Quotes</span>
-      </a>
-    </div>
-  </div>
-</section>
+
 <!-- TECH MARQUEE -->
 <section class="marquee-section" aria-label="Stack tecnologico">
   <div class="marquee-label">
@@ -2235,35 +2222,12 @@ zero CSS aggiuntivo necessario.
     </ul>
     <a href="#contatti" class="btn btn-ghost">Richiedi preventivo</a>
   </div>
-<!-- PREVENTIVI INTELLIGENTI -->
-<div class="price-card glow-card spotlight reveal" style="position:relative;">
-  <span class="new-tag lang-it">Nuovo</span><span class="new-tag lang-en">New</span>
-  <h3>Preventivi Intelligenti</h3>
-  <div class="price">490€<span class="lang-it">una tantum</span><span class="lang-en">setup</span></div>
-  <p class="note lang-it">+ 39€/mese di abbonamento. Prezzo di lancio.</p>
-  <p class="note lang-en">+ €39/mo subscription. Launch price.</p>
-  <ul>
-    <li class="lang-it">Preventivo generato dall'IA in 30 secondi</li><li class="lang-en">AI-generated quote in 30 seconds</li>
-    <li class="lang-it">PDF + email automatici al cliente</li><li class="lang-en">Automatic PDF + email to the client</li>
-    <li class="lang-it">Acconto via Stripe all'accettazione</li><li class="lang-en">Deposit via Stripe on acceptance</li>
-    <li class="lang-it">Promemoria automatico</li><li class="lang-en">Automatic reminders</li>
-    <li class="lang-it">Fino a 50 preventivi/mese</li><li class="lang-en">Up to 50 quotes/month</li>
-  </ul>
-  <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20richiedere%20accesso%20a%20Preventivi%20Intelligenti." target="_blank" rel="noopener" class="btn btn-primary">
-    <span class="lang-it">Richiedi accesso</span><span class="lang-en">Request access</span>
-  </a>
-</div>
-</div>
+
+
 <div class="pricing-footnote">
   <span aria-hidden="true">🛡️</span>
   <span class="lang-it"><strong>Garanzia soddisfatti o rimborsati:</strong> non convinto entro 14 giorni dalla consegna? Ti rimborsiamo, senza domande.</span>
   <span class="lang-en"><strong>Money-back guarantee:</strong> not happy within 14 days of delivery? We'll refund you, no questions asked.</span>
-</div>
-<div class="container" style="padding:20px 0 0;">
-  <p class="section-sub" style="max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
-    <span class="lang-it">Diverso dal Piano Scacciapensieri (quello è manutenzione del sito, questo è l'abbonamento per usare lo strumento preventivi).</span>
-    <span class="lang-en">Different from the Worry-Free Plan (that's website maintenance — this is the subscription to use the quoting tool).</span>
-  </p>
 </div>
 </div>
 </section>
@@ -2371,7 +2335,7 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
             </div>
           </div>
           <div class="stack-tags"><span class="lang-it">Sito custom</span><span class="lang-en">Custom build</span><span class="lang-it">Identità su misura</span><span class="lang-en">Bespoke identity</span></div>
-          <a href="C:\Users\danie\Desktop\cypherwebtesting\demo\tubofix.html" target="_blank" rel="noopener" class="portfolio-link">
+          <a href="demo\tubofix.html" target="_blank" rel="noopener" class="portfolio-link">
             <span class="lang-it">Vedi il sito</span><span class="lang-en">View the site</span>
             <span class="arrow" aria-hidden="true">→</span>
           </a>
@@ -2405,7 +2369,7 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
             </div>
           </div>
           <div class="stack-tags"><span>Astro</span><span class="lang-it">Design istituzionale</span><span class="lang-en">Institutional design</span><span class="lang-it">SEO locale</span><span class="lang-en">Local SEO</span></div>
-          <a href="C:\Users\danie\Desktop\cypherwebtesting\demo\studiolegale.html" target="_blank" rel="noopener" class="portfolio-link">
+          <a href="demo\studiolegale.html" target="_blank" rel="noopener" class="portfolio-link">
             <span class="lang-it">Vedi il sito</span><span class="lang-en">View the site</span>
             <span class="arrow" aria-hidden="true">→</span>
           </a>
@@ -2573,20 +2537,7 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
     </div>
 
     <div class="policy-grid faq-grid reveal" id="faqAccordion">
-      <div class="policy-item">
-  <button class="policy-q" aria-expanded="false"><span class="lang-it">Cos'è Preventivi Intelligenti?</span><span class="lang-en">What is AI Quotes?</span><span class="plus" aria-hidden="true">+</span></button>
-  <div class="policy-a">
-    <p class="lang-it">È uno strumento separato dal sito: generi un preventivo professionale in 30 secondi con l'IA, invece di scriverlo a mano su Word o WhatsApp.</p>
-    <p class="lang-en">It's a tool separate from your website: you generate a professional quote in 30 seconds with AI, instead of writing it by hand in Word or WhatsApp.</p>
-  </div>
-</div>
-<div class="policy-item">
-  <button class="policy-q" aria-expanded="false"><span class="lang-it">Come funziona l'abbonamento mensile?</span><span class="lang-en">How does the monthly subscription work?</span><span class="plus" aria-hidden="true">+</span></button>
-  <div class="policy-a">
-    <p class="lang-it">39€/mese include fino a 50 preventivi. Oltre questa soglia ti contattiamo per un piano su misura. Nessun vincolo: puoi disdire quando vuoi.</p>
-    <p class="lang-en">€39/mo includes up to 50 quotes. Beyond that, we'll reach out about a custom plan. No lock-in: cancel anytime.</p>
-  </div>
-</div>
+     
       <div class="policy-item open">
         <button class="policy-q" aria-expanded="true"><span class="lang-it">Perché un canone mensile?</span><span class="lang-en">Why a monthly fee?</span><span class="plus" aria-hidden="true">+</span></button>
         <div class="policy-a">
