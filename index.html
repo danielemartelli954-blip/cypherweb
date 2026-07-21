@@ -277,7 +277,25 @@
   background:none;border:none;color:#06101a;font-size:20px;line-height:1;cursor:pointer;opacity:0.7;
 }
 .launch-banner .close-banner:hover{opacity:1;}
-
+.cookie-banner{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:200;
+  background:rgba(6,9,19,0.97);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:20px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  box-shadow:0 -10px 40px -10px rgba(0,0,0,0.5);
+}
+.cookie-banner p{ color:var(--muted); font-size:13.5px; max-width:640px; margin:0; }
+.cookie-banner a{ color:var(--cyan); text-decoration:underline; }
+.cookie-banner-actions{ display:flex; gap:10px; flex-shrink:0; }
+.cookie-banner.hidden{ display:none; }
 header{ top:0; transition: top .25s ease; }
 body.banner-active header{ top:44px; }
   nav{
@@ -1560,7 +1578,17 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
   <button class="close-banner" id="closeBanner" aria-label="Chiudi banner">&times;</button>
 </div>
 <a href="#main" class="skip-link">Salta al contenuto / Skip to content</a>
-
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Informativa cookie">
+  <p>
+    <span class="lang-it">Questo sito utilizza solo cookie tecnici necessari al funzionamento (lingua selezionata, chiusura banner). Nessun cookie di profilazione o marketing. Maggiori informazioni nella <a href="cookieprivacy.html">Cookie Policy</a>.</span>
+    <span class="lang-en">This site uses only technical cookies required for basic functioning (selected language, banner dismissal). No profiling or marketing cookies. More info in our <a href="cookieprivacy.html">Cookie Policy</a>.</span>
+  </p>
+  <div class="cookie-banner-actions">
+    <button class="btn btn-primary" id="cookieAccept">
+      <span class="lang-it">Ho capito</span><span class="lang-en">Got it</span>
+    </button>
+  </div>
+</div>
 <div class="noise-overlay"></div>
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
 <div class="bg-glow" aria-hidden="true">
@@ -2616,6 +2644,15 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
           <textarea id="messaggio" name="messaggio" placeholder="..." required></textarea>
           <span class="error-msg lang-it">Raccontaci brevemente il tuo progetto.</span><span class="error-msg lang-en">Tell us a bit about your project.</span>
         </div>
+        <div class="field" id="field-privacy" style="display:flex;align-items:flex-start;gap:10px;">
+          <input type="checkbox" id="privacyConsent" name="privacyConsent" required style="width:auto;margin-top:4px;">
+          <label for="privacyConsent" style="font-weight:400;font-size:13.5px;color:var(--muted);">
+            <span class="lang-it">Ho letto la <a href="privacy.html" target="_blank" style="color:var(--cyan);">Privacy Policy</a> e acconsento al trattamento dei miei dati per essere ricontattato.</span>
+            <span class="lang-en">I have read the <a href="privacy.html" target="_blank" style="color:var(--cyan);">Privacy Policy</a> and consent to my data being processed so you can contact me back.</span>
+          </label>
+          <span class="error-msg lang-it">Devi accettare la Privacy Policy per continuare.</span>
+          <span class="error-msg lang-en">You must accept the Privacy Policy to continue.</span>
+        </div>
         <button type="submit" class="btn btn-primary">
           <span class="lang-it">Richiedi il tuo preventivo gratuito</span><span class="lang-en">Get your free quote</span>
         </button>
@@ -2641,34 +2678,51 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
 
 </main>
 
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="logo"><img src="images/logocypher.png" alt="Cypher Web"></a>
-        <p class="lang-it">Sviluppo siti web e servizi digitali per piccole e medie imprese, professionisti e attività locali. Milano (MI).</p>
-        <p class="lang-en">Web development and digital services for small businesses, professionals, and local shops. Based in Milan, Italy.</p>
-      </div>
-      <div class="footer-cols">
-        <div class="footer-col">
-          <h5 class="lang-it">Naviga</h5><h5 class="lang-en">Navigate</h5>
-          <a href="#metodo" class="lang-it">Metodo</a><a href="#metodo" class="lang-en">Method</a>
-          <a href="#servizi" class="lang-it">Servizi</a><a href="#servizi" class="lang-en">Services</a>
-          <a href="#prezzi" class="lang-it">Prezzi</a><a href="#prezzi" class="lang-en">Pricing</a>
-        </div>
-        <div class="footer-col">
-          <h5 class="lang-it">Contatti</h5><h5 class="lang-en">Contact</h5>
-          <a href="mailto:danielemartelli37@gmail.com">danielemartelli37@gmail.com</a>
-          <a href="tel:+393458409958">+39 345 840 9958</a>
-        </div>
-      </div>
+<div class="footer-cols">
+    <div class="footer-col">
+        <h5 class="lang-it">Naviga</h5>
+        <h5 class="lang-en">Navigate</h5>
+
+        <a href="#metodo" class="lang-it">Metodo</a>
+        <a href="#metodo" class="lang-en">Method</a>
+
+        <a href="#servizi" class="lang-it">Servizi</a>
+        <a href="#servizi" class="lang-en">Services</a>
+
+        <a href="#prezzi" class="lang-it">Prezzi</a>
+        <a href="#prezzi" class="lang-en">Pricing</a>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Cypher Web. <span class="lang-it">Tutti i diritti riservati.</span><span class="lang-en">All rights reserved.</span></span>
-      <span class="lang-it">P.IVA in fase di apertura</span><span class="lang-en">Italy</span>
+
+    <div class="footer-col">
+        <h5 class="lang-it">Contatti</h5>
+        <h5 class="lang-en">Contact</h5>
+
+        <a href="mailto:danielemartelli37@gmail.com">danielemartelli37@gmail.com</a>
+        <a href="tel:+393458409958">+39 345 840 9958</a>
     </div>
-  </div>
-</footer>
+
+    <!-- NUOVA COLONNA -->
+    <div class="footer-col">
+        <h5 class="lang-it">Legale</h5>
+        <h5 class="lang-en">Legal</h5>
+
+        <a href="privacy.html">
+            <span class="lang-it">Privacy Policy</span>
+            <span class="lang-en">Privacy Policy</span>
+        </a>
+
+        <a href="cookieprivacy.html">
+            <span class="lang-it">Cookie Policy</span>
+            <span class="lang-en">Cookie Policy</span>
+            
+    <a href="termini-condizioni.html">
+        <span class="lang-it">Termini e Condizioni</span>
+        <span class="lang-en">Terms & Conditions</span>
+    </a>
+</div>
+        </a>
+    </div>
+</div>
 
 <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20informazioni." target="_blank" rel="noopener" class="wa-float" aria-label="Contattaci su WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.51 3.62 1.4 5.12L2 22l5.13-1.5a9.85 9.85 0 0 0 4.9 1.3h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.06h-.01a8.16 8.16 0 0 1-4.17-1.14l-.3-.18-3.1.9.92-3.03-.2-.31a8.12 8.12 0 0 1-1.27-4.39c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.16 3.66 8.16 8.16 0 4.5-3.66 8.15-8.19 8.15zm4.49-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.65.81-.79.98-.15.17-.29.18-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.5.12-.12.27-.31.4-.46.13-.16.18-.27.27-.45.08-.17.04-.31-.04-.43-.08-.12-.55-1.32-.75-1.81-.2-.48-.4-.42-.55-.42-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.74 2.65 4.21 3.61.59.23 1.05.36 1.41.46.59.16 1.13.14 1.55.08.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
@@ -2757,16 +2811,18 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
     const emailEl = document.getElementById('email');
     const msgEl = document.getElementById('messaggio');
 
-    const nome = nomeEl.value.trim();
+   const nome = nomeEl.value.trim();
     const email = emailEl.value.trim();
     const messaggio = msgEl.value.trim();
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const consentEl = document.getElementById('privacyConsent');
 
     setFieldValid('field-nome', nome.length > 0);
     setFieldValid('field-email', emailOk);
     setFieldValid('field-messaggio', messaggio.length > 0);
+    document.getElementById('field-privacy').classList.toggle('invalid', !consentEl.checked);
 
-    if(!nome || !emailOk || !messaggio){
+    if(!nome || !emailOk || !messaggio || !consentEl.checked){
       const firstInvalid = form.querySelector('.invalid input, .invalid textarea');
       if(firstInvalid) firstInvalid.focus();
       return;
@@ -3007,6 +3063,18 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
     document.body.classList.remove('banner-active');
     try{ localStorage.setItem(KEY,'1'); }catch(e){}
   });
+  (function(){
+  const cbanner = document.getElementById('cookieBanner');
+  const CKEY = 'cypher_cookie_notice_seen';
+  let seen = false;
+  try { seen = localStorage.getItem(CKEY) === '1'; } catch(e){}
+  if(!cbanner) return;
+  if(seen){ cbanner.classList.add('hidden'); }
+  document.getElementById('cookieAccept').addEventListener('click', ()=>{
+    cbanner.classList.add('hidden');
+    try{ localStorage.setItem(CKEY,'1'); }catch(e){}
+  });
+})();
 })();
 
 </script>
