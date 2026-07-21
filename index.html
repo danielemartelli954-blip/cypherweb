@@ -39,11 +39,7 @@
     "addressLocality": "Milano",
     "addressCountry": "IT"
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "12"
-  },
+ 
   "priceRange": "€€"
 }
 </script>
@@ -1218,7 +1214,30 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
   }
   .reviewer .name{font-weight:600;font-size:14.5px;}
   .reviewer .role{color:var(--muted);font-size:13px;}
-
+/* CHI SONO */
+.about-wrap{
+  display:flex;
+  gap:56px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.about-photo{
+  flex:0 0 220px;
+  width:220px;height:220px;
+  border-radius:50%;
+  background:var(--gradient);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:64px;
+  font-weight:800;
+  color:#06101a;
+  box-shadow:0 30px 60px -20px rgba(46,155,255,0.35);
+  margin:0 auto;
+}
+.about-copy{ flex:1; min-width:280px; }
+.about-badges{ display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; }
   /* ============ FAQ ============ */
   .faq-grid{max-width:760px;margin:0 auto;}
   /* ============ ACCORDION (Politiche + FAQ) ============ */
@@ -1963,15 +1982,30 @@ lì si parla del VOSTRO processo interno, qui del percorso del CLIENTE dentro la
     </div>
   </div>
 </section>
-<!--
-DOVE INCOLLARE:
-Sezione standalone da inserire nel sito, per esempio subito dopo <section id="problema">
-e prima di <section id="metodo">, oppure prima di <section id="recensioni">
-(funziona bene come "riepilogo" prima della riprova sociale).
-Riusa classi esistenti (bento-grid, service-card, glow-card, spotlight, stats-strip) —
-zero CSS aggiuntivo necessario.
--->
+<section id="chi-sono">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow lang-it">Chi sono</div><div class="eyebrow lang-en">About me</div>
+      <h2 class="section-title lang-it">Non un'agenzia anonima. Una persona che risponde.</h2>
+      <h2 class="section-title lang-en">Not a faceless agency. A person who answers.</h2>
+    </div>
 
+    <div class="about-wrap reveal">
+      <div class="about-photo" aria-hidden="true">D</div>
+      <div class="about-copy">
+        <p class="lang-it">Mi chiamo Daniele Martelli e sono lo sviluppatore dietro Cypher Web. Ho fondato questa attività a Milano con l'obiettivo di aiutare piccole imprese, professionisti e attività locali a costruire una presenza online moderna, veloce ed efficace. Dopo il diploma in Informatica ho iniziato a specializzarmi nello sviluppo di siti web, concentrandomi su prestazioni, design e ottimizzazione per offrire soluzioni professionali e su misura.</p>
+        <p class="lang-en">My name is Daniele Martelli, and I am the developer behind Cypher Web. I founded this business in Milan with the goal of helping small businesses, professionals, and local companies build a modern, fast, and effective online presence. After earning my diploma in Computer Science, I specialized in web development, focusing on performance, design, and optimization to deliver professional, tailor-made solutions.</p>
+        <p class="lang-it">Quando lavori con Cypher Web non parli con un centralino o un account manager: parli direttamente con chi progetta, sviluppa e mantiene il tuo sito. Ogni progetto viene seguito personalmente, dall'analisi iniziale fino alla pubblicazione e alla manutenzione, garantendo un contatto diretto, tempi di risposta rapidi e un servizio costruito sulle reali esigenze della tua attività.</p>
+        <p class="lang-en">When you work with Cypher Web, you don't speak to a call center or an account manager—you work directly with the person who designs, develops, and maintains your website. Every project is personally managed from the initial planning stage to launch and ongoing maintenance, ensuring direct communication, fast response times, and solutions tailored to your business needs.</p>
+        <div class="about-badges">
+          <span class="tag-3d lang-it">Sviluppatore full-stack</span><span class="tag-3d lang-en">Full-stack developer</span>
+          <span class="tag-3d">Milano, Italia</span>
+          <span class="tag-3d lang-it">Un solo punto di contatto</span><span class="tag-3d lang-en">One single point of contact</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="perche-cypherweb">
   <div class="container">
     <div class="section-head reveal">
@@ -2024,11 +2058,11 @@ zero CSS aggiuntivo necessario.
     <div class="stats-strip reveal">
       <div class="stat-card">
         <div class="num">24h</div>
-        <div class="lbl lang-it">Tempo medio di risposta</div><div class="lbl lang-en">Average response time</div>
+        <div class="lbl lang-it">Tempo di risposta garantito</div><div class="lbl lang-en">Guaranteed response time</div>
       </div>
       <div class="stat-card">
         <div class="num">98/100</div>
-        <div class="lbl lang-it">Punteggio performance medio</div><div class="lbl lang-en">Average performance score</div>
+        <div class="lbl lang-it">Punteggio performance target</div><div class="lbl lang-en">Target performance score</div>
       </div>
       <div class="stat-card">
         <div class="num">99.98%</div>
@@ -2079,11 +2113,11 @@ zero CSS aggiuntivo necessario.
     <div class="stats-strip reveal">
       <div class="stat-card">
         <div class="num">24h</div>
-        <div class="lbl lang-it">Tempo medio di risposta</div><div class="lbl lang-en">Average response time</div>
+        <div class="lbl lang-it">Tempo di risposta garantito</div><div class="lbl lang-en">Guaranteed response time</div>
       </div>
       <div class="stat-card">
         <div class="num">98/100</div>
-        <div class="lbl lang-it">Punteggio performance medio</div><div class="lbl lang-en">Average performance score</div>
+        <div class="lbl lang-it">Punteggio performance target</div><div class="lbl lang-en">Target performance score</div>
       </div>
       <div class="stat-card">
         <div class="num">99.98%</div>
@@ -2091,7 +2125,7 @@ zero CSS aggiuntivo necessario.
       </div>
       <div class="stat-card">
         <div class="num">100%</div>
-        <div class="lbl lang-it">Clienti che restano con noi</div><div class="lbl lang-en">Client retention</div>
+        <div class="lbl lang-it">Impegno: nessun cliente lasciato indietro</div><div class="lbl lang-en">Our commitment: no client left behind</div>
       </div>
     </div>
   </div>
