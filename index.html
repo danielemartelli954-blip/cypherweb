@@ -14,9 +14,14 @@
 <meta property="og:description" content="Sviluppo siti web su misura con manutenzione, sicurezza e aggiornamenti continui. A partire da 700€ + 45€/mese.">
 <meta property="og:url" content="https://www.cypherweb.dev/">
 <meta property="og:locale" content="it_IT">
+<meta property="og:image" content="https://www.cypherweb.dev/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cypher Web — Sviluppo siti web ad alte prestazioni">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cypher Web — Siti web ad alte prestazioni, zero pensieri">
 <meta name="twitter:description" content="Sviluppo siti web su misura con manutenzione, sicurezza e aggiornamenti continui.">
+<meta name="twitter:image" content="https://www.cypherweb.dev/images/og-cover.jpg">
 <meta name="theme-color" content="#060913">
 <meta name="robots" content="index, follow">
 
@@ -39,15 +44,50 @@
     "addressLocality": "Milano",
     "addressCountry": "IT"
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "12"
-  },
+ 
   "priceRange": "€€"
 }
 </script>
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Perché un canone mensile?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Perché un sito non finisce mai davvero: serve sicurezza, aggiornamenti e monitoraggio costante per restare veloce e protetto nel tempo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso disdire quando voglio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, in qualsiasi momento. Non ci sono vincoli di durata sul piano di manutenzione."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto tempo serve per realizzare il sito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In media tra 2 e 4 settimane, a seconda della complessità e di quanto velocemente vengono forniti i materiali."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa succede se non sono soddisfatto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "È inclusa una garanzia soddisfatti o rimborsati di 14 giorni dalla consegna del sito: se qualcosa non convince, viene rimborsato senza domande."
+      }
+    }
+  ]
+}
+</script>
 <style>
   :root{
     --bg:#050810;
@@ -277,7 +317,25 @@
   background:none;border:none;color:#06101a;font-size:20px;line-height:1;cursor:pointer;opacity:0.7;
 }
 .launch-banner .close-banner:hover{opacity:1;}
-
+.cookie-banner{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:200;
+  background:rgba(6,9,19,0.97);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:20px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  box-shadow:0 -10px 40px -10px rgba(0,0,0,0.5);
+}
+.cookie-banner p{ color:var(--muted); font-size:13.5px; max-width:640px; margin:0; }
+.cookie-banner a{ color:var(--cyan); text-decoration:underline; }
+.cookie-banner-actions{ display:flex; gap:10px; flex-shrink:0; }
+.cookie-banner.hidden{ display:none; }
 header{ top:0; transition: top .25s ease; }
 body.banner-active header{ top:44px; }
   nav{
@@ -971,8 +1029,6 @@ body.banner-active header{ top:44px; }
     text-align:center;
   }
   .pricing-footnote strong{ color:var(--text); }
-/*
-DOVE INCOLLARE:
 
 
 /* ============ APP SHOWCASE ============ */
@@ -1072,12 +1128,6 @@ DOVE INCOLLARE:
   opacity:0.5;
   margin-left:2px;
 }
-/*
-DOVE INCOLLARE:
-Dentro il tag <style> esistente, subito dopo il blocco "PORTFOLIO STORY"
-già fornito in css-additions.css (quello con .portfolio-story, .story-row, ecc.).
-Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
-*/
 
 /* ============ PORTFOLIO — link al sito reale + badge "demo live" ============ */
 .portfolio-link{
@@ -1200,7 +1250,30 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
   }
   .reviewer .name{font-weight:600;font-size:14.5px;}
   .reviewer .role{color:var(--muted);font-size:13px;}
-
+/* CHI SONO */
+.about-wrap{
+  display:flex;
+  gap:56px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.about-photo{
+  flex:0 0 220px;
+  width:220px;height:220px;
+  border-radius:50%;
+  background:var(--gradient);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:64px;
+  font-weight:800;
+  color:#06101a;
+  box-shadow:0 30px 60px -20px rgba(46,155,255,0.35);
+  margin:0 auto;
+}
+.about-copy{ flex:1; min-width:280px; }
+.about-badges{ display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; }
   /* ============ FAQ ============ */
   .faq-grid{max-width:760px;margin:0 auto;}
   /* ============ ACCORDION (Politiche + FAQ) ============ */
@@ -1560,7 +1633,17 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
   <button class="close-banner" id="closeBanner" aria-label="Chiudi banner">&times;</button>
 </div>
 <a href="#main" class="skip-link">Salta al contenuto / Skip to content</a>
-
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Informativa cookie">
+  <p>
+    <span class="lang-it">Questo sito utilizza solo cookie tecnici necessari al funzionamento (lingua selezionata, chiusura banner). Nessun cookie di profilazione o marketing. Maggiori informazioni nella <a href="cookieprivacy.html" target="_blank" rel="noopener">Cookie Policy</a>.</span>
+    <span class="lang-en">This site uses only technical cookies required for basic functioning (selected language, banner dismissal). No profiling or marketing cookies. More info in our <a href="cookieprivacy.html" target="_blank" rel="noopener">Cookie Policy</a>.</span>
+  </p>
+  <div class="cookie-banner-actions">
+    <button class="btn btn-primary" id="cookieAccept">
+      <span class="lang-it">Ho capito</span><span class="lang-en">Got it</span>
+    </button>
+  </div>
+</div>
 <div class="noise-overlay"></div>
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
 <div class="bg-glow" aria-hidden="true">
@@ -1570,18 +1653,13 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
   <div class="blob blob-blue"></div>
 </div>
 <div class="bg-sheen" aria-hidden="true"></div>
-
 <header>
   <nav aria-label="Navigazione principale">
     <a href="#" class="logo">
-      <img src="C:\Users\danie\Desktop\cypherweb\logocypher.png">
+     <img src="images/logocypher.png" alt="Cypher Web">
        <span class="sr-only-logo-text" style="position:absolute;left:-9999px;">Cypher Web</span>
     </a>
     <ul class="nav-links">
-      <li>
-        <a href="/preventivi-intelligenti" class="lang-it">Preventivi IA</a>
-        <a href="/preventivi-intelligenti" class="lang-en">AI Quotes</a>
-      </li>
       <li>
         <a href="#metodo" class="lang-it">Metodo</a>
         <a href="#metodo" class="lang-en">Method</a>
@@ -1627,7 +1705,6 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
 <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
   <a href="#metodo" class="lang-it">Metodo</a><a href="#metodo" class="lang-en">Method</a>
   <a href="#servizi" class="lang-it">Servizi</a><a href="#servizi" class="lang-en">Services</a>
-  <a href="/preventivi-intelligenti" class="lang-it">Preventivi IA</a><a href="/preventivi-intelligenti" class="lang-en">AI Quotes</a>
   <a href="#portfolio" class="lang-it">Portfolio</a><a href="#portfolio" class="lang-en">Portfolio</a>
   <a href="#prezzi" class="lang-it">Prezzi</a><a href="#prezzi" class="lang-en">Pricing</a>
   <a href="#faq" class="lang-it">FAQ</a><a href="#faq" class="lang-en">FAQ</a>
@@ -1641,134 +1718,260 @@ Se non hai ancora incollato quel blocco, ti serve anche quello prima di questo.
 <section class="hero">
   <canvas id="heroGridCanvas" aria-hidden="true"></canvas>
   <div class="container">
-<!--
-DOVE INCOLLARE:
-Sostituisci tutto il contenuto tra <div class="hero-badge"> e la chiusura di </div> del .hero-mock
-(cioè: badge, h1, paragrafi, CTA, trust line, guarantee — lascia .hero-mock così com'è, o aggiornalo dopo con lo screenshot dell'app).
--->
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span class="lang-it">Non solo un sito. Un sistema completo · Milano</span>
+      <span class="lang-en">Not just a website. A complete system · Milan, Italy</span>
+    </div>
 
-<div class="hero-badge">
-  <span class="dot"></span>
-  <span class="lang-it">Non solo un sito. Un sistema digitale · Milano</span>
-  <span class="lang-en">Not just a website. A digital system · Milan, Italy</span>
-</div>
+    <h1 class="lang-it">Il tuo business, <span class="grad">sempre sotto controllo</span>.</h1>
+    <h1 class="lang-en">Your business, <span class="grad">always under control</span>.</h1>
 
-<h1 class="lang-it">Il sistema digitale per <span class="grad">far crescere</span> la tua attività.</h1>
-<h1 class="lang-en">The digital system to <span class="grad">grow</span> your business.</h1>
+    <p class="lang-it">Sito web professionale + app gestionale con prenotazioni online, CRM e automazioni. I clienti prenotano da soli, tu gestisci tutto dal telefono.</p>
+    <p class="lang-en">Professional website + management app with online booking, CRM, and automations. Clients book themselves, you manage everything from your phone.</p>
 
-<p class="lang-it">Sito web, prenotazioni online, CRM, applicazione gestionale e automazioni: tutto collegato, tutto gestito da noi.</p>
-<p class="lang-en">Website, online booking, CRM, management app, and automations — all connected, all managed for you.</p>
+    <p class="closer lang-it">Non un progetto chiuso. Un sistema che cresce con te.</p>
+    <p class="closer lang-en">Not a closed project. A system that grows with you.</p>
 
-<p class="closer lang-it">Non un progetto chiuso. Un sistema che cresce con te.</p>
-<p class="closer lang-en">Not a closed project. A system that grows with you.</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20una%20demo%20della%20Business%20Suite." target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+        <span class="lang-it">Richiedi una demo</span>
+        <span class="lang-en">Request a demo</span>
+      </a>
+      <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app/prenota?company=demo" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+        <span class="lang-it">🚀 Prova la prenotazione online</span>
+        <span class="lang-en">🚀 Try online booking</span>
+     
+      </a>
+    </div>
 
-<div class="hero-ctas">
-  <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20una%20demo%20della%20Business%20Suite." target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-    <span class="lang-it">Richiedi una demo</span>
-    <span class="lang-en">Request a demo</span>
-  </a>
-  <a href="#suite" class="btn btn-ghost btn-lg">
-    <span class="lang-it">Scopri la Business Suite</span>
-    <span class="lang-en">Explore the Business Suite</span>
-  </a>
-</div>
+    <p class="hero-trust">
+      <span class="lang-it">Prenotazioni 24/7 · App gestionale inclusa · Nessun vincolo</span>
+      <span class="lang-en">24/7 bookings · Management app included · No lock-in</span>
+    </p>
 
-<p class="hero-trust">
-  <span class="lang-it">Nessun vincolo sulla manutenzione · Risposta in 24h · Dominio sempre tuo</span>
-  <span class="lang-en">No maintenance lock-in · 24h response time · You always own your domain</span>
-</p>
-
-<div class="hero-guarantee">
-  <span aria-hidden="true">🛡️</span>
-  <span class="lang-it">Soddisfatto o rimborsato entro 14 giorni</span>
-  <span class="lang-en">14-day satisfaction guarantee</span>
-</div>
+    <div class="hero-guarantee">
+      <span aria-hidden="true">🛡️</span>
+      <span class="lang-it">Soddisfatto o rimborsato entro 14 giorni</span>
+      <span class="lang-en">14-day satisfaction guarantee</span>
+    </div>
 
     <div class="hero-mock reveal">
       <div class="hero-mock-inner">
         <div class="mock-topbar">
           <span></span><span></span><span></span>
-          <span class="url">cypherweb.dev/dashboard</span>
+          <span class="url">manager.cypherweb.app</span>
         </div>
         <div class="mock-body">
           <div class="mock-card">
-            <div class="label">UPTIME</div>
-            <div class="value">99.98%</div>
-            <div class="delta lang-it">▲ stabile 24/7</div>
-            <div class="delta lang-en">▲ stable 24/7</div>
-            <div class="bar"><i style="width:99%"></i></div>
+            <div class="label">PRENOTAZIONI OGGI</div>
+            <div class="value">8</div>
+            <div class="delta lang-it">▲ 3 nuove</div>
+            <div class="delta lang-en">▲ 3 new</div>
+            <div class="bar"><i style="width:72%"></i></div>
           </div>
           <div class="mock-card">
-            <div class="label">PERFORMANCE</div>
-            <div class="value">98 / 100</div>
-            <div class="delta">▲ Core Web Vitals</div>
-            <div class="bar"><i style="width:98%"></i></div>
+            <div class="label">CLIENTI ATTIVI</div>
+            <div class="value">142</div>
+            <div class="delta lang-it">▲ +12 questo mese</div>
+            <div class="delta lang-en">▲ +12 this month</div>
+            <div class="bar"><i style="width:85%"></i></div>
           </div>
           <div class="mock-card">
-            <div class="label">SECURITY</div>
-            <div class="value lang-it">Protetto</div><div class="value lang-en">Protected</div>
-            <div class="delta lang-it">▲ backup automatici</div><div class="delta lang-en">▲ auto-backups active</div>
-            <div class="bar"><i style="width:100%"></i></div>
+            <div class="label">INCASSO MESE</div>
+            <div class="value">€4.2k</div>
+            <div class="delta lang-it">▲ +18% vs mese scorso</div>
+            <div class="delta lang-en">▲ +18% vs last month</div>
+            <div class="bar"><i style="width:92%"></i></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!--
-DOVE INCOLLARE:
-Subito dopo la chiusura </section> dell'hero (<section class="hero">...</section>)
-e PRIMA di <section id="problema">.
-Riusa le classi esistenti (bento-grid, service-card, glow-card, spotlight) quindi non serve CSS aggiuntivo.
-Il link #suite nell'hero CTA punta qui.
--->
 
-<section id="suite">
+
+
+  <section id="suite">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow lang-it">La suite</div><div class="eyebrow lang-en">The Suite</div>
+      <div class="eyebrow lang-it">La suite</div>
+      <div class="eyebrow lang-en">The Suite</div>
       <h2 class="section-title lang-it">CypherWeb Business Suite</h2>
       <h2 class="section-title lang-en">CypherWeb Business Suite</h2>
-      <p class="section-sub lang-it">Quattro moduli pensati per lavorare insieme: il sito porta i clienti, il resto li trasforma in appuntamenti, dati e tempo risparmiato.</p>
-      <p class="section-sub lang-en">Four modules built to work together: the website brings in clients, the rest turns them into bookings, data, and time saved.</p>
+      <p class="section-sub lang-it">Quattro moduli che lavorano insieme: il sito porta i clienti, il resto li trasforma in appuntamenti, dati e tempo risparmiato.</p>
+      <p class="section-sub lang-en">Four modules built to work together: the website brings clients in, the rest turns them into bookings, data, and time saved.</p>
     </div>
 
     <div class="bento-grid">
+      <!-- SITO WEB -->
       <div class="service-card glow-card spotlight reveal">
         <div class="ico" aria-hidden="true">🌐</div>
-        <h3 class="lang-it">Website</h3><h3 class="lang-en">Website</h3>
+        <h3 class="lang-it">Sito Web</h3>
+        <h3 class="lang-en">Website</h3>
         <ul>
-          <li class="lang-it">Design su misura, veloce e SEO-ready</li><li class="lang-en">Custom design, fast and SEO-ready</li>
-          <li class="lang-it">Sempre online, sempre aggiornato</li><li class="lang-en">Always online, always up to date</li>
-          <li class="lang-it">Il punto d'ingresso di tutta la suite</li><li class="lang-en">The entry point of the whole suite</li>
+          <li class="lang-it">Design su misura, veloce e ottimizzato SEO</li>
+          <li class="lang-en">Custom design, fast and SEO-optimized</li>
+          <li class="lang-it">La vetrina che converte visitatori in clienti</li>
+          <li class="lang-en">The storefront that converts visitors into clients</li>
+          <li class="lang-it">Link diretto alla pagina prenotazioni</li>
+          <li class="lang-en">Direct link to the booking page</li>
         </ul>
       </div>
+
+      <!-- BOOKING -->
       <div class="service-card glow-card spotlight reveal">
         <div class="ico" aria-hidden="true">📅</div>
-        <h3 class="lang-it">Booking</h3><h3 class="lang-en">Booking</h3>
+        <h3 class="lang-it">Booking Online</h3>
+        <h3 class="lang-en">Online Booking</h3>
         <ul>
-          <li class="lang-it">Prenotazioni online 24/7</li><li class="lang-en">24/7 online bookings</li>
-          <li class="lang-it">Promemoria automatici al cliente</li><li class="lang-en">Automatic client reminders</li>
-          <li class="lang-it">Niente più telefonate a vuoto</li><li class="lang-en">No more missed calls</li>
+          <li class="lang-it">Prenotazioni 24/7, anche quando dormi</li>
+          <li class="lang-en">24/7 bookings, even while you sleep</li>
+          <li class="lang-it">Promemoria automatici via email</li>
+          <li class="lang-en">Automatic email reminders</li>
+          <li class="lang-it">Niente più telefonate a vuoto</li>
+          <li class="lang-en">No more missed calls</li>
         </ul>
+        <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app/prenota?company=demo" target="_blank" rel="noopener" class="portfolio-link" style="margin-top:16px;">
+          <span class="lang-it">Prova la demo →</span>
+          <span class="lang-en">Try the demo →</span>
+        </a>
       </div>
-      <div class="service-card glow-card spotlight reveal">
+
+      <!-- MANAGER APP -->
+      <div class="service-card glow-card spotlight reveal" style="position:relative;">
+        <span class="tag-3d" style="position:absolute;top:20px;right:20px;">
+          <span class="lang-it">In sviluppo</span>
+          <span class="lang-en">In development</span>
+        </span>
         <div class="ico" aria-hidden="true">📱</div>
-        <h3 class="lang-it">Manager App</h3><h3 class="lang-en">Manager App</h3>
+        <h3 class="lang-it">Manager App</h3>
+        <h3 class="lang-en">Manager App</h3>
         <ul>
-          <li class="lang-it">Gestisci prenotazioni e clienti dal telefono</li><li class="lang-en">Manage bookings and clients from your phone</li>
-          <li class="lang-it">Notifiche in tempo reale</li><li class="lang-en">Real-time notifications</li>
-          <li class="lang-it">Tutto in un'unica app</li><li class="lang-en">Everything in one app</li>
+          <li class="lang-it">Gestisci prenotazioni e clienti dal telefono</li>
+          <li class="lang-en">Manage bookings and clients from your phone</li>
+          <li class="lang-it">Dashboard con statistiche e incassi</li>
+          <li class="lang-en">Dashboard with stats and revenue</li>
+          <li class="lang-it">Notifiche in tempo reale</li>
+          <li class="lang-en">Real-time notifications</li>
         </ul>
+        <p style="color:var(--muted);font-size:12.5px;margin-top:14px;">
+          <span class="lang-it">In arrivo a settembre 2026. Entra in lista d'attesa per l'accesso anticipato.</span>
+          <span class="lang-en">Coming September 2026. Join the waitlist for early access.</span>
+        </p>
       </div>
-      <div class="service-card glow-card spotlight reveal">
+
+      <!-- AI AUTOMATION -->
+      <div class="service-card glow-card spotlight reveal" style="position:relative;">
+        <span class="tag-3d" style="position:absolute;top:20px;right:20px;">
+          <span class="lang-it">In sviluppo</span>
+          <span class="lang-en">In development</span>
+        </span>
         <div class="ico" aria-hidden="true">🤖</div>
-        <h3 class="lang-it">AI Automation</h3><h3 class="lang-en">AI Automation</h3>
+        <h3 class="lang-it">AI Automation</h3>
+        <h3 class="lang-en">AI Automation</h3>
         <ul>
-          <li class="lang-it">Preventivi generati dall'IA in 30 secondi</li><li class="lang-en">AI-generated quotes in 30 seconds</li>
-          <li class="lang-it">Promemoria e follow-up automatici</li><li class="lang-en">Automatic reminders and follow-ups</li>
-          <li class="lang-it">Meno lavoro manuale, più tempo per il cliente</li><li class="lang-en">Less manual work, more time for clients</li>
+          <li class="lang-it">Preventivi intelligenti da testo libero</li>
+          <li class="lang-en">Smart quotes from free text</li>
+          <li class="lang-it">Follow-up automatici ai clienti</li>
+          <li class="lang-en">Automatic client follow-ups</li>
+          <li class="lang-it">Alert proattivi sul business</li>
+          <li class="lang-en">Proactive business alerts</li>
         </ul>
+        <p style="color:var(--muted);font-size:12.5px;margin-top:14px;">
+          <span class="lang-it">In arrivo a ottobre 2026. Richiedi una demo per vedere le funzioni in anteprima.</span>
+          <span class="lang-en">Coming October 2026. Request a demo for a preview.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="flusso-cliente">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+      <div class="eyebrow" style="justify-content:center;">
+        <span class="lang-it">Per i tuoi clienti</span>
+        <span class="lang-en">For your clients</span>
+      </div>
+      <h2 class="section-title" style="margin:0 auto;max-width:100%;">
+        <span class="lang-it">Prenotare è facile come mandare un messaggio</span>
+        <span class="lang-en">Booking is as easy as sending a message</span>
+      </h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">
+        <span class="lang-it">Il cliente finale non deve scaricare nulla. Prenota dal tuo sito, tu ricevi tutto nell'app.</span>
+        <span class="lang-en">Your client doesn't need to download anything. They book from your site, you receive everything in the app.</span>
+      </p>
+    </div>
+
+    <div class="steps-flow">
+      <div class="step-card method-card glow-card spotlight reveal">
+        <div class="method-num">01</div>
+        <h3 class="lang-it">Trovano il tuo sito</h3>
+        <h3 class="lang-en">They find your site</h3>
+        <p class="lang-it">Google, Instagram, passaparola — arrivano sulla tua pagina di prenotazione.</p>
+        <p class="lang-en">Google, Instagram, word of mouth — they land on your booking page.</p>
+      </div>
+
+      <div class="step-arrow" aria-hidden="true">→</div>
+
+      <div class="step-card method-card glow-card spotlight reveal">
+        <div class="method-num">02</div>
+        <h3 class="lang-it">Scegliono servizio e orario</h3>
+        <h3 class="lang-en">They pick service and time</h3>
+        <p class="lang-it">Vedono solo gli slot liberi, in tempo reale. Nessun doppio booking.</p>
+        <p class="lang-en">They see only available slots, in real time. No double bookings.</p>
+      </div>
+
+      <div class="step-arrow" aria-hidden="true">→</div>
+
+      <div class="step-card method-card glow-card spotlight reveal">
+        <div class="method-num">03</div>
+        <h3 class="lang-it">Ricevi la notifica</h3>
+        <h3 class="lang-en">You get notified</h3>
+        <p class="lang-it">La prenotazione appare istantaneamente nella tua app, con tutti i dati del cliente.</p>
+        <p class="lang-en">The booking appears instantly in your app, with all client details.</p>
+      </div>
+    </div>
+
+    <!-- Mock del form di prenotazione -->
+    <div class="hero-mock reveal" style="max-width:520px; margin:56px auto 0;">
+      <div class="hero-mock-inner">
+        <div class="mock-topbar">
+          <span></span><span></span><span></span>
+          <span class="url">iltuosito.it/prenota</span>
+        </div>
+        <div class="mock-body" style="grid-template-columns:1fr; text-align:center; padding:32px;">
+          <div style="font-size:18px; font-weight:600; margin-bottom:6px;">
+            📅 <span class="lang-it">Prenota il tuo appuntamento</span>
+            <span class="lang-en">Book your appointment</span>
+          </div>
+          <div style="color:var(--muted); font-size:14px; margin-bottom:24px;">
+            <span class="lang-it">Scegli il servizio e l'orario che preferisci</span>
+            <span class="lang-en">Choose the service and time you prefer</span>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px; max-width:300px; margin:0 auto;">
+            <div style="background:var(--surface-2); padding:12px 16px; border-radius:8px; text-align:left; font-size:14px; border:1px solid var(--border);">
+              ✂️ <span class="lang-it">Taglio Uomo — 30 min — €25</span>
+              <span class="lang-en">Men's Cut — 30 min — €25</span>
+            </div>
+            <div style="background:var(--surface-2); padding:12px 16px; border-radius:8px; text-align:left; font-size:14px; border:1px solid var(--border);">
+              🎨 <span class="lang-it">Colore — 90 min — €45</span>
+              <span class="lang-en">Color — 90 min — €45</span>
+            </div>
+            <div style="background:var(--surface-2); padding:12px 16px; border-radius:8px; text-align:left; font-size:14px; border:1px solid var(--border);">
+              💈 <span class="lang-it">Barba — 20 min — €15</span>
+              <span class="lang-en">Beard — 20 min — €15</span>
+            </div>
+            <div style="background:var(--cyan); color:#06101a; padding:14px; border-radius:10px; font-weight:700; margin-top:8px; font-size:15px;">
+              <span class="lang-it">Prenota ora →</span>
+              <span class="lang-en">Book now →</span>
+            </div>
+          </div>
+          <div style="margin-top:16px; font-size:12px; color:var(--muted);">
+            <span class="lang-it">🔒 Nessuna app da scaricare · Conferma via email</span>
+            <span class="lang-en">🔒 No app to download · Email confirmation</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1784,13 +1987,46 @@ Richiede il blocco CSS in css-additions.css (vedi sezione "APP SHOWCASE").
   <div class="container">
     <div class="app-showcase-wrap">
       <div class="app-copy reveal">
-        <span class="tag-3d lang-it">In arrivo</span><span class="tag-3d lang-en">Coming soon</span>
-        <h2 class="section-title" style="margin-top:16px;"><span class="lang-it">Tutto il tuo business, in un'app.</span><span class="lang-en">Your whole business, in one app.</span></h2>
-        <p class="section-sub lang-it">Prenotazioni, clienti, preventivi e notifiche: la Manager App è il quartier generale della tua attività, ovunque tu sia.</p>
-        <p class="section-sub lang-en">Bookings, clients, quotes, and notifications: the Manager App is your business's command center, wherever you are.</p>
-        <p style="color:var(--muted);font-size:13.5px;margin-top:20px;">
-          <span class="lang-it">Il modulo è in fase di sviluppo: questa è la direzione verso cui stiamo lavorando.</span>
-          <span class="lang-en">This module is currently in development — here's the direction we're building toward.</span>
+        <span class="tag-3d lang-it">La tua dashboard</span>
+        <span class="tag-3d lang-en">Your dashboard</span>
+        <h2 class="section-title" style="margin-top:16px;">
+          <span class="lang-it">Tutto il tuo business, in un'app.</span>
+          <span class="lang-en">Your whole business, in one app.</span>
+        </h2>
+        <p class="section-sub lang-it">
+          Prenotazioni, clienti, preventivi e notifiche: la Manager App è il quartier generale della tua attività, ovunque tu sia.
+        </p>
+        <p class="section-sub lang-en">
+          Bookings, clients, quotes, and notifications: the Manager App is your business command center, wherever you are.
+        </p>
+        
+        <div style="display:flex; flex-direction:column; gap:12px; margin-top:24px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(46,155,255,0.1);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:16px;">📊</div>
+            <div>
+              <div style="font-weight:600;font-size:14px;"><span class="lang-it">Statistiche in tempo reale</span><span class="lang-en">Real-time stats</span></div>
+              <div style="color:var(--muted);font-size:13px;"><span class="lang-it">Incassi, occupazione, clienti attivi</span><span class="lang-en">Revenue, occupancy, active clients</span></div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(46,155,255,0.1);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:16px;">🔔</div>
+            <div>
+              <div style="font-weight:600;font-size:14px;"><span class="lang-it">Notifiche intelligenti</span><span class="lang-en">Smart notifications</span></div>
+              <div style="color:var(--muted);font-size:13px;"><span class="lang-it">Nuove prenotazioni, clienti inattivi, alert agenda</span><span class="lang-en">New bookings, inactive clients, schedule alerts</span></div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(46,155,255,0.1);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:16px;">🤖</div>
+            <div>
+              <div style="font-weight:600;font-size:14px;"><span class="lang-it">AI Concierge</span><span class="lang-en">AI Concierge</span></div>
+              <div style="color:var(--muted);font-size:13px;"><span class="lang-it">Chiedi informazioni, genera preventivi, naviga l'app</span><span class="lang-en">Ask questions, generate quotes, navigate the app</span></div>
+            </div>
+          </div>
+        </div>
+
+        <p style="color:var(--muted);font-size:13.5px;margin-top:24px;">
+          <span class="lang-it">In arrivo a settembre 2026. <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20l'accesso%20anticipato%20alla%20Manager%20App." target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline;">Richiedi accesso anticipato →</a></span>
+          <span class="lang-en">Coming September 2026. <a href="https://wa.me/393458409958?text=Hi%20Cypher%20Web%2C%20I'd%20like%20early%20access%20to%20the%20Manager%20App." target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:underline;">Request early access →</a></span>
         </p>
       </div>
 
@@ -1798,29 +2034,41 @@ Richiede il blocco CSS in css-additions.css (vedi sezione "APP SHOWCASE").
         <div class="phone-notch"></div>
         <div class="phone-screen">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);" class="lang-it">Oggi</span>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);" class="lang-en">Today</span>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);">●&nbsp;<span class="lang-it">8 prenotazioni</span><span class="lang-en">8 bookings</span></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);">Dashboard</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);">●&nbsp;Online</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+            <div style="background:rgba(15,23,42,0.6);border:1px solid var(--border);border-radius:10px;padding:12px;">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">Oggi</div>
+              <div style="font-size:20px;font-weight:700;">8</div>
+              <div style="font-size:11px;color:var(--green);">prenotazioni</div>
+            </div>
+            <div style="background:rgba(15,23,42,0.6);border:1px solid var(--border);border-radius:10px;padding:12px;">
+              <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">Mese</div>
+              <div style="font-size:20px;font-weight:700;">€4.2k</div>
+              <div style="font-size:11px;color:var(--green);">+18%</div>
+            </div>
           </div>
 
           <div class="app-notif highlight">
-            <div class="app-notif-title lang-it">Nuova prenotazione</div>
-            <div class="app-notif-title lang-en">New booking</div>
-            <div class="app-notif-sub lang-it">Marco R. — oggi alle 15:30</div>
-            <div class="app-notif-sub lang-en">Marco R. — today at 3:30 PM</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="app-notif-title" style="color:var(--cyan);">Nuova prenotazione</div>
+              <div style="font-size:10px;color:var(--muted);">2 min fa</div>
+            </div>
+            <div class="app-notif-sub">Marco R. — Taglio Uomo — 15:30</div>
           </div>
 
           <div class="app-notif">
-            <div class="app-notif-title lang-it">Preventivo accettato</div>
-            <div class="app-notif-title lang-en">Quote accepted</div>
+            <div class="app-notif-title">Preventivo inviato</div>
             <div class="app-notif-sub">Officina Moto Custom — €490</div>
           </div>
 
           <div class="app-notif">
-            <div class="app-notif-title lang-it">Promemoria inviato</div>
-            <div class="app-notif-title lang-en">Reminder sent</div>
-            <div class="app-notif-sub lang-it">3 clienti per domani</div>
-            <div class="app-notif-sub lang-en">3 clients for tomorrow</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="app-notif-title" style="color:#f87171;">⚠️ Cliente inattivo</div>
+            </div>
+            <div class="app-notif-sub">Laura B. non si presenta da 68 giorni</div>
           </div>
         </div>
       </div>
@@ -1932,15 +2180,30 @@ lì si parla del VOSTRO processo interno, qui del percorso del CLIENTE dentro la
     </div>
   </div>
 </section>
-<!--
-DOVE INCOLLARE:
-Sezione standalone da inserire nel sito, per esempio subito dopo <section id="problema">
-e prima di <section id="metodo">, oppure prima di <section id="recensioni">
-(funziona bene come "riepilogo" prima della riprova sociale).
-Riusa classi esistenti (bento-grid, service-card, glow-card, spotlight, stats-strip) —
-zero CSS aggiuntivo necessario.
--->
+<section id="chi-sono">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow lang-it">Chi sono</div><div class="eyebrow lang-en">About me</div>
+      <h2 class="section-title lang-it">Non un'agenzia anonima. Una persona che risponde.</h2>
+      <h2 class="section-title lang-en">Not a faceless agency. A person who answers.</h2>
+    </div>
 
+    <div class="about-wrap reveal">
+      <div class="about-photo" aria-hidden="true">D</div>
+      <div class="about-copy">
+        <p class="lang-it">Mi chiamo Daniele Martelli e sono lo sviluppatore dietro Cypher Web. Ho fondato questa attività a Milano con l'obiettivo di aiutare piccole imprese, professionisti e attività locali a costruire una presenza online moderna, veloce ed efficace. Dopo il diploma in Informatica ho iniziato a specializzarmi nello sviluppo di siti web, concentrandomi su prestazioni, design e ottimizzazione per offrire soluzioni professionali e su misura.</p>
+        <p class="lang-en">My name is Daniele Martelli, and I am the developer behind Cypher Web. I founded this business in Milan with the goal of helping small businesses, professionals, and local companies build a modern, fast, and effective online presence. After earning my diploma in Computer Science, I specialized in web development, focusing on performance, design, and optimization to deliver professional, tailor-made solutions.</p>
+        <p class="lang-it">Quando lavori con Cypher Web non parli con un centralino o un account manager: parli direttamente con chi progetta, sviluppa e mantiene il tuo sito. Ogni progetto viene seguito personalmente, dall'analisi iniziale fino alla pubblicazione e alla manutenzione, garantendo un contatto diretto, tempi di risposta rapidi e un servizio costruito sulle reali esigenze della tua attività.</p>
+        <p class="lang-en">When you work with Cypher Web, you don't speak to a call center or an account manager—you work directly with the person who designs, develops, and maintains your website. Every project is personally managed from the initial planning stage to launch and ongoing maintenance, ensuring direct communication, fast response times, and solutions tailored to your business needs.</p>
+        <div class="about-badges">
+          <span class="tag-3d lang-it">Sviluppatore full-stack</span><span class="tag-3d lang-en">Full-stack developer</span>
+          <span class="tag-3d">Milano, Italia</span>
+          <span class="tag-3d lang-it">Un solo punto di contatto</span><span class="tag-3d lang-en">One single point of contact</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="perche-cypherweb">
   <div class="container">
     <div class="section-head reveal">
@@ -1993,11 +2256,11 @@ zero CSS aggiuntivo necessario.
     <div class="stats-strip reveal">
       <div class="stat-card">
         <div class="num">24h</div>
-        <div class="lbl lang-it">Tempo medio di risposta</div><div class="lbl lang-en">Average response time</div>
+        <div class="lbl lang-it">Tempo di risposta garantito</div><div class="lbl lang-en">Guaranteed response time</div>
       </div>
       <div class="stat-card">
         <div class="num">98/100</div>
-        <div class="lbl lang-it">Punteggio performance medio</div><div class="lbl lang-en">Average performance score</div>
+        <div class="lbl lang-it">Punteggio performance target</div><div class="lbl lang-en">Target performance score</div>
       </div>
       <div class="stat-card">
         <div class="num">99.98%</div>
@@ -2048,11 +2311,11 @@ zero CSS aggiuntivo necessario.
     <div class="stats-strip reveal">
       <div class="stat-card">
         <div class="num">24h</div>
-        <div class="lbl lang-it">Tempo medio di risposta</div><div class="lbl lang-en">Average response time</div>
+        <div class="lbl lang-it">Tempo di risposta garantito</div><div class="lbl lang-en">Guaranteed response time</div>
       </div>
       <div class="stat-card">
         <div class="num">98/100</div>
-        <div class="lbl lang-it">Punteggio performance medio</div><div class="lbl lang-en">Average performance score</div>
+        <div class="lbl lang-it">Punteggio performance target</div><div class="lbl lang-en">Target performance score</div>
       </div>
       <div class="stat-card">
         <div class="num">99.98%</div>
@@ -2060,7 +2323,7 @@ zero CSS aggiuntivo necessario.
       </div>
       <div class="stat-card">
         <div class="num">100%</div>
-        <div class="lbl lang-it">Clienti che restano con noi</div><div class="lbl lang-en">Client retention</div>
+        <div class="lbl lang-it">Impegno: nessun cliente lasciato indietro</div><div class="lbl lang-en">Our commitment: no client left behind</div>
       </div>
     </div>
   </div>
@@ -2127,24 +2390,7 @@ zero CSS aggiuntivo necessario.
     </div>
   </div>
 </section>
-<!-- TEASER PREVENTIVI IA -->
-<section id="preventivi-teaser" style="padding:90px 0;">
-  <div class="container">
-    <div class="care-plan glow-card spotlight reveal">
-      <div class="care-left">
-        <span class="tag-3d lang-it">Novità</span><span class="tag-3d lang-en">New</span>
-        <h3 style="margin-top:14px;" class="lang-it">Fai preventivi? C'è un modo più veloce.</h3>
-        <h3 style="margin-top:14px;" class="lang-en">Do you send quotes? There's a faster way.</h3>
-        <p class="lang-it">Per artigiani e piccole imprese: preventivo professionale in 30 secondi, invece che su Word o WhatsApp.</p>
-        <p class="lang-en">For tradespeople and small businesses: a professional quote in 30 seconds, instead of Word or WhatsApp.</p>
-      </div>
-      <a href="/preventivi-intelligenti" class="btn btn-primary btn-lg">
-        <span class="lang-it">Scopri Preventivi IA</span>
-        <span class="lang-en">Discover AI Quotes</span>
-      </a>
-    </div>
-  </div>
-</section>
+
 <!-- TECH MARQUEE -->
 <section class="marquee-section" aria-label="Stack tecnologico">
   <div class="marquee-label">
@@ -2173,151 +2419,122 @@ zero CSS aggiuntivo necessario.
 </section>
 <!-- PREZZI -->
 <section id="prezzi">
-<div class="container">
-<div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
-  <div class="eyebrow" style="justify-content:center;"><span class="lang-it">Prezzi</span><span class="lang-en">Pricing</span></div>
-  <h2 class="section-title" style="margin:0 auto;max-width:100%;"><span class="lang-it">Un piano per ogni fase del tuo business</span><span class="lang-en">A plan for every stage of your business</span></h2>
-</div>
-<div class="pricing-grid">
-
-  <!-- ESSENTIAL -->
-  <div class="price-card glow-card spotlight reveal">
-    <h3>Essential</h3>
-    <div class="price-row">
-      <span class="price-old">900€</span>
-      <span class="discount-badge">-20%</span>
-    </div>
-    <div class="price">700€<span>una tantum</span></div>
-    <p class="note">Ideale per chi parte da zero con un sito vetrina professionale.</p>
-    <ul>
-      <li>Design personalizzato</li>
-      <li>Responsive su tutti i dispositivi</li>
-      <li>SEO tecnica di base</li>
-      <li>Deployment incluso</li>
-    </ul>
-    <a href="#contatti" class="btn btn-ghost">Richiedi preventivo</a>
-  </div>
-
-  <!-- BUSINESS — piano in evidenza con effetto laser-beam -->
-  <div class="price-card featured spotlight reveal">
-    <span class="featured-tag">Più richiesto</span>
-    <h3>Business</h3>
-    <div class="price-row">
-      <span class="price-old">3.200€</span>
-      <span class="discount-badge">-20%</span>
-    </div>
-    <div class="price">2.500€<span>una tantum</span></div>
-    <p class="note">Sito dinamico con database, area riservata e automazioni.</p>
-    <ul>
-      <li>Database e area riservata</li>
-      <li>Dashboard personale</li>
-      <li>Automazioni incluse</li>
-      <li>Pannello admin</li>
-      <li>2 round di revisioni</li>
-    </ul>
-    <a href="#contatti" class="btn btn-primary">Richiedi preventivo</a>
-  </div>
-
-  <!-- ENTERPRISE -->
-  <div class="price-card glow-card spotlight reveal">
-    <h3>Enterprise</h3>
-    <div class="price-row">
-      <span class="price-old">6.500€</span>
-      <span class="discount-badge">-23%</span>
-    </div>
-    <div class="price">5.000€<span>una tantum</span></div>
-    <p class="note">Piattaforma completa con integrazioni e moduli avanzati.</p>
-    <ul>
-      <li>Integrazioni esterne (CRM, pagamenti)</li>
-      <li>Automazioni multiple</li>
-      <li>Ruoli utente differenziati</li>
-      <li>Reportistica avanzata</li>
-    </ul>
-    <a href="#contatti" class="btn btn-ghost">Richiedi preventivo</a>
-  </div>
-<!-- PREVENTIVI INTELLIGENTI -->
-<div class="price-card glow-card spotlight reveal" style="position:relative;">
-  <span class="new-tag lang-it">Nuovo</span><span class="new-tag lang-en">New</span>
-  <h3>Preventivi Intelligenti</h3>
-  <div class="price">490€<span class="lang-it">una tantum</span><span class="lang-en">setup</span></div>
-  <p class="note lang-it">+ 39€/mese di abbonamento. Prezzo di lancio.</p>
-  <p class="note lang-en">+ €39/mo subscription. Launch price.</p>
-  <ul>
-    <li class="lang-it">Preventivo generato dall'IA in 30 secondi</li><li class="lang-en">AI-generated quote in 30 seconds</li>
-    <li class="lang-it">PDF + email automatici al cliente</li><li class="lang-en">Automatic PDF + email to the client</li>
-    <li class="lang-it">Acconto via Stripe all'accettazione</li><li class="lang-en">Deposit via Stripe on acceptance</li>
-    <li class="lang-it">Promemoria automatico</li><li class="lang-en">Automatic reminders</li>
-    <li class="lang-it">Fino a 50 preventivi/mese</li><li class="lang-en">Up to 50 quotes/month</li>
-  </ul>
-  <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20richiedere%20accesso%20a%20Preventivi%20Intelligenti." target="_blank" rel="noopener" class="btn btn-primary">
-    <span class="lang-it">Richiedi accesso</span><span class="lang-en">Request access</span>
-  </a>
-</div>
-</div>
-<div class="pricing-footnote">
-  <span aria-hidden="true">🛡️</span>
-  <span class="lang-it"><strong>Garanzia soddisfatti o rimborsati:</strong> non convinto entro 14 giorni dalla consegna? Ti rimborsiamo, senza domande.</span>
-  <span class="lang-en"><strong>Money-back guarantee:</strong> not happy within 14 days of delivery? We'll refund you, no questions asked.</span>
-</div>
-<div class="container" style="padding:20px 0 0;">
-  <p class="section-sub" style="max-width:640px;margin-left:auto;margin-right:auto;text-align:center;">
-    <span class="lang-it">Diverso dal Piano Scacciapensieri (quello è manutenzione del sito, questo è l'abbonamento per usare lo strumento preventivi).</span>
-    <span class="lang-en">Different from the Worry-Free Plan (that's website maintenance — this is the subscription to use the quoting tool).</span>
-  </p>
-</div>
-</div>
-</section>
-<!-- POLITICHE -->
-<section id="politiche">
   <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow lang-it">Come lavoriamo</div><div class="eyebrow lang-en">How we work</div>
-      <h2 class="section-title lang-it">Regole chiare, per lavorare bene insieme</h2>
-      <h2 class="section-title lang-en">Clear ground rules, for a smooth collaboration</h2>
-      <p class="section-sub lang-it">Niente sorprese: ecco come gestiamo tempi, pagamenti e supporto.</p>
-      <p class="section-sub lang-en">No surprises: here's how we handle timing, payments, and support.</p>
+    <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
+      <div class="eyebrow" style="justify-content:center;">
+        <span class="lang-it">Prezzi</span>
+        <span class="lang-en">Pricing</span>
+      </div>
+      <h2 class="section-title" style="margin:0 auto;max-width:100%;">
+        <span class="lang-it">Un piano per ogni fase del tuo business</span>
+        <span class="lang-en">A plan for every stage of your business</span>
+      </h2>
     </div>
 
-    <div class="policy-grid reveal" id="policyAccordion">
-      <div class="policy-item open">
-        <button class="policy-q" aria-expanded="true"><span class="lang-it">Cosa include il supporto mensile</span><span class="lang-en">What monthly support includes</span><span class="plus" aria-hidden="true">+</span></button>
-        <div class="policy-a">
-          <p class="lang-it">Ogni mese hai 30 minuti inclusi per modifiche rapide (testi, immagini, contatti). Per interventi più estesi, fatturiamo 45€/ora, in modo trasparente prima di iniziare.</p>
-          <p class="lang-en">Every month you get 30 minutes included for quick edits (text, images, contact details). For bigger changes, we bill €45/hr — always quoted upfront.</p>
+    <div class="pricing-grid">
+      <!-- ESSENTIAL -->
+      <div class="price-card glow-card spotlight reveal">
+        <h3>Essential</h3>
+        <div class="price-row">
+          <span class="price-old">900€</span>
+          <span class="discount-badge">-20%</span>
         </div>
+        <div class="price">700€<span class="lang-it">una tantum</span><span class="lang-en">one-time</span></div>
+        <p class="note lang-it">Sito vetrina professionale per chi parte da zero.</p>
+        <p class="note lang-en">Professional showcase website for those starting from scratch.</p>
+        <ul>
+          <li class="lang-it">Design personalizzato</li><li class="lang-en">Custom design</li>
+          <li class="lang-it">Responsive su tutti i dispositivi</li><li class="lang-en">Responsive on all devices</li>
+          <li class="lang-it">SEO tecnica di base</li><li class="lang-en">Basic technical SEO</li>
+          <li class="lang-it">Deployment incluso</li><li class="lang-en">Deployment included</li>
+        </ul>
+        <a href="#contatti" class="btn btn-ghost">
+          <span class="lang-it">Richiedi preventivo</span>
+          <span class="lang-en">Get a quote</span>
+        </a>
       </div>
-      <div class="policy-item">
-        <button class="policy-q" aria-expanded="false"><span class="lang-it">Quando ci servono i tuoi materiali</span><span class="lang-en">When we need your content</span><span class="plus" aria-hidden="true">+</span></button>
-        <div class="policy-a">
-          <p class="lang-it">Per restare nei tempi ti chiediamo testi e immagini entro 7 giorni lavorativi. Se servisse più tempo, va benissimo: basta avvisarci per riorganizzare il calendario.</p>
-          <p class="lang-en">To keep things on schedule, we ask for your text and images within 7 business days. Need more time? Just let us know and we'll adjust the calendar.</p>
+
+      <!-- BUSINESS — piano in evidenza -->
+      <div class="price-card featured spotlight reveal">
+        <span class="featured-tag">
+          <span class="lang-it">Più richiesto</span>
+          <span class="lang-en">Most popular</span>
+        </span>
+        <h3>Business</h3>
+        <div class="price-row">
+          <span class="price-old">3.200€</span>
+          <span class="discount-badge">-20%</span>
         </div>
+        <div class="price">2.500€<span class="lang-it">una tantum</span><span class="lang-en">one-time</span></div>
+        <p class="note lang-it">Sito + sistema prenotazioni + app gestionale. L'ecosistema completo.</p>
+        <p class="note lang-en">Website + booking system + management app. The complete ecosystem.</p>
+        <ul>
+          <li class="lang-it">Tutto del piano Essential</li><li class="lang-en">Everything in Essential</li>
+          <li class="lang-it">Sistema prenotazioni online</li><li class="lang-en">Online booking system</li>
+          <li class="lang-it">App gestionale inclusa</li><li class="lang-en">Management app included</li>
+          <li class="lang-it">CRM clienti integrato</li><li class="lang-en">Integrated client CRM</li>
+          <li class="lang-it">2 round di revisioni</li><li class="lang-en">2 revision rounds</li>
+        </ul>
+        <a href="#contatti" class="btn btn-primary">
+          <span class="lang-it">Richiedi preventivo</span>
+          <span class="lang-en">Get a quote</span>
+        </a>
       </div>
-      <div class="policy-item">
-        <button class="policy-q" aria-expanded="false"><span class="lang-it">Come funzionano i pagamenti</span><span class="lang-en">How payments work</span><span class="plus" aria-hidden="true">+</span></button>
-        <div class="policy-a">
-          <p class="lang-it">Il canone mensile viene gestito in automatico via Stripe, in totale sicurezza. In caso di problemi con un pagamento ti avvisiamo sempre prima di intervenire.</p>
-          <p class="lang-en">Your monthly fee is handled automatically and securely through Stripe. If a payment ever fails, we always reach out before taking any action.</p>
+
+      <!-- ENTERPRISE -->
+      <div class="price-card glow-card spotlight reveal">
+        <h3>Enterprise</h3>
+        <div class="price-row">
+          <span class="price-old">6.500€</span>
+          <span class="discount-badge">-23%</span>
         </div>
+        <div class="price">5.000€<span class="lang-it">una tantum</span><span class="lang-en">one-time</span></div>
+        <p class="note lang-it">Piattaforma completa con AI, integrazioni e moduli avanzati.</p>
+        <p class="note lang-en">Full platform with AI, integrations, and advanced modules.</p>
+        <ul>
+          <li class="lang-it">Tutto del piano Business</li><li class="lang-en">Everything in Business</li>
+          <li class="lang-it">AI Automation (preventivi, alert)</li><li class="lang-en">AI Automation (quotes, alerts)</li>
+          <li class="lang-it">Integrazioni esterne (CRM, pagamenti)</li><li class="lang-en">External integrations (CRM, payments)</li>
+          <li class="lang-it">Ruoli utente differenziati</li><li class="lang-en">Differentiated user roles</li>
+        </ul>
+        <a href="#contatti" class="btn btn-ghost">
+          <span class="lang-it">Richiedi preventivo</span>
+          <span class="lang-en">Get a quote</span>
+        </a>
       </div>
-      <div class="policy-item">
-        <button class="policy-q" aria-expanded="false"><span class="lang-it">Se decidi di lasciarci</span><span class="lang-en">If you ever decide to leave</span><span class="plus" aria-hidden="true">+</span></button>
-        <div class="policy-a">
-          <p class="lang-it">Il sito e il database sono sempre tuoi al 100%. Se vuoi andartene, ti consegniamo tutto subito; se preferisci una mano con la migrazione, è un servizio extra a 150€ una tantum.</p>
-          <p class="lang-en">Your site and database are always 100% yours. If you decide to leave, we hand everything over right away — and offer optional migration help for a flat €150 if you'd like support.</p>
-        </div>
+
+      <!-- MANUTENZIONE -->
+      <div class="price-card glow-card spotlight reveal">
+        <span class="new-tag">
+          <span class="lang-it">Mensile</span>
+          <span class="lang-en">Monthly</span>
+        </span>
+        <h3 class="lang-it">Manutenzione</h3>
+        <h3 class="lang-en">Maintenance</h3>
+        <div class="price">45€<span class="lang-it">/mese</span><span class="lang-en">/mo</span></div>
+        <p class="note lang-it">Hosting, sicurezza, aggiornamenti e supporto prioritario.</p>
+        <p class="note lang-en">Hosting, security, updates, and priority support.</p>
+        <ul>
+          <li class="lang-it">Hosting premium incluso</li><li class="lang-en">Premium hosting included</li>
+          <li class="lang-it">Backup automatici giornalieri</li><li class="lang-en">Daily automatic backups</li>
+          <li class="lang-it">Aggiornamenti continui</li><li class="lang-en">Continuous updates</li>
+          <li class="lang-it">Uptime monitoring 24/7</li><li class="lang-en">24/7 uptime monitoring</li>
+          <li class="lang-it">30 min modifiche/mese incluse</li><li class="lang-en">30 min edits/month included</li>
+        </ul>
+        <a href="#contatti" class="btn btn-ghost">
+          <span class="lang-it">Attiva ora</span>
+          <span class="lang-en">Activate now</span>
+        </a>
       </div>
-      <div class="policy-item">
-        <button class="policy-q" aria-expanded="false"><span class="lang-it">Proprietà del dominio</span><span class="lang-en">Domain ownership</span><span class="plus" aria-hidden="true">+</span></button>
-        <div class="policy-a">
-          <p class="lang-it">Il dominio viene registrato e intestato legalmente a te fin dal primo giorno. Noi ci occupiamo solo della configurazione tecnica, DNS e collegamento all'hosting.</p>
-          <p class="lang-en">Your domain is registered under your legal name from day one. We only handle the technical setup — DNS, hosting connection, and configuration.</p>
-        </div>
-      </div>
+    </div>
+
+    <div class="pricing-footnote">
+      <span aria-hidden="true">🛡️</span>
+      <span class="lang-it"><strong>Garanzia soddisfatti o rimborsati:</strong> non convinto entro 14 giorni dalla consegna? Ti rimborsiamo, senza domande.</span>
+      <span class="lang-en"><strong>Money-back guarantee:</strong> not happy within 14 days of delivery? We'll refund you, no questions asked.</span>
     </div>
   </div>
 </section>
-
 <!--
 DOVE INCOLLARE:
 Sostituisce INTERAMENTE l'attuale <section id="portfolio">...</section>
@@ -2337,100 +2554,161 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
 <section id="portfolio">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow lang-it">Portfolio</div><div class="eyebrow lang-en">Portfolio</div>
-      <h2 class="section-title lang-it">Progetti recenti</h2><h2 class="section-title lang-en">Recent Projects</h2>
-      <p class="section-sub lang-it">Esempi illustrativi del tipo di lavoro che realizziamo.</p>
-      <p class="section-sub lang-en">Illustrative examples of the kind of work we do.</p>
+      <div class="eyebrow lang-it">Portfolio</div>
+      <div class="eyebrow lang-en">Portfolio</div>
+      <h2 class="section-title lang-it">Progetti recenti</h2>
+      <h2 class="section-title lang-en">Recent Projects</h2>
+      <p class="section-sub lang-it">Esempi reali e illustrativi del tipo di lavoro che realizziamo.</p>
+      <p class="section-sub lang-en">Real and illustrative examples of the work we deliver.</p>
     </div>
 
     <div class="bento-grid">
-
-      <!-- 1. TuboFix — REALE, demo navigabile, featured span-2 -->
+      <!-- 1. CYPHER MANAGER APP — Prodotto proprio, span-2 -->
       <div class="portfolio-card glow-card spotlight span-2 reveal" style="position:relative;">
-        <span class="demo-live-tag lang-it">Demo live</span><span class="demo-live-tag lang-en">Live demo</span>
-        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">tubofix.it</span></div>
+        <span class="demo-live-tag lang-it">Prodotto live</span>
+        <span class="demo-live-tag lang-en">Live product</span>
+        <div class="portfolio-thumb" style="height:180px; background:linear-gradient(135deg, #0a0f1e, #0d1b2a);">
+          <span class="glyph">cypher-web.app</span>
+        </div>
         <div class="portfolio-info">
-          <h4 class="lang-it">TuboFix — Pronto Intervento Idraulico</h4><h4 class="lang-en">TuboFix — Emergency Plumbing Service</h4>
+          <h4 class="lang-it">Cypher Manager — App Gestionale + Prenotazioni</h4>
+          <h4 class="lang-en">Cypher Manager — Management App + Bookings</h4>
           <div class="portfolio-story">
             <div class="story-row problem">
-              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
-              <span class="story-text lang-it">Un idraulico vive di urgenze: chi cerca aiuto è spesso in un momento di stress e deve fidarsi in pochi secondi.</span>
+              <span class="story-label lang-it">Problema</span>
+              <span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Gestire prenotazioni, clienti e preventivi su fogli Excel, WhatsApp e memoria. Errori, dimenticanze, tempo perso.</span>
+              <span class="story-text lang-en">Managing bookings, clients, and quotes on Excel, WhatsApp, and memory. Errors, forgetfulness, wasted time.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row solution">
+              <span class="story-label lang-it">Soluzione</span>
+              <span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">App all-in-one: prenotazioni online per i clienti, dashboard gestionale per te, AI per preventivi e alert proattivi.</span>
+              <span class="story-text lang-en">All-in-one app: online booking for clients, management dashboard for you, AI for quotes and proactive alerts.</span>
+            </div>
+            <div class="story-arrow" aria-hidden="true">↓</div>
+            <div class="story-row result">
+              <span class="story-label lang-it">Risultato</span>
+              <span class="story-label lang-en">Result</span>
+              <span class="story-text lang-it">-70% tempo admin, zero doppi booking, clienti più soddisfatti con promemoria automatici.</span>
+              <span class="story-text lang-en">-70% admin time, zero double bookings, happier clients with automatic reminders.</span>
+            </div>
+          </div>
+          <div class="stack-tags">
+            <span>React</span><span>Supabase</span><span>Node.js</span><span>PWA</span>
+          </div>
+          <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app" target="_blank" rel="noopener" class="portfolio-link">
+            <span class="lang-it">Prova l'app →</span>
+            <span class="lang-en">Try the app →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. TuboFix — REALE -->
+      <div class="portfolio-card glow-card spotlight reveal" style="position:relative;">
+        <span class="demo-live-tag lang-it">Demo live</span>
+        <span class="demo-live-tag lang-en">Live demo</span>
+        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">tubofix.it</span></div>
+        <div class="portfolio-info">
+          <h4 class="lang-it">TuboFix — Pronto Intervento Idraulico</h4>
+          <h4 class="lang-en">TuboFix — Emergency Plumbing</h4>
+          <div class="portfolio-story">
+            <div class="story-row problem">
+              <span class="story-label lang-it">Problema</span>
+              <span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Un idraulico vive di urgenze: chi cerca aiuto è spesso in stress e deve fidarsi in pochi secondi.</span>
               <span class="story-text lang-en">A plumber lives on emergencies: whoever's searching is often stressed and needs to trust you within seconds.</span>
             </div>
             <div class="story-arrow" aria-hidden="true">↓</div>
             <div class="story-row solution">
-              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
-              <span class="story-text lang-it">Sito con identità propria (non un template riciclato): tariffa oraria dichiarata, zona servita reale, tempi di intervento in evidenza.</span>
-              <span class="story-text lang-en">A site with its own identity (not a recycled template): stated hourly rate, real service area, response times front and center.</span>
+              <span class="story-label lang-it">Soluzione</span>
+              <span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">Sito con identità propria, tariffa dichiarata, zona servita reale, tempi di intervento in evidenza.</span>
+              <span class="story-text lang-en">A site with its own identity, stated rates, real service area, response times front and center.</span>
             </div>
             <div class="story-arrow" aria-hidden="true">↓</div>
             <div class="story-row result">
-              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-label lang-it">Risultato</span>
+              <span class="story-label lang-en">Result</span>
               <span class="story-text lang-it">Un unico numero da chiamare, prezzo chiaro prima di iniziare: la trasparenza diventa l'argomento di vendita.</span>
               <span class="story-text lang-en">One number to call, a clear price before starting: transparency becomes the selling point.</span>
             </div>
           </div>
-          <div class="stack-tags"><span class="lang-it">Sito custom</span><span class="lang-en">Custom build</span><span class="lang-it">Identità su misura</span><span class="lang-en">Bespoke identity</span></div>
-          <a href="C:\Users\danie\Desktop\cypherwebtesting\demo\tubofix.html" target="_blank" rel="noopener" class="portfolio-link">
-            <span class="lang-it">Vedi il sito</span><span class="lang-en">View the site</span>
-            <span class="arrow" aria-hidden="true">→</span>
+          <div class="stack-tags">
+            <span class="lang-it">Sito custom</span><span class="lang-en">Custom build</span>
+          </div>
+          <a href="demo/tubofix.html" target="_blank" rel="noopener" class="portfolio-link">
+            <span class="lang-it">Vedi il sito →</span>
+            <span class="lang-en">View site →</span>
           </a>
         </div>
       </div>
 
-           <!-- 2. Studio Legale Bassani — REALE, demo navigabile -->
+      <!-- 3. Studio Legale Bassani — REALE -->
       <div class="portfolio-card glow-card spotlight reveal" style="position:relative;">
-        <span class="demo-live-tag lang-it">Demo live</span><span class="demo-live-tag lang-en">Live demo</span>
+        <span class="demo-live-tag lang-it">Demo live</span>
+        <span class="demo-live-tag lang-en">Live demo</span>
         <div class="portfolio-thumb" style="height:160px;"><span class="glyph">studiobassani.it</span></div>
         <div class="portfolio-info">
-          <h4 class="lang-it">Studio Legale Bassani & Associati — Avvocati a Milano</h4>
-          <h4 class="lang-en">Bassani & Associates Law Firm — Milan</h4>
+          <h4 class="lang-it">Studio Legale Bassani — Avvocati a Milano</h4>
+          <h4 class="lang-en">Bassani & Associates — Milan</h4>
           <div class="portfolio-story">
             <div class="story-row problem">
-              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
-              <span class="story-text lang-it">Uno studio con 16 anni di esperienza ma zero presenza digitale professionale: i clienti arrivavano solo per passaparola.</span>
-              <span class="story-text lang-en">A firm with 16 years of experience but no professional digital presence: clients came only by word of mouth.</span>
+              <span class="story-label lang-it">Problema</span>
+              <span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">16 anni di esperienza ma zero presenza digitale professionale: i clienti arrivavano solo per passaparola.</span>
+              <span class="story-text lang-en">16 years of experience but no professional digital presence: clients came only by word of mouth.</span>
             </div>
             <div class="story-arrow" aria-hidden="true">↓</div>
             <div class="story-row solution">
-              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
-              <span class="story-text lang-it">Design istituzionale ispirato al mondo legale: colori sobri, tipografia serif, layout a fascicolo con "spina dorsale" visiva.</span>
-              <span class="story-text lang-en">Institutional design inspired by the legal world: sober colors, serif typography, binder-style layout with a visual "spine".</span>
+              <span class="story-label lang-it">Soluzione</span>
+              <span class="story-label lang-en">Solution</span>
+              <span class="story-text lang-it">Design istituzionale: colori sobri, tipografia serif, layout a fascicolo con "spina dorsale" visiva.</span>
+              <span class="story-text lang-en">Institutional design: sober colors, serif typography, binder-style layout with a visual "spine".</span>
             </div>
             <div class="story-arrow" aria-hidden="true">↓</div>
             <div class="story-row result">
-              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
-              <span class="story-text lang-it">Un sito che trasmette autorità e fiducia: le consulenze ora arrivano anche dal form online, non solo dal passaparola.</span>
-              <span class="story-text lang-en">A site that conveys authority and trust: consultations now also come from the online form, not just word of mouth.</span>
+              <span class="story-label lang-it">Risultato</span>
+              <span class="story-label lang-en">Result</span>
+              <span class="story-text lang-it">Un sito che trasmette autorità: le consulenze ora arrivano anche dal form online.</span>
+              <span class="story-text lang-en">A site that conveys authority: consultations now also come from the online form.</span>
             </div>
           </div>
-          <div class="stack-tags"><span>Astro</span><span class="lang-it">Design istituzionale</span><span class="lang-en">Institutional design</span><span class="lang-it">SEO locale</span><span class="lang-en">Local SEO</span></div>
-          <a href="C:\Users\danie\Desktop\cypherwebtesting\demo\studiolegale.html" target="_blank" rel="noopener" class="portfolio-link">
-            <span class="lang-it">Vedi il sito</span><span class="lang-en">View the site</span>
-            <span class="arrow" aria-hidden="true">→</span>
+          <div class="stack-tags">
+            <span>Astro</span><span class="lang-it">Design istituzionale</span><span class="lang-en">Institutional design</span>
+          </div>
+          <a href="demo/studiolegale.html" target="_blank" rel="noopener" class="portfolio-link">
+            <span class="lang-it">Vedi il sito →</span>
+            <span class="lang-en">View site →</span>
           </a>
         </div>
       </div>
-      <!-- 3. Officina Moto -->
+
+      <!-- 4. Officina Moto -->
       <div class="portfolio-card glow-card spotlight reveal">
         <div class="portfolio-thumb" style="height:160px;"><span class="glyph">officina-moto.it</span></div>
         <div class="portfolio-info">
-          <h4 class="lang-it">Officina Moto Custom</h4><h4 class="lang-en">Custom Motorcycle Workshop</h4>
+          <h4 class="lang-it">Officina Moto Custom</h4>
+          <h4 class="lang-en">Custom Motorcycle Workshop</h4>
           <div class="portfolio-story">
             <div class="story-row problem">
-              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
+              <span class="story-label lang-it">Problema</span>
+              <span class="story-label lang-en">Problem</span>
               <span class="story-text lang-it">Buon lavoro, ma zero visibilità online: i clienti arrivavano solo per passaparola.</span>
               <span class="story-text lang-en">Great work, but zero online visibility — clients only found them by word of mouth.</span>
             </div>
             <div class="story-arrow" aria-hidden="true">↓</div>
             <div class="story-row solution">
-              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
+              <span class="story-label lang-it">Soluzione</span>
+              <span class="story-label lang-en">Solution</span>
               <span class="story-text lang-it">Landing page ad alta conversione per portare il traffico social al contatto diretto.</span>
               <span class="story-text lang-en">A high-conversion landing page turning social traffic into direct contact.</span>
             </div>
             <div class="story-arrow" aria-hidden="true">↓</div>
             <div class="story-row result">
-              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-label lang-it">Risultato</span>
+              <span class="story-label lang-en">Result</span>
               <span class="story-text lang-it">Prenotazioni raddoppiate in 3 mesi, con un costo di acquisizione clienti più basso.</span>
               <span class="story-text lang-en">Bookings doubled in 3 months, with a lower customer acquisition cost.</span>
             </div>
@@ -2439,90 +2717,41 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
         </div>
       </div>
 
-      <!-- 4. Ristorante -->
-      <div class="portfolio-card glow-card spotlight reveal">
-        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">trattoria-delborgo.it</span></div>
-        <div class="portfolio-info">
-          <h4 class="lang-it">Trattoria del Borgo</h4><h4 class="lang-en">Trattoria del Borgo (Restaurant)</h4>
-          <div class="portfolio-story">
-            <div class="story-row problem">
-              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
-              <span class="story-text lang-it">Prenotazioni gestite solo a voce, con errori nei weekend di punta.</span>
-              <span class="story-text lang-en">Reservations handled only by phone, with mistakes during busy weekends.</span>
-            </div>
-            <div class="story-arrow" aria-hidden="true">↓</div>
-            <div class="story-row solution">
-              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
-              <span class="story-text lang-it">Sito con menu digitale e modulo di prenotazione tavoli collegato a WhatsApp.</span>
-              <span class="story-text lang-en">A website with a digital menu and a table booking form linked to WhatsApp.</span>
-            </div>
-            <div class="story-arrow" aria-hidden="true">↓</div>
-            <div class="story-row result">
-              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
-              <span class="story-text lang-it">Quasi azzerati gli errori di prenotazione, sala piena anche nei giorni infrasettimanali.</span>
-              <span class="story-text lang-en">Booking mistakes nearly eliminated, full tables even on weekdays.</span>
-            </div>
-          </div>
-          <div class="stack-tags"><span>Astro</span><span class="lang-it">Prenotazioni</span><span class="lang-en">Booking</span></div>
-        </div>
-      </div>
-
       <!-- 5. Centro estetico -->
       <div class="portfolio-card glow-card spotlight reveal">
         <div class="portfolio-thumb" style="height:160px;"><span class="glyph">centro-estetico-lux.it</span></div>
         <div class="portfolio-info">
-          <h4 class="lang-it">Centro Estetico Lux</h4><h4 class="lang-en">Lux Beauty Center</h4>
+          <h4 class="lang-it">Centro Estetico Lux</h4>
+          <h4 class="lang-en">Lux Beauty Center</h4>
           <div class="portfolio-story">
             <div class="story-row problem">
-              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
-              <span class="story-text lang-it">Appuntamenti gestiti tra DM Instagram e messaggi WhatsApp, spesso persi.</span>
+              <span class="story-label lang-it">Problema</span>
+              <span class="story-label lang-en">Problem</span>
+              <span class="story-text lang-it">Appuntamenti gestiti tra DM Instagram e WhatsApp, spesso persi.</span>
               <span class="story-text lang-en">Appointments juggled between Instagram DMs and WhatsApp, often lost.</span>
             </div>
             <div class="story-arrow" aria-hidden="true">↓</div>
             <div class="story-row solution">
-              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
+              <span class="story-label lang-it">Soluzione</span>
+              <span class="story-label lang-en">Solution</span>
               <span class="story-text lang-it">Sito con catalogo trattamenti e sistema di prenotazione online integrato.</span>
               <span class="story-text lang-en">A website with a treatment catalog and integrated online booking system.</span>
             </div>
             <div class="story-arrow" aria-hidden="true">↓</div>
             <div class="story-row result">
-              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
+              <span class="story-label lang-it">Risultato</span>
+              <span class="story-label lang-en">Result</span>
               <span class="story-text lang-it">Agenda sempre aggiornata in automatico, -70% di tempo speso a rispondere ai messaggi.</span>
               <span class="story-text lang-en">Calendar always up to date automatically, -70% time spent replying to messages.</span>
             </div>
           </div>
-          <div class="stack-tags"><span>Webflow</span><span class="lang-it">Prenotazioni</span><span class="lang-en">Booking</span></div>
-        </div>
-      </div>
-
-      <!-- 6. Artigiano / bottega -->
-      <div class="portfolio-card glow-card spotlight reveal">
-        <div class="portfolio-thumb" style="height:160px;"><span class="glyph">bottega-artigiana.it</span></div>
-        <div class="portfolio-info">
-          <h4 class="lang-it">Bottega Artigiana del Legno</h4><h4 class="lang-en">Artisan Woodworking Shop</h4>
-          <div class="portfolio-story">
-            <div class="story-row problem">
-              <span class="story-label lang-it">Problema</span><span class="story-label lang-en">Problem</span>
-              <span class="story-text lang-it">Vendeva solo tramite marketplace, con commissioni alte e zero relazione diretta col cliente.</span>
-              <span class="story-text lang-en">Sold only through marketplaces, with high fees and no direct customer relationship.</span>
-            </div>
-            <div class="story-arrow" aria-hidden="true">↓</div>
-            <div class="story-row solution">
-              <span class="story-label lang-it">Soluzione</span><span class="story-label lang-en">Solution</span>
-              <span class="story-text lang-it">Sito vetrina con galleria prodotti su misura e contatto diretto per preventivi.</span>
-              <span class="story-text lang-en">A showcase website with a custom product gallery and direct contact for quotes.</span>
-            </div>
-            <div class="story-arrow" aria-hidden="true">↓</div>
-            <div class="story-row result">
-              <span class="story-label lang-it">Risultato</span><span class="story-label lang-en">Result</span>
-              <span class="story-text lang-it">Primi ordini diretti già nel primo mese, senza commissioni di intermediazione.</span>
-              <span class="story-text lang-en">First direct orders within the first month, with no marketplace commissions.</span>
-            </div>
+          <div class="stack-tags">
+            <span>Webflow</span>
+            <span class="lang-it">Prenotazioni</span>
+            <span class="lang-en">Booking</span>
           </div>
-          <div class="stack-tags"><span>Astro</span><span class="lang-it">Galleria prodotti</span><span class="lang-en">Product gallery</span></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -2568,48 +2797,90 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
     <div class="section-head reveal" style="text-align:center;margin-left:auto;margin-right:auto;">
       <div class="eyebrow" style="justify-content:center;">FAQ</div>
       <h2 class="section-title" style="margin:0 auto; max-width:100%;">
-        <span class="lang-it">Domande frequenti</span><span class="lang-en">Frequently asked questions</span>
+        <span class="lang-it">Domande frequenti</span>
+        <span class="lang-en">Frequently asked questions</span>
       </h2>
     </div>
 
     <div class="policy-grid faq-grid reveal" id="faqAccordion">
-      <div class="policy-item">
-  <button class="policy-q" aria-expanded="false"><span class="lang-it">Cos'è Preventivi Intelligenti?</span><span class="lang-en">What is AI Quotes?</span><span class="plus" aria-hidden="true">+</span></button>
-  <div class="policy-a">
-    <p class="lang-it">È uno strumento separato dal sito: generi un preventivo professionale in 30 secondi con l'IA, invece di scriverlo a mano su Word o WhatsApp.</p>
-    <p class="lang-en">It's a tool separate from your website: you generate a professional quote in 30 seconds with AI, instead of writing it by hand in Word or WhatsApp.</p>
-  </div>
-</div>
-<div class="policy-item">
-  <button class="policy-q" aria-expanded="false"><span class="lang-it">Come funziona l'abbonamento mensile?</span><span class="lang-en">How does the monthly subscription work?</span><span class="plus" aria-hidden="true">+</span></button>
-  <div class="policy-a">
-    <p class="lang-it">39€/mese include fino a 50 preventivi. Oltre questa soglia ti contattiamo per un piano su misura. Nessun vincolo: puoi disdire quando vuoi.</p>
-    <p class="lang-en">€39/mo includes up to 50 quotes. Beyond that, we'll reach out about a custom plan. No lock-in: cancel anytime.</p>
-  </div>
-</div>
       <div class="policy-item open">
-        <button class="policy-q" aria-expanded="true"><span class="lang-it">Perché un canone mensile?</span><span class="lang-en">Why a monthly fee?</span><span class="plus" aria-hidden="true">+</span></button>
+        <button class="policy-q" aria-expanded="true">
+          <span class="lang-it">Perché un canone mensile?</span>
+          <span class="lang-en">Why a monthly fee?</span>
+          <span class="plus" aria-hidden="true">+</span>
+        </button>
         <div class="policy-a">
           <p class="lang-it">Perché un sito non finisce mai davvero: serve sicurezza, aggiornamenti e monitoraggio costante per restare veloce e protetto nel tempo.</p>
           <p class="lang-en">Because a website is never really "finished" — it needs security, updates, and ongoing monitoring to stay fast and protected over time.</p>
         </div>
       </div>
+
       <div class="policy-item">
-        <button class="policy-q" aria-expanded="false"><span class="lang-it">Posso disdire quando voglio?</span><span class="lang-en">Can I cancel anytime?</span><span class="plus" aria-hidden="true">+</span></button>
+        <button class="policy-q" aria-expanded="false">
+          <span class="lang-it">I miei clienti devono scaricare un'app per prenotare?</span>
+          <span class="lang-en">Do my clients need to download an app to book?</span>
+          <span class="plus" aria-hidden="true">+</span>
+        </button>
         <div class="policy-a">
-          <p class="lang-it">Sì, in qualsiasi momento. Non ci sono vincoli di durata sul piano di manutenzione.</p>
-          <p class="lang-en">Yes, anytime. The maintenance plan has no minimum commitment.</p>
+          <p class="lang-it">
+            <strong>No.</strong> I clienti prenotano direttamente dal tuo sito web, senza installare nulla. 
+            Funziona su qualsiasi telefono e computer. Tu invece hai l'app Manager per gestire tutto dal telefono.
+          </p>
+          <p class="lang-en">
+            <strong>No.</strong> Clients book directly from your website, without installing anything. 
+            It works on any phone and computer. You have the Manager App to manage everything from your phone.
+          </p>
         </div>
       </div>
+
       <div class="policy-item">
-        <button class="policy-q" aria-expanded="false"><span class="lang-it">Quanto tempo serve per realizzare il sito?</span><span class="lang-en">How long does a website take?</span><span class="plus" aria-hidden="true">+</span></button>
+        <button class="policy-q" aria-expanded="false">
+          <span class="lang-it">Posso usare solo la prenotazione online senza l'app?</span>
+          <span class="lang-en">Can I use online booking without the management app?</span>
+          <span class="plus" aria-hidden="true">+</span>
+        </button>
+        <div class="policy-a">
+          <p class="lang-it">
+            Sì, il sistema di prenotazione funziona anche da solo. Ricevi le prenotazioni via email. 
+            L'app Manager serve per gestire clienti, vedere statistiche e usare le funzioni AI (preventivi, alert).
+          </p>
+          <p class="lang-en">
+            Yes, the booking system works on its own. You receive bookings via email. 
+            The Manager App is for managing clients, viewing stats, and using AI features (quotes, alerts).
+          </p>
+        </div>
+      </div>
+
+      <div class="policy-item">
+        <button class="policy-q" aria-expanded="false">
+          <span class="lang-it">Quanto tempo serve per realizzare il sito?</span>
+          <span class="lang-en">How long does a website take?</span>
+          <span class="plus" aria-hidden="true">+</span>
+        </button>
         <div class="policy-a">
           <p class="lang-it">In media tra 2 e 4 settimane, a seconda della complessità e di quanto velocemente ci fornisci i materiali.</p>
           <p class="lang-en">On average, 2 to 4 weeks, depending on complexity and how quickly you provide content and materials.</p>
         </div>
       </div>
+
       <div class="policy-item">
-        <button class="policy-q" aria-expanded="false"><span class="lang-it">Cosa succede se non sono soddisfatto?</span><span class="lang-en">What if I'm not satisfied?</span><span class="plus" aria-hidden="true">+</span></button>
+        <button class="policy-q" aria-expanded="false">
+          <span class="lang-it">Posso disdire quando voglio?</span>
+          <span class="lang-en">Can I cancel anytime?</span>
+          <span class="plus" aria-hidden="true">+</span>
+        </button>
+        <div class="policy-a">
+          <p class="lang-it">Sì, in qualsiasi momento. Non ci sono vincoli di durata sul piano di manutenzione. Il sito e il dominio restano sempre tuoi.</p>
+          <p class="lang-en">Yes, anytime. The maintenance plan has no minimum commitment. Your site and domain always remain yours.</p>
+        </div>
+      </div>
+
+      <div class="policy-item">
+        <button class="policy-q" aria-expanded="false">
+          <span class="lang-it">Cosa succede se non sono soddisfatto?</span>
+          <span class="lang-en">What if I'm not satisfied?</span>
+          <span class="plus" aria-hidden="true">+</span>
+        </button>
         <div class="policy-a">
           <p class="lang-it">Hai una garanzia soddisfatti o rimborsati di 14 giorni dalla consegna del sito: se qualcosa non ti convince, ti rimborsiamo senza domande.</p>
           <p class="lang-en">You get a 14-day money-back guarantee from delivery: if something doesn't convince you, we refund you — no questions asked.</p>
@@ -2618,7 +2889,6 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
     </div>
   </div>
 </section>
-
 <!-- CONTATTI -->
 <section id="contatti">
   <div class="container">
@@ -2666,6 +2936,15 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
           <textarea id="messaggio" name="messaggio" placeholder="..." required></textarea>
           <span class="error-msg lang-it">Raccontaci brevemente il tuo progetto.</span><span class="error-msg lang-en">Tell us a bit about your project.</span>
         </div>
+        <div class="field" id="field-privacy" style="display:flex;align-items:flex-start;gap:10px;">
+          <input type="checkbox" id="privacyConsent" name="privacyConsent" required style="width:auto;margin-top:4px;">
+          <label for="privacyConsent" style="font-weight:400;font-size:13.5px;color:var(--muted);">
+            <span class="lang-it">Ho letto la <a href="privacy.html" target="_blank" style="color:var(--cyan);">Privacy Policy</a> e acconsento al trattamento dei miei dati per essere ricontattato.</span>
+            <span class="lang-en">I have read the <a href="privacy.html" target="_blank" style="color:var(--cyan);">Privacy Policy</a> and consent to my data being processed so you can contact me back.</span>
+          </label>
+          <span class="error-msg lang-it">Devi accettare la Privacy Policy per continuare.</span>
+          <span class="error-msg lang-en">You must accept the Privacy Policy to continue.</span>
+        </div>
         <button type="submit" class="btn btn-primary">
           <span class="lang-it">Richiedi il tuo preventivo gratuito</span><span class="lang-en">Get your free quote</span>
         </button>
@@ -2695,31 +2974,74 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#" class="logo"><img src="logocypher.png" alt="Cypher Web"></a>
-        <p class="lang-it">Sviluppo siti web e servizi digitali per piccole e medie imprese, professionisti e attività locali. Milano (MI).</p>
-        <p class="lang-en">Web development and digital services for small businesses, professionals, and local shops. Based in Milan, Italy.</p>
+        <a href="#" class="logo">
+          <img src="images/logocypher.png" alt="Cypher Web">
+        </a>
+        <p class="lang-it">Siti web ad alte prestazioni con manutenzione continua. Milano, Italia.</p>
+        <p class="lang-en">High-performance websites with continuous care. Milan, Italy.</p>
       </div>
+
       <div class="footer-cols">
         <div class="footer-col">
-          <h5 class="lang-it">Naviga</h5><h5 class="lang-en">Navigate</h5>
-          <a href="#metodo" class="lang-it">Metodo</a><a href="#metodo" class="lang-en">Method</a>
-          <a href="#servizi" class="lang-it">Servizi</a><a href="#servizi" class="lang-en">Services</a>
-          <a href="#prezzi" class="lang-it">Prezzi</a><a href="#prezzi" class="lang-en">Pricing</a>
+          <h5 class="lang-it">Naviga</h5>
+          <h5 class="lang-en">Navigate</h5>
+          <a href="#metodo" class="lang-it">Metodo</a>
+          <a href="#metodo" class="lang-en">Method</a>
+          <a href="#servizi" class="lang-it">Servizi</a>
+          <a href="#servizi" class="lang-en">Services</a>
+          <a href="#suite" class="lang-it">Business Suite</a>
+          <a href="#suite" class="lang-en">Business Suite</a>
+          <a href="#prezzi" class="lang-it">Prezzi</a>
+          <a href="#prezzi" class="lang-en">Pricing</a>
         </div>
+
         <div class="footer-col">
-          <h5 class="lang-it">Contatti</h5><h5 class="lang-en">Contact</h5>
+          <h5 class="lang-it">Prodotti</h5>
+          <h5 class="lang-en">Products</h5>
+          <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app" target="_blank" rel="noopener">
+            <span class="lang-it">Cypher Manager App</span>
+            <span class="lang-en">Cypher Manager App</span>
+          </a>
+          <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app/prenota?company=demo" target="_blank" rel="noopener">
+            <span class="lang-it">Demo Prenotazioni</span>
+            <span class="lang-en">Booking Demo</span>
+          </a>
+        </div>
+
+        <div class="footer-col">
+          <h5 class="lang-it">Contatti</h5>
+          <h5 class="lang-en">Contact</h5>
           <a href="mailto:danielemartelli37@gmail.com">danielemartelli37@gmail.com</a>
           <a href="tel:+393458409958">+39 345 840 9958</a>
+          <a href="https://wa.me/393458409958" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+
+        <div class="footer-col">
+          <h5 class="lang-it">Legale</h5>
+          <h5 class="lang-en">Legal</h5>
+          <a href="privacy.html">
+            <span class="lang-it">Privacy Policy</span>
+            <span class="lang-en">Privacy Policy</span>
+          </a>
+          <a href="cookieprivacy.html">
+            <span class="lang-it">Cookie Policy</span>
+            <span class="lang-en">Cookie Policy</span>
+          </a>
+          <a href="termini-condizioni.html">
+            <span class="lang-it">Termini e Condizioni</span>
+            <span class="lang-en">Terms & Conditions</span>
+          </a>
         </div>
       </div>
     </div>
+
     <div class="footer-bottom">
       <span>© 2026 Cypher Web. <span class="lang-it">Tutti i diritti riservati.</span><span class="lang-en">All rights reserved.</span></span>
-      <span class="lang-it">P.IVA in fase di apertura</span><span class="lang-en">Italy</span>
+      <span class="lang-it">Fatto a Milano con precisione svizzera 🇮🇹</span>
+      <span class="lang-en">Made in Milan with Swiss precision 🇮🇹</span>
     </div>
   </div>
 </footer>
-
 <a href="https://wa.me/393458409958?text=Ciao%20Cypher%20Web%2C%20vorrei%20informazioni." target="_blank" rel="noopener" class="wa-float" aria-label="Contattaci su WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.87.51 3.62 1.4 5.12L2 22l5.13-1.5a9.85 9.85 0 0 0 4.9 1.3h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.06h-.01a8.16 8.16 0 0 1-4.17-1.14l-.3-.18-3.1.9.92-3.03-.2-.31a8.12 8.12 0 0 1-1.27-4.39c0-4.5 3.66-8.16 8.16-8.16 4.5 0 8.16 3.66 8.16 8.16 0 4.5-3.66 8.15-8.19 8.15zm4.49-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.65.81-.79.98-.15.17-.29.18-.54.06-.25-.12-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.5.12-.12.27-.31.4-.46.13-.16.18-.27.27-.45.08-.17.04-.31-.04-.43-.08-.12-.55-1.32-.75-1.81-.2-.48-.4-.42-.55-.42-.14 0-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.74 2.65 4.21 3.61.59.23 1.05.36 1.41.46.59.16 1.13.14 1.55.08.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
 </a>
@@ -2807,16 +3129,18 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
     const emailEl = document.getElementById('email');
     const msgEl = document.getElementById('messaggio');
 
-    const nome = nomeEl.value.trim();
+   const nome = nomeEl.value.trim();
     const email = emailEl.value.trim();
     const messaggio = msgEl.value.trim();
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const consentEl = document.getElementById('privacyConsent');
 
     setFieldValid('field-nome', nome.length > 0);
     setFieldValid('field-email', emailOk);
     setFieldValid('field-messaggio', messaggio.length > 0);
+    document.getElementById('field-privacy').classList.toggle('invalid', !consentEl.checked);
 
-    if(!nome || !emailOk || !messaggio){
+    if(!nome || !emailOk || !messaggio || !consentEl.checked){
       const firstInvalid = form.querySelector('.invalid input, .invalid textarea');
       if(firstInvalid) firstInvalid.focus();
       return;
@@ -3057,6 +3381,18 @@ Requisiti CSS: blocco "PORTFOLIO STORY" + blocco "PORTFOLIO — link al sito rea
     document.body.classList.remove('banner-active');
     try{ localStorage.setItem(KEY,'1'); }catch(e){}
   });
+  (function(){
+  const cbanner = document.getElementById('cookieBanner');
+  const CKEY = 'cypher_cookie_notice_seen';
+  let seen = false;
+  try { seen = localStorage.getItem(CKEY) === '1'; } catch(e){}
+  if(!cbanner) return;
+  if(seen){ cbanner.classList.add('hidden'); }
+  document.getElementById('cookieAccept').addEventListener('click', ()=>{
+    cbanner.classList.add('hidden');
+    try{ localStorage.setItem(CKEY,'1'); }catch(e){}
+  });
+})();
 })();
 
 </script>
