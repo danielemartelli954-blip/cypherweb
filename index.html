@@ -1466,7 +1466,13 @@ body.banner-active header{ top:44px; }
     justify-content:center;
     box-shadow:0 12px 35px -8px rgba(37,99,255,0.6);
     color:#fff;
-    transition:transform .2s ease;
+    opacity:0;
+    pointer-events:none;
+    transition:transform .2s ease, opacity .25s ease;
+  }
+  .wa-float.show{
+    opacity:1;
+    pointer-events:auto;
   }
 
   .section-title.reveal, .section-head.reveal{
@@ -1901,7 +1907,7 @@ body.banner-active header{ top:44px; }
           <li class="lang-it">Niente più telefonate a vuoto</li>
           <li class="lang-en">No more missed calls</li>
         </ul>
-        <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app/prenota?company=cypher-web-1" target="_blank" rel="noopener" class="portfolio-link" style="margin-top:16px;">
+        <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app/prenota?company=cypher-web1" target="_blank" rel="noopener" class="portfolio-link" style="margin-top:16px;">
           <span class="lang-it">Prova la demo →</span>
           <span class="lang-en">Try the demo →</span>
         </a>
@@ -2910,7 +2916,7 @@ body.banner-active header{ top:44px; }
             <span class="lang-it">Cypher Manager App</span>
             <span class="lang-en">Cypher Manager App</span>
           </a>
-          <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app/prenota?company=demo" target="_blank" rel="noopener">
+          <a href="https://cypher-web-app-daniele-webc-ompany.vercel.app/prenota?company=cypher-web1" target="_blank" rel="noopener">
             <span class="lang-it">Demo Prenotazioni</span>
             <span class="lang-en">Booking Demo</span>
           </a>
@@ -3104,6 +3110,17 @@ body.banner-active header{ top:44px; }
         waFloat.style.transform = 'translate(0,0) scale(1)';
       }
     }, { passive: true });
+  }
+
+  if(waFloat){
+    // Sui telefoni il pulsante fisso copre parte del secondo bottone
+    // dell'hero (stessa zona in basso a destra): resta nascosto finché
+    // l'utente non scorre oltre l'hero, così non si sovrappone alle CTA.
+    const revealWaFloat = () => {
+      waFloat.classList.toggle('show', window.scrollY > 420);
+    };
+    revealWaFloat();
+    window.addEventListener('scroll', revealWaFloat, { passive: true });
   }
 
   (function(){
