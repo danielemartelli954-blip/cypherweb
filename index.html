@@ -1232,6 +1232,12 @@ body.banner-active header{ top:44px; }
     border:1px solid var(--border);
     border-radius:var(--radius);
     padding:32px;
+    transition:transform .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s ease, box-shadow .3s ease;
+  }
+  .review-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(37,99,255,0.25);
+    box-shadow:0 24px 48px -20px rgba(37,99,255,0.15);
   }
   .stars{color:var(--green);margin-bottom:16px;font-size:15px;letter-spacing:2px;}
   .review-card p{font-size:16px;margin-bottom:20px;color:rgba(255,255,255,0.95);}
@@ -1300,6 +1306,10 @@ body.banner-active header{ top:44px; }
   text-align:left;
   padding:22px 26px;
   cursor:pointer;
+  transition:background .2s ease;
+}
+.policy-q:hover{
+  background:rgba(255,255,255,0.03);
 }
 .policy-q .plus{
   flex-shrink:0;
@@ -1353,6 +1363,8 @@ body.banner-active header{ top:44px; }
   }
   .contact-info .item h4{font-size:14px;color:var(--muted);margin-bottom:3px;}
   .contact-info .item p, .contact-info .item a{font-size:16px;font-weight:500;}
+  .contact-info .item a{transition:color .2s ease;}
+  .contact-info .item a:hover{color:var(--cyan);}
 
   .form-card{
     background:rgba(18,26,43,0.45);
